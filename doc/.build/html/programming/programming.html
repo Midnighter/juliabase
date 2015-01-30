@@ -1,0 +1,582 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Programming &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="../_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="../index.html" />
+    <link rel="next" title="Model permissions" href="permissions.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('../_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="permissions.html" title="Model permissions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Programming</a><ul>
+<li><a class="reference internal" href="#organizing-your-source-code">Organizing your source code</a><ul>
+<li><a class="reference internal" href="#git-subtree">Git subtree</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-a-new-django-app">Creating a new Django app</a><ul>
+<li><a class="reference internal" href="#branding">Branding</a></li>
+<li><a class="reference internal" href="#the-add-new-samples-view">The “add new samples” view</a></li>
+<li><a class="reference internal" href="#physical-processes">Physical processes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#adding-a-new-process-module">Adding a new process module</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#creating-the-database-models">Creating the database models</a><ul>
+<li><a class="reference internal" href="#schema-migration">Schema migration</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-the-urls">Creating the URLs</a></li>
+<li><a class="reference internal" href="#creating-the-view">Creating the view</a><ul>
+<li><a class="reference internal" href="#the-form">The form</a></li>
+<li><a class="reference internal" href="#view-class">View class</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-the-templates">Creating the templates</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#a-more-complex-example-writing-a-deposition-module">A more complex example: Writing a deposition module</a><ul>
+<li><a class="reference internal" href="#the-models">The models</a></li>
+<li><a class="reference internal" href="#populating-user-context">Populating user context</a></li>
+<li><a class="reference internal" href="#the-view">The view</a></li>
+<li><a class="reference internal" href="#the-lab-notebook">The lab notebook</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#process-glossary">Process glossary</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="permissions.html"
+                        title="next chapter">Model permissions</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="programming">
+<span id="index-0"></span><h1>Programming<a class="headerlink" href="#programming" title="Permalink to this headline">¶</a></h1>
+<p>This document explains JuliaBase for the programmer who wants to adapt it to
+their institute, research department, or scientific group.  It contains an
+overview of the process as a whole, and refers to other pages with the details.
+We hope that it serves as a gentle tutorial which makes the adaption process as
+easy as possible.  Feedback is welcomed!</p>
+<p>For the adaption process, you should be familiar with several technologies:</p>
+<ol class="arabic simple">
+<li><em>Python</em>.  You should have advanced experience in this language.  This
+includes the standard library; you should at least know what it can do and
+how to find information about it.</li>
+<li><em>Django</em>.  You must have mastered the tutorial of the Django web framework.</li>
+<li><em>HTML</em>.  Basic knowledge should be enough.</li>
+</ol>
+<p>Furthermode, some admin skills are necessary to get everything running.</p>
+<div class="section" id="organizing-your-source-code">
+<span id="index-1"></span><span id="id1"></span><h2>Organizing your source code<a class="headerlink" href="#organizing-your-source-code" title="Permalink to this headline">¶</a></h2>
+<p>It would be a bad idea to download JuliaBase&#8217;s source code and modify it
+directly to your needs because then, any JuliaBase update would destroy your
+changes.  Instead, you make a structure according to this:</p>
+<div class="highlight-python"><div class="highlight"><pre>myproject/
+    manage.py
+    juliabase/
+        {the original JuliaBase release}
+    mysite/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+    institute/
+        __init__.py
+        admin.py
+        urls.py
+        migrations/
+        models/
+        static/
+        templates/
+        views/
+        ...
+</pre></div>
+</div>
+<p>Thus, follow these steps:</p>
+<ol class="arabic simple">
+<li>Create the directory <tt class="file docutils literal"><span class="pre">myproject/</span></tt></li>
+<li>Copy a JuliaBase release to <tt class="file docutils literal"><span class="pre">myproject/juliabase</span></tt></li>
+<li>Copy the file <tt class="file docutils literal"><span class="pre">myproject/juliabase/manage.py</span></tt> to <tt class="file docutils literal"><span class="pre">myproject/</span></tt>.</li>
+<li>Create <tt class="file docutils literal"><span class="pre">myproject/mysite/</span></tt></li>
+<li>Copy the files <tt class="file docutils literal"><span class="pre">settings.py</span></tt>, <tt class="file docutils literal"><span class="pre">urls.py</span></tt>, and <tt class="file docutils literal"><span class="pre">wsgi.py</span></tt>
+from <tt class="file docutils literal"><span class="pre">myproject/juliabase/</span></tt> to <tt class="file docutils literal"><span class="pre">myproject/mysite/</span></tt></li>
+<li>Create an empty file <tt class="file docutils literal"><span class="pre">myproject/mysite/__init__.py</span></tt></li>
+<li>Copy recursively the directory <tt class="file docutils literal"><span class="pre">myproject/juliabase/institute</span></tt> to
+<tt class="file docutils literal"><span class="pre">myproject/</span></tt>.</li>
+</ol>
+<div class="section" id="git-subtree">
+<span id="index-2"></span><h3>Git subtree<a class="headerlink" href="#git-subtree" title="Permalink to this headline">¶</a></h3>
+<p>If you&#8217;re using Git, you may consider using the <tt class="docutils literal"><span class="pre">subtree</span></tt> command to get
+JuliaBase in your repo: You structure your repository like above but without
+the <tt class="file docutils literal"><span class="pre">juliabase</span></tt> subdirectory.  Then, you say:</p>
+<div class="highlight-shell-session"><div class="highlight"><pre><span class="gp">username@server:~/myproject$</span> git subtree add --prefix juliabase --squash <span class="se">\</span>
+<span class="go">    https://github.com/juliabase/juliabase.git v1.0</span>
+</pre></div>
+</div>
+<p>A new version is pulled into your repo with:</p>
+<div class="highlight-shell-session"><div class="highlight"><pre><span class="gp">username@server:~/myproject$</span> git subtree pull --prefix juliabase --squash <span class="se">\</span>
+<span class="go">    https://github.com/juliabase/juliabase.git v2.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="creating-a-new-django-app">
+<h2>Creating a new Django app<a class="headerlink" href="#creating-a-new-django-app" title="Permalink to this headline">¶</a></h2>
+<p>Okay, now let&#8217;s dive into the serious stuff.</p>
+<p>You created your Django project, you added JuliaBase to it as explained in
+<a class="reference internal" href="#organizing-your-source-code">Organizing your source code</a>.  Furthermore, you set up everything as
+explained in <a class="reference internal" href="installation.html"><em>Installation</em></a> (Apache is not yet needed).  Let&#8217;s
+try to get it running with</p>
+<div class="highlight-shell-session"><div class="highlight"><pre><span class="gp">username@server:~/myproject$</span> ./manage.py migrate
+<span class="gp">username@server:~/myproject$</span> ./manage.py loaddata demo_accounts
+<span class="gp">username@server:~/myproject$</span> ./manage.py collectstatic
+<span class="gp">username@server:~/myproject$</span> ./manage.py runserver
+</pre></div>
+</div>
+<p>This should make the site accessible locally at the URL <a class="reference external" href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>.</p>
+<p>The institute app that is used is <tt class="file docutils literal"><span class="pre">myproject/institute</span></tt>.  For far, it is
+a 1:1 copy of the JuliaBase app of the same name.  The plan is to transform it
+into what <em>you</em> need by pruning and modifying it.  The primary tasks when
+adapting the app to your group or institution are:</p>
+<ol class="arabic simple">
+<li>Branding.</li>
+<li>Adapting the “add new samples” page.</li>
+<li>Manage the physical processes.</li>
+</ol>
+<div class="section" id="branding">
+<span id="index-3"></span><h3>Branding<a class="headerlink" href="#branding" title="Permalink to this headline">¶</a></h3>
+<p>For the time being, we will stay with the app name “institute” to keep the
+number of changes small.  Remember that it is only the app name; you may
+re-brand the webpages to whatever you like.  The central point of doing so is
+<tt class="file docutils literal"><span class="pre">institute/templates/jb_base.html</span></tt>.  There, you may change the name of
+the institution as well as its logo.  The logo file should be placed in
+<tt class="file docutils literal"><span class="pre">institute/static/institute/</span></tt>.</p>
+<p>Moreover, every JuliaBase installation must have at least one department.  It
+needs to be created only once and should be named appropriately.</p>
+</div>
+<div class="section" id="the-add-new-samples-view">
+<span id="index-4"></span><h3>The “add new samples” view<a class="headerlink" href="#the-add-new-samples-view" title="Permalink to this headline">¶</a></h3>
+<p>JuliaBase respects that creating new samples is a rather institute-specific
+procedure and therefore does not include a view for this.  Instead, you must
+create one, but you may use the INM&#8217;s view in
+<tt class="file docutils literal"><span class="pre">institute/views/samples/sample.py</span></tt> as a comprehensive starting point (in
+particular, the function <tt class="xref py py-func docutils literal"><span class="pre">institute.views.samples.sample.add()</span></tt>).</p>
+<p>In the INM, every sample starts its life with a <em>substrate</em>.  This is a
+physical process that is always the very first one in the sample&#8217;s history.
+Therefore, the web page where you can add new samples also asks for the
+substrate data, and creates the samples together with their substrates.  You
+may or may not wish to have substrates, too.</p>
+<p>The second big issue is sample names.  Most institutions have quite
+idiosyncratic ideas about the sample naming policy.  But JuliaBase is very
+flexible regarding this, see <a class="reference internal" href="sample_names.html"><em>Sample names</em></a>.  In the “add new samples”
+view, you may let the user input (a pattern for) the new samples right away, or
+you may give the names totally automatically.  Or, you may do it similarly to
+the INM: Let the user decide between some options, and possibly redirect to a
+bulk-rename view after having added the samples with provisional names.</p>
+</div>
+<div class="section" id="physical-processes">
+<span id="index-5"></span><h3>Physical processes<a class="headerlink" href="#physical-processes" title="Permalink to this headline">¶</a></h3>
+<p>Physical processes are the thing that a JuliaBase programmer will spend most of
+its time on.  They represent everything physically available in your
+institution: Measurement setups, deposition setups, clean room processes,
+chemical treatment, etc.</p>
+<p>The INM app “institute” ships with some examples.  You may convert them to what
+you need, but you can also remove them.  For the latter, visit
+<tt class="file docutils literal"><span class="pre">institute/urls.py</span></tt> and have a look at the following part (at the
+bottom):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pattern_generator</span> <span class="o">=</span> <span class="n">PatternGenerator</span><span class="p">(</span><span class="n">urlpatterns</span><span class="p">,</span> <span class="s">&quot;institute.views.samples&quot;</span><span class="p">)</span>
+<span class="n">pattern_generator</span><span class="o">.</span><span class="n">deposition</span><span class="p">(</span><span class="s">&quot;ClusterToolDeposition&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;add&quot;</span><span class="p">,</span> <span class="s">&quot;edit&quot;</span><span class="p">})</span>
+<span class="n">pattern_generator</span><span class="o">.</span><span class="n">deposition</span><span class="p">(</span><span class="s">&quot;FiveChamberDeposition&quot;</span><span class="p">,</span> <span class="s">&quot;5-chamber_depositions&quot;</span><span class="p">)</span>
+<span class="n">pattern_generator</span><span class="o">.</span><span class="n">physical_process</span><span class="p">(</span><span class="s">&quot;PDSMeasurement&quot;</span><span class="p">,</span> <span class="s">&quot;number&quot;</span><span class="p">)</span>
+<span class="n">pattern_generator</span><span class="o">.</span><span class="n">physical_process</span><span class="p">(</span><span class="s">&quot;Substrate&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;edit&quot;</span><span class="p">})</span>
+<span class="n">pattern_generator</span><span class="o">.</span><span class="n">physical_process</span><span class="p">(</span><span class="s">&quot;Structuring&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;edit&quot;</span><span class="p">})</span>
+<span class="n">pattern_generator</span><span class="o">.</span><span class="n">physical_process</span><span class="p">(</span><span class="s">&quot;SolarsimulatorMeasurement&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, you can simply remove a line and the process is gone.  Well, not
+entirely: You still need to remove its views module, templates, and models in
+order to have everything neat and clean.  But removing the URL is enough for
+the moment.</p>
+</div>
+</div>
+<div class="section" id="adding-a-new-process-module">
+<span id="index-6"></span><h2>Adding a new process module<a class="headerlink" href="#adding-a-new-process-module" title="Permalink to this headline">¶</a></h2>
+<p>So you want to add a new measurement device or manufacturing process to your
+JuliaBase installation.  You do so by adding new models, views, URLs, and
+possibly an electronic lab notebook to your app “institute”.</p>
+<p>I will show how to do that step-by-step.  In this example case, we write the
+code for layer thickness measurements.</p>
+<div class="section" id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h3>
+<p>The following steps are necessary for creating a physical process:</p>
+<ol class="arabic simple">
+<li>Create a database model in <tt class="docutils literal"><span class="pre">institute/models.py</span></tt>.</li>
+<li>Create links in <tt class="docutils literal"><span class="pre">urls.py</span></tt>.</li>
+<li>Create a view module in <tt class="docutils literal"><span class="pre">samples/views/</span></tt>.  Fill the view module with an
+“EditView” class.</li>
+<li>Create an “edit” and a “show” template in <tt class="docutils literal"><span class="pre">templates/</span></tt>.</li>
+<li><em>(Optional)</em> Create an electronic lab notebook.</li>
+<li><em>(Optional)</em> Create support for the new process in the Remote Client.</li>
+<li><em>(Optional)</em> Import legacy data.</li>
+</ol>
+<p>In general, you will not do all of this from scratch.  Instead, you will
+copy-and-paste from an already existing process which is as similar to the new
+one as possible.</p>
+</div>
+<div class="section" id="creating-the-database-models">
+<h3>Creating the database models<a class="headerlink" href="#creating-the-database-models" title="Permalink to this headline">¶</a></h3>
+<p>A “database model” or simply a “model” is a class in the Python code which
+represents a table in the database.  It defines which things need to be stored
+for every thickness measurement.  Since a model is a very Django-specific
+construction, see the <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/db/models/">Django model documentation</a> for the details.</p>
+<p>Let us assume that your thickness measurements need two fields: The measured
+thickness and the method that was used to measure the thickness.  For the
+method, you want to give the user the choice between five pre-set methods.</p>
+<p>Thus, add the following code to your <tt class="docutils literal"><span class="pre">models.py</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">method_choices</span><span class="o">=</span><span class="p">((</span><span class="s">u&quot;profilers&amp;edge&quot;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">u&quot;profilers + edge&quot;</span><span class="p">)),</span>
+                <span class="p">(</span><span class="s">u&quot;ellipsometer&quot;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">u&quot;ellipsometer&quot;</span><span class="p">)),</span>
+                <span class="p">(</span><span class="s">u&quot;calculated&quot;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">u&quot;calculated from deposition parameters&quot;</span><span class="p">)),</span>
+                <span class="p">(</span><span class="s">u&quot;estimate&quot;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">u&quot;estimate&quot;</span><span class="p">)),</span>
+                <span class="p">(</span><span class="s">u&quot;other&quot;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">u&quot;other&quot;</span><span class="p">)))</span>
+
+<span class="k">class</span> <span class="nc">ThicknessMeasurement</span><span class="p">(</span><span class="n">PhysicalProcess</span><span class="p">):</span>
+    <span class="n">thickness</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DecimalField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">u&quot;layer thickness&quot;</span><span class="p">),</span> <span class="n">max_digits</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+                                    <span class="n">decimal_places</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">help_text</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">u&quot;in nm&quot;</span><span class="p">))</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">u&quot;measurement method&quot;</span><span class="p">),</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+                              <span class="n">choices</span><span class="o">=</span><span class="n">method_choices</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&quot;profilers&amp;edge&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first part defines the five choices – note that it defines pairs of
+strings, namely the internal name, which will be written to the hard disk, and
+the descriptive name, which will be shown to the user.  The descriptive name is
+enclosed by <tt class="docutils literal"><span class="pre">_(...)</span></tt> to make it translatable to various languages.</p>
+<p>Try to be as restrictive as is sensible when defining your models.  In
+particular, mark only those fields as optional that are really optional, set
+minimal and maximal values for numeric fields where applicable, and restrict
+the number of digits for decimal fields.  This not only forces users to enter
+plausible values, it also helps debugging.</p>
+<div class="section" id="schema-migration">
+<span id="index-7"></span><h4>Schema migration<a class="headerlink" href="#schema-migration" title="Permalink to this headline">¶</a></h4>
+<p>After you add (or change) database models, you must to a so-called schema
+migration.  This means that the tables in the database PostgreSQL are actually
+changed, so that Django can use this new structure (a.k.a. schema).</p>
+<p>It is a good idea to test a schema migration first on a test server.</p>
+<p>The schema migration is created and applied by saying:</p>
+<div class="highlight-python"><div class="highlight"><pre>./manage.py makemigrations institute
+./manage.py migrate institute
+</pre></div>
+</div>
+<p>The first line will create a new file in <tt class="file docutils literal"><span class="pre">institute/migrations/</span></tt>.  It
+should be added to your repository.</p>
+</div>
+</div>
+<div class="section" id="creating-the-urls">
+<span id="index-8"></span><h3>Creating the URLs<a class="headerlink" href="#creating-the-urls" title="Permalink to this headline">¶</a></h3>
+<p>The following work is done in <tt class="file docutils literal"><span class="pre">institute/urls.py</span></tt>.  This step is fairly
+simple.  For the thickness measurement, you add:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pattern_generator</span><span class="o">.</span><span class="n">physical_process</span><span class="p">(</span><span class="s">&quot;LayerThicknessMeasurement&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-the-view">
+<span id="index-9"></span><h3>Creating the view<a class="headerlink" href="#creating-the-view" title="Permalink to this headline">¶</a></h3>
+<p>Typically, the view is the most complex task when creating a new kind of
+process.  The Python file containing it must be called
+<tt class="file docutils literal"><em><span class="pre">process_class</span></em><span class="pre">.py</span></tt>, thus in the current example,
+<tt class="file docutils literal"><span class="pre">layer_thickness_measurement.py</span></tt>.  It contains two parts:</p>
+<ol class="arabic simple">
+<li>The form(s).</li>
+<li>The <tt class="docutils literal"><span class="pre">class</span> <span class="pre">EditView</span></tt> function.  This is mandatory.</li>
+</ol>
+<div class="section" id="the-form">
+<h4>The form<a class="headerlink" href="#the-form" title="Permalink to this headline">¶</a></h4>
+<p>For such a simple process class, this is simple:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">LayerThicknessForm</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">ProcessForm</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">LayerThicknessMeasurement</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s">&quot;__all__&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="view-class">
+<h4>View class<a class="headerlink" href="#view-class" title="Permalink to this headline">¶</a></h4>
+<p>You only need to create a view class for <em>editing</em>, which can also be used to
+<em>adding</em>.  (The <em>display</em> of an existing process is handled by JuliaBase.)
+This view function must be defined like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">EditView</span><span class="p">(</span><span class="n">ProcessView</span><span class="p">):</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">LayerThicknessForm</span>
+</pre></div>
+</div>
+<p>For such a simple process like layer thickness measurement, that&#8217;s it!  For
+more complex processes, you may have to define further form classes, or do
+additional validation in an <tt class="xref py py-meth docutils literal"><span class="pre">is_referentially_valid()</span></tt> method in the
+view class.  For the full API reference, see <a class="reference internal" href="class-based_views.html"><em>Class-based views</em></a>.  For
+more examples, see the view modules of the <tt class="docutils literal"><span class="pre">institute</span></tt> app in JuliaBase&#8217;s
+source distribution.</p>
+</div>
+</div>
+<div class="section" id="creating-the-templates">
+<span id="index-10"></span><h3>Creating the templates<a class="headerlink" href="#creating-the-templates" title="Permalink to this headline">¶</a></h3>
+<p>You need two templates per process, one that is called
+<tt class="file docutils literal"><span class="pre">edit_</span><em><span class="pre">process_name</span></em><span class="pre">.html</span></tt> and the other that is called
+<tt class="file docutils literal"><span class="pre">show_</span><em><span class="pre">process_name</span></em><span class="pre">.html</span></tt>.  Copy them from the process which is most
+closely related to the one you&#8217;re editing and apply the necessary
+modifications.  Put them into the directory
+<tt class="file docutils literal"><span class="pre">institute/templates/samples/</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="a-more-complex-example-writing-a-deposition-module">
+<h2>A more complex example: Writing a deposition module<a class="headerlink" href="#a-more-complex-example-writing-a-deposition-module" title="Permalink to this headline">¶</a></h2>
+<p>I will show how to write a module for a deposition system by creating an
+example module step-by-step.  The crucial difference to the simple measurement
+process from above is that depositions consist of <em>layers</em>, and there can be
+arbitrarily many of them.  Every process class that needs some sort of
+sub-model is more complicated, as explained in the following.</p>
+<div class="section" id="the-models">
+<h3>The models<a class="headerlink" href="#the-models" title="Permalink to this headline">¶</a></h3>
+<p>A deposition system typically needs two models: One for the deposition data and
+one for the layer data.  The layer data will carry much more fields than the
+deposition, and it will contain a pointer to the deposition it belongs to.
+This way, deposition and layers are kept together.  This pointer is represented
+by a “foreign key” field.</p>
+<p>The deposition model is derived from <tt class="xref py py-class docutils literal"><span class="pre">Deposition</span></tt>,
+which in turn is a <tt class="docutils literal"><span class="pre">Process</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">FiveChamberDeposition</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Deposition</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">PhysicalProcess</span><span class="o">.</span><span class="n">Meta</span><span class="p">):</span>
+        <span class="n">permissions</span> <span class="o">=</span> <span class="n">generate_permissions</span><span class="p">(</span>
+            <span class="p">{</span><span class="s">&quot;add&quot;</span><span class="p">,</span> <span class="s">&quot;change&quot;</span><span class="p">,</span> <span class="s">&quot;view_every&quot;</span><span class="p">,</span> <span class="s">&quot;edit_permissions&quot;</span><span class="p">},</span> <span class="s">&quot;FiveChamberDeposition&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It contains a full set of permissions to limit “add” and “edit” access to
+certain users.  Moreover the <tt class="docutils literal"><span class="pre">view_every</span></tt> makes a lab notebook possible.  See
+<a class="reference internal" href="permissions.html"><em>Model permissions</em></a> for further information.</p>
+<p>In contrast, the layer model is derived from <tt class="xref py py-class docutils literal"><span class="pre">Layer</span></tt>,
+which in turn is an ordinary Django model (not a <tt class="docutils literal"><span class="pre">Process</span></tt>):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">FiveChamberLayer</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+    <span class="n">deposition</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span>
+        <span class="n">FiveChamberDeposition</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s">&quot;layers&quot;</span><span class="p">,</span> <span class="n">verbose_name</span><span class="o">=</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;deposition&quot;</span><span class="p">))</span>
+    <span class="n">layer_type</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">_</span><span class="p">(</span><span class="s">&quot;layer type&quot;</span><span class="p">),</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">five_chamber_layer_type_choices</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">chamber</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span>
+        <span class="n">_</span><span class="p">(</span><span class="s">&quot;chamber&quot;</span><span class="p">),</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">five_chamber_chamber_choices</span><span class="p">)</span>
+    <span class="n">sih4</span> <span class="o">=</span> <span class="n">model_fields</span><span class="o">.</span><span class="n">DecimalQuantityField</span><span class="p">(</span>
+        <span class="s">&quot;SiH4&quot;</span><span class="p">,</span> <span class="n">max_digits</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s">&quot;sccm&quot;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">h2</span> <span class="o">=</span> <span class="n">model_fields</span><span class="o">.</span><span class="n">DecimalQuantityField</span><span class="p">(</span>
+        <span class="s">&quot;H₂&quot;</span><span class="p">,</span> <span class="n">max_digits</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s">&quot;sccm&quot;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">temperature_1</span> <span class="o">=</span> <span class="n">model_fields</span><span class="o">.</span><span class="n">DecimalQuantityField</span><span class="p">(</span>
+        <span class="n">_</span><span class="p">(</span><span class="s">&quot;temperature 1&quot;</span><span class="p">),</span> <span class="n">max_digits</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s">&quot;℃&quot;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">temperature_2</span> <span class="o">=</span> <span class="n">model_fields</span><span class="o">.</span><span class="n">DecimalQuantityField</span><span class="p">(</span>
+        <span class="n">_</span><span class="p">(</span><span class="s">&quot;temperature 2&quot;</span><span class="p">),</span> <span class="n">max_digits</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">decimal_places</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s">&quot;℃&quot;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">blank</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Layer</span><span class="o">.</span><span class="n">Meta</span><span class="p">):</span>
+        <span class="n">unique_together</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;deposition&quot;</span><span class="p">,</span> <span class="s">&quot;number&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The most important thing here is the <tt class="docutils literal"><span class="pre">deposition</span></tt> field which points to the
+deposition this layer belongs to.  It forms part of a <tt class="docutils literal"><span class="pre">unique_together</span></tt>
+declaration.  The other fields are ordinary data fields.</p>
+</div>
+<div class="section" id="populating-user-context">
+<span id="index-11"></span><h3>Populating user context<a class="headerlink" href="#populating-user-context" title="Permalink to this headline">¶</a></h3>
+<p>In order to enable users to duplicate existing depositions, you should override
+<tt class="xref py py-meth docutils literal"><span class="pre">get_context_for_user()</span></tt> method in the
+deposition model:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">get_context_for_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">old_context</span><span class="p">):</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="n">old_context</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">permissions</span><span class="o">.</span><span class="n">has_permission_to_add_physical_process</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">):</span>
+        <span class="n">context</span><span class="p">[</span><span class="s">&quot;duplicate_url&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;{0}?copy_from={1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">django</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">urlresolvers</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="s">&quot;add_five_chamber_deposition&quot;</span><span class="p">),</span>
+            <span class="n">urlquote_plus</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">number</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">context</span><span class="p">[</span><span class="s">&quot;duplicate_url&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="nb">super</span><span class="p">(</span><span class="n">FiveChamberDeposition</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">get_context_for_user</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This method is used when the HTML for a process (in this case a deposition) is
+created.  Its return value is a dictionary which is combined with the
+dictionary sent to the <tt class="file docutils literal"><span class="pre">show_</span><em><span class="pre">process_class</span></em><span class="pre">.html</span></tt> template.  This way,
+additional program logic can be used to generate the HTML.  In case of
+depositions, a “duplicate” button can be added, depending on the user&#8217;s
+permissions.</p>
+</div>
+<div class="section" id="the-view">
+<h3>The view<a class="headerlink" href="#the-view" title="Permalink to this headline">¶</a></h3>
+<p>In the view module which must be called <tt class="file docutils literal"><span class="pre">five_chamber_deposition.py</span></tt>, the
+main form gets additional cleaning methods:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">DepositionForm</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">views</span><span class="o">.</span><span class="n">DepositionForm</span><span class="p">):</span>
+
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">institute</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">FiveChamberDeposition</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s">&quot;__all__&quot;</span>
+
+    <span class="k">def</span> <span class="nf">clean_number</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DepositionForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">clean_number</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">form_utils</span><span class="o">.</span><span class="n">clean_deposition_number_field</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="s">&quot;S&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cleaned_data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">DepositionForm</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">clean</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s">&quot;number&quot;</span> <span class="ow">in</span> <span class="n">cleaned_data</span> <span class="ow">and</span> <span class="s">&quot;timestamp&quot;</span> <span class="ow">in</span> <span class="n">cleaned_data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cleaned_data</span><span class="p">[</span><span class="s">&quot;number&quot;</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span> <span class="o">!=</span> <span class="n">cleaned_data</span><span class="p">[</span><span class="s">&quot;timestamp&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&quot;%y&quot;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="s">&quot;number&quot;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;The first two digits must match the year of the deposition.&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">cleaned_data</span>
+</pre></div>
+</div>
+<p>The view class must override <tt class="xref py py-meth docutils literal"><span class="pre">get_next_id()</span></tt> because the ID of a
+deposition (its number) is non-numberical in the INM:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">EditView</span><span class="p">(</span><span class="n">RemoveFromMySamplesMixin</span><span class="p">,</span> <span class="n">DepositionView</span><span class="p">):</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">DepositionForm</span>
+    <span class="n">layer_form_class</span> <span class="o">=</span> <span class="n">LayerForm</span>
+
+    <span class="k">def</span> <span class="nf">get_next_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">institute</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">base</span><span class="o">.</span><span class="n">get_next_deposition_number</span><span class="p">(</span><span class="s">&quot;S&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-lab-notebook">
+<span id="index-12"></span><h3>The lab notebook<a class="headerlink" href="#the-lab-notebook" title="Permalink to this headline">¶</a></h3>
+<p>There are two things to set up for electronic lab notebooks: The URL and the
+template.</p>
+<p>Adding the URL for depositions is trivial as the method
+<a class="reference internal" href="utilities.html#samples.utils.urls.PatternGenerator.deposition" title="samples.utils.urls.PatternGenerator.deposition"><tt class="xref py py-meth docutils literal"><span class="pre">samples.utils.urls.PatternGenerator.deposition()</span></tt></a> by default also
+creates a lab notebook URL:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pattern_generator</span><span class="o">.</span><span class="n">deposition</span><span class="p">(</span><span class="s">&quot;FiveChamberDeposition&quot;</span><span class="p">,</span> <span class="s">&quot;5-chamber_depositions&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For normal processes, you need to request the lab notebook URL explicitly:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pattern_generator</span><span class="o">.</span><span class="n">physical_process</span><span class="p">(</span><span class="s">&quot;ConductivityMeasurement&quot;</span><span class="p">,</span>
+                                   <span class="n">views</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;add&quot;</span><span class="p">,</span> <span class="s">&quot;edit&quot;</span><span class="p">,</span> <span class="s">&quot;lab_notebook&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Finally, you need to create a template called
+<tt class="file docutils literal"><span class="pre">lab_notebook_</span><em><span class="pre">process_class</span></em><span class="pre">.html</span></tt>.  It contains the processes to be
+displayed in a lab notebook table in the context variable <tt class="docutils literal"><span class="pre">processes</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="process-glossary">
+<h2>Process glossary<a class="headerlink" href="#process-glossary" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary docutils">
+<dt id="term-process">process</dt>
+<dd><p class="first">Anything that contains information about a sample.  This can be a process
+in the literal meaning of the word, i.e. a deposition, an etching, a
+clean room process etc.  It can also be a measurement or a result.
+However, even the substrate, sample split, and sample death are
+considered processes in JuliaBase.</p>
+<p class="last">It may have been better to call this “history item” or just “item”
+instead of “process”.  The name “process” is due to merely historical
+reasons, but there we go.</p>
+</dd>
+<dt id="term-measurement">measurement</dt>
+<dd>A special kind of <em>process</em> which contains a single measurement.  It
+belongs to the class of <em>physical processes</em>.</dd>
+<dt id="term-physical-process">physical process</dt>
+<dd>A deposition or a measurement process.  Its speciality is that only
+people with the right permission for a certain physical process are
+allowed to add and edit physical processes.</dd>
+<dt id="term-result">result</dt>
+<dd>A result – or result process, as it is sometimes called in the source
+code – is a special process which contains only a remark, a picture, or a
+table with result values.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="permissions.html" title="Model permissions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

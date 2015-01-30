@@ -1,0 +1,529 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>A walk through JuliaBase &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="index.html" />
+    <link rel="next" title="Installation" href="programming/installation.html" />
+    <link rel="prev" title="Introduction" href="index.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="programming/installation.html" title="Installation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">A walk through JuliaBase</a><ul>
+<li><a class="reference internal" href="#the-demo-site">The demo site</a></li>
+<li><a class="reference internal" href="#the-demo-accounts">The demo accounts</a><ul>
+<li><a class="reference internal" href="#the-boss">The boss</a></li>
+<li><a class="reference internal" href="#the-technical-staff">The technical staff</a></li>
+<li><a class="reference internal" href="#the-scientific-staff">The scientific staff</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rosalee-the-everyday-work">Rosalee: The everyday work</a><ul>
+<li><a class="reference internal" href="#the-my-samples-list">The “My Samples” list</a></li>
+<li><a class="reference internal" href="#topics">Topics</a></li>
+<li><a class="reference internal" href="#sample-data-sheet">Sample data sheet</a></li>
+<li><a class="reference internal" href="#edit-samples">Edit samples</a></li>
+<li><a class="reference internal" href="#add-processes">Add processes</a><ul>
+<li><a class="reference internal" href="#split-a-sample">Split a sample</a></li>
+<li><a class="reference internal" href="#result-process">Result process</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#advanced-search">Advanced search</a></li>
+<li><a class="reference internal" href="#data-export">Data export</a></li>
+<li><a class="reference internal" href="#add-samples">Add samples</a></li>
+<li><a class="reference internal" href="#lab-notebooks">Lab notebooks</a></li>
+<li><a class="reference internal" href="#add-new-deposition-process">Add new deposition process</a></li>
+<li><a class="reference internal" href="#change-permissions-for-processes">Change permissions for processes</a></li>
+<li><a class="reference internal" href="#claims-of-samples">Claims of samples</a><ul>
+<li><a class="reference internal" href="#adding-a-sample-to-my-samples">Adding a sample to My Samples</a></li>
+<li><a class="reference internal" href="#the-actual-claim">The actual claim</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#juliette-the-assigner-of-work">Juliette: The assigner of work</a><ul>
+<li><a class="reference internal" href="#adding-a-task">Adding a task</a></li>
+<li><a class="reference internal" href="#sending-a-sample-to-another-user">Sending a sample to another user</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nick-technical-service-for-others">Nick: Technical service for others</a><ul>
+<li><a class="reference internal" href="#the-newsfeed">The newsfeed</a></li>
+<li><a class="reference internal" href="#tasks">Tasks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sean-the-team-leader">Sean: The team leader</a><ul>
+<li><a class="reference internal" href="#approve-a-sample-claim">Approve a sample claim</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="programming/installation.html"
+                        title="next chapter">Installation</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="a-walk-through-juliabase">
+<h1>A walk through JuliaBase<a class="headerlink" href="#a-walk-through-juliabase" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-demo-site">
+<span id="index-0"></span><h2>The demo site<a class="headerlink" href="#the-demo-site" title="Permalink to this headline">¶</a></h2>
+<p>At <a class="reference external" href="https://demo.juliabase.org">https://demo.juliabase.org</a>, a demo of JuliaBase is installed so that you can
+play with it a little bit.  You can log in with various accounts with different
+levels of permissions, add samples, processes, tasks etc., have a look at
+sample data sheets or a lab notebook, and much more.</p>
+<p>However, since this site is accessable to everyone, it may become chaotic over
+time.  In order to prevent that, all the data is reset every hour on the
+hour.  So, don&#8217;t be surprised if you have to log in again after some time – all
+session data is reset, too.  There is nothing to worry though as you may log
+in as often as you wish.</p>
+<p>This demo site is also the default target of the remote client code shipped
+with JuliaBase.  You are encouraged to use the demo as a test bed for your
+client code.</p>
+</div>
+<div class="section" id="the-demo-accounts">
+<h2>The demo accounts<a class="headerlink" href="#the-demo-accounts" title="Permalink to this headline">¶</a></h2>
+<p>The demo site is the JuliaBase installation of the “Institute of Nifty New
+Materials” (INM).  It&#8217;s a very small institute with only six employees.  All
+accounts have the password “12345”.</p>
+<div class="section" id="the-boss">
+<span id="index-1"></span><h3>The boss<a class="headerlink" href="#the-boss" title="Permalink to this headline">¶</a></h3>
+<p><strong>Sean Renard</strong> (s.renard) is the lead scientist and director of this
+institute.  Accordingly, his JuliaBase account allows him to view all samples,
+but he has got other privileges, too.  More about that later.</p>
+</div>
+<div class="section" id="the-technical-staff">
+<h3>The technical staff<a class="headerlink" href="#the-technical-staff" title="Permalink to this headline">¶</a></h3>
+<p><strong>Nick Burkhardt</strong> (n.burkhardt) is a technician in the INM for a very long time.  He is
+responsible for the <em>PDS setup</em> (photothermal deflection spectroscopy), a
+measurement setup.  He performs measurements for researchers.  He would never
+let another person use his PDS.</p>
+<p><strong>Hank Griffin</strong> (h.griffin) is also a technician.  He is responsible for the
+<em>solarsimulator</em>, another measurement setup.  He performs measurements for
+researchers, but after proper instructions by him, other people may use the
+apparatus, too.</p>
+<p><strong>Eddie Monroe</strong> (e.monroe) is a deposition operator.  This is a technician who
+manages a deposition system, in his case, the <em>cluster tool deposition</em>.  Here
+too, other institute members may use this system after proper instructions.</p>
+</div>
+<div class="section" id="the-scientific-staff">
+<h3>The scientific staff<a class="headerlink" href="#the-scientific-staff" title="Permalink to this headline">¶</a></h3>
+<p><strong>Rosalee Calvert</strong> (r.calvert) is a tenure scientist and creates samples by
+herself in the <em>5-chamber deposition setup</em>.  Currently, she&#8217;s the only one
+using this setup.  Afterwards, she measures the samples in the solarsimulator.
+His current project is a cooperation with the University of Paris.</p>
+<p><strong>Juliette Silverton</strong> (j.silverton) is a PhD student with a lot of work.
+Thus, she is unable to do sample preparation and measurements herself, and let
+others do it.  Consequently, she makes intensive use of JuliaBase&#8217;s “task
+lists” feature in order to commission the work.</p>
+</div>
+</div>
+<div class="section" id="rosalee-the-everyday-work">
+<h2>Rosalee: The everyday work<a class="headerlink" href="#rosalee-the-everyday-work" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="_images/ss_main.png"><img alt="Main menu screenshot" class="align-right" src="_images/ss_main.png" style="width: 427.0px; height: 323.0px;" /></a>
+<p>Log in as <tt class="docutils literal"><span class="pre">r.calvert</span></tt>, the typical ordinary user.  We will see how she gets
+her work done.</p>
+<div class="section" id="the-my-samples-list">
+<span id="index-2"></span><h3>The “My Samples” list<a class="headerlink" href="#the-my-samples-list" title="Permalink to this headline">¶</a></h3>
+<p>In the main menu, you can see Rosalee&#8217;s “My Samples” on the right hand side.
+This list usually contains not <em>all</em> samples of a user but only those that are
+<em>currently of interest</em> to him/her.  Still, this list may become quite long,
+and is therefore structured by <em>topics</em> and <em>sample series</em>.  You may click on
+the bullet icons (<img alt="group icon" src="_images/group.png" /> or <img alt="sample series icon" src="_images/chart_organisation.png" />) in the list to fold and
+unfold sections that you want to hide.</p>
+</div>
+<div class="section" id="topics">
+<span id="index-3"></span><h3>Topics<a class="headerlink" href="#topics" title="Permalink to this headline">¶</a></h3>
+<p>One sample usually belongs to exactly one topic.  This helps to organise
+samples.  For one thing, one can give topics expressive names, which makes the
+samples&#8217; purpose clear.  In Rosalee&#8217;s list, all samples belong to the topic
+“Cooperation with Paris University”.</p>
+<p id="index-4">But even more important is that topics define who can see the sample.  The
+prime directive in JuliaBase is: <em>You can only see samples of your topics.</em></p>
+<p>If a sample is in no topic, it is completely unprotected.  Everyone can see it
+and take possession of it.  There may be use cases for that but usually, you
+should put all your samples in topics.</p>
+<p>People can be in an arbitrary lot of topics at the same time, but a sample is
+in exactly one topic.  It may change it during its lifetime, though.  Senior
+team members may have the permission to see all samples, whether in their
+topics or not.  Sean Renard is such a person.</p>
+</div>
+<div class="section" id="sample-data-sheet">
+<span id="index-5"></span><h3>Sample data sheet<a class="headerlink" href="#sample-data-sheet" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/ss_datasheet.png"><img alt="Sample data sheet screenshot" class="align-right" src="_images/ss_datasheet.png" style="width: 419.5px; height: 938.5px;" /></a>
+<p>Let&#8217;s visit a sample by clicking on “14S-001”.  You see its data sheet.  At the
+top, it contains some general information like the currently responsible person
+and the topic.  Then, you see a list of everything that has been done with this
+sample, in chronological order.  It starts with the substrate, is continued
+with the deposition of the silicon layers, and ends with a measurement in the
+solar simulator.</p>
+<p id="index-6">Every such step is called a “process” in JuliaBase.  Even the “Substrate” is a
+process, albeit a slightly odd one.  Every process has an operator and a
+timestamp.  You can fold processes that would otherwise clobber the data sheet
+by clicking on the heading.</p>
+<p>The main work when adapting JuliaBase to a new institute is programming all the
+processes that the institute needs.  The solarsimulator measurement at the
+bottom is a good example why it is worth the effort.  Just click on the colored
+squares, and you see how the data and the plot change immediately.  Such
+features are lacking in off-the-shelf databases.  This high degree of
+adaptability and flexibility is the primary strength of JuliaBase.</p>
+<p>Let&#8217;s scroll back to the top.  You see a schematic cross section of the sample,
+called an “informal stack” because it may not be totally accurate.  This is not
+part of JuliaBase&#8217;s core because it may not be useful for every institute.  But
+it&#8217;s part of the source code and you may use it.  If you click on it, you get
+it as a PDF.  This is also true for all plots in JuliaBase.</p>
+<span class="target" id="index-7"></span></div>
+<div class="section" id="edit-samples">
+<h3>Edit samples<a class="headerlink" href="#edit-samples" title="Permalink to this headline">¶</a></h3>
+<p>You can edit a sample by clicking on the pencil icon <img alt="pencil icon" src="_images/pencil.png" /> next to the
+sample&#8217;s name.  “Editing a sample” refers <em>only</em> to the data at the top of the
+data sheet.  In particular, no processes are affected.  Very often when you
+change somethin in JuliaBase, you have to describe your changes shortly at the
+bottom right.  It may be tedious sometimes, but it may be very helpful to
+others who get notified by your changes.</p>
+</div>
+<div class="section" id="add-processes">
+<h3>Add processes<a class="headerlink" href="#add-processes" title="Permalink to this headline">¶</a></h3>
+<p>Also on the top of the sample data sheet there is the gear icon <img alt="gear add icon" src="_images/cog_add.png" />, which is to append a new process to the sample.  If you click on it, you
+are asked which kind of process you&#8217;d like to add.  Let&#8217;s have a look at two
+possibilities: Splitting and result process.</p>
+<div class="section" id="split-a-sample">
+<span id="index-8"></span><h4>Split a sample<a class="headerlink" href="#split-a-sample" title="Permalink to this headline">¶</a></h4>
+<p>If you split samples into pieces, you surely want to keep track of that.  For
+doing so, you click on the gear icon <img alt="gear add icon" src="_images/cog_add.png" /> and select “sample split”.
+Then, you can enter the new names of the samples.  Usually, they extend their
+parent&#8217;s name.  When looking at a sample&#8217;s data sheet, you also see all
+processes of the parents.</p>
+</div>
+<div class="section" id="result-process">
+<span id="index-9"></span><h4>Result process<a class="headerlink" href="#result-process" title="Permalink to this headline">¶</a></h4>
+<p>Result processes, often simply called “result”, are a handy ad-hoc way to
+append something to a sample&#8217;s data sheet.  If you want to add a measurement
+result for which no dedicated process has been programmed so far, or if you
+want to add a plot, a picture, or a comment, then create a result.  It&#8217;s the
+Swiss-Army-knife process if nothing else fits.  Because it&#8217;s so flexible, be
+careful not to have spelling errors in order to keep searching and exporting
+easy.</p>
+</div>
+</div>
+<div class="section" id="advanced-search">
+<span id="index-10"></span><h3>Advanced search<a class="headerlink" href="#advanced-search" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/ss_advanced_search.png"><img alt="Advanced search screenshot" class="align-right" src="_images/ss_advanced_search.png" style="width: 420.5px; height: 539.0px;" /></a>
+<p>Rosalee wants to see her best samples.  For this, go back to the main menu (the
+house icon <img alt="house icon" src="_images/house.png" /> on the top right, or the big text “Samples”) and select
+“Search for things – Advanced search”.  Now, perform the following steps,
+clicking on “Submit” after each step:</p>
+<ol class="arabic simple">
+<li>Select “sample” in the drop down menu.</li>
+<li>Enter “calvert” in “currently responsible person” and select “solarsimulator
+measurement” in the drop-down menu “containing”.</li>
+<li>Select “AM1.5” in “irradiation”, and select “solarsimulator cell
+measurement” in the inner drop-down menu “containing”.</li>
+<li>Enter in “efficiency η“ the value “8”.</li>
+</ol>
+<p>You get the result as in the image next to this text: Two of her samples match
+the criteria, namely “14S-002” and “14S-003”.  This means, both samples have at
+least one solarsimulator measurement under AM&nbsp;1.5 irradiation, with at least
+one cell with an efficiency greater than 8%.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You may bookmark advanced searches and revisit them as often as you wish.
+Every time, you get new results for your old search criteria.</p>
+</div>
+<div style="clear: both"/></div>
+<div class="section" id="data-export">
+<span id="index-11"></span><h3>Data export<a class="headerlink" href="#data-export" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/ss_csv_export.png"><img alt="CSV export screenshot" class="align-right" src="_images/ss_csv_export.png" style="width: 419.5px; height: 330.5px;" /></a>
+<p>Rosalee needs the data in her spreadsheet program.  So, click yet another time
+on “Submit”.  You may select the processes on the sample data sheet that should
+be included into the output.  Select the second layer of the 5-chamber
+deposition and the first solarsimulator measurement.  Click on “Submit”.  Now,
+you may select the fields of these processes that should be included into the
+output.  Select “<span class="math">\(\mathrm{SiH}_4\)</span>/sccm” (the silane flux, by the way) of
+the layer and “η of best cell/%” of the solarsimulator measurement.  Click on
+“Submit”.</p>
+<p>The result is shown in the screenshot.  The table comprises all the data that
+will be included into the output.  Click one last time on “Submit”, and you can
+download that table as a CSV file ready-to-be-opened with your favourite
+spreadsheet program.  When opening it, take care that columns are separated
+<em>only</em> by tabstops.</p>
+</div>
+<div class="section" id="add-samples">
+<span id="index-12"></span><h3>Add samples<a class="headerlink" href="#add-samples" title="Permalink to this headline">¶</a></h3>
+<p>From the main menu, you can click on “Add things – Samples” to add samples.
+Note that this page is quite institute-specific.  Your institute may not have
+the concept of substrates, for example, and surely not something like a
+“cleaning number”.  Anyway, you must enter the number of samples as well as
+their current location.  Add a couple of samples, but don&#8217;t rename them yet.</p>
+<p>Fresh samples have a provisional name in JuliaBase.  It looks like “*00034”,
+i.e., an asterisk followed by a five-digit number.  Never use these names on
+sample boxes or in lab notebooks.  They are meant to be replaced by a real name
+as quickly as possible.  Rosalee&#8217;s samples get their names after the first
+deposition of silicon, so let&#8217;s do that now.</p>
+</div>
+<div class="section" id="lab-notebooks">
+<span id="index-13"></span><h3>Lab notebooks<a class="headerlink" href="#lab-notebooks" title="Permalink to this headline">¶</a></h3>
+<p>From the main menu, open the lab notebook of the five-chamber deposition.  You
+see six depositions of October&nbsp;2014.  Select one of them.  JuliaBase shows you
+a page containing the details of only this deposition.  At the top of it, click
+on the gear icon <img alt="gear add icon" src="_images/cog_add.png" /> in order to duplicate this deposition.</p>
+</div>
+<div class="section" id="add-new-deposition-process">
+<h3>Add new deposition process<a class="headerlink" href="#add-new-deposition-process" title="Permalink to this headline">¶</a></h3>
+<p>Rosalee duplicates old depositions because she doesn&#8217;t vary much.  This way,
+she adds new depositions without fuss.  In the page for the new deposition, she
+only has to select the samples for the deposition (which are the samples
+recently added, with these “*…” names), change some other things that were
+different in this run, and click on “Submit”.</p>
+<a class="reference internal image-reference" href="_images/ss_rename_after_depo.png"><img alt="Rename after deposition screenshot" class="align-right" src="_images/ss_rename_after_depo.png" style="width: 428.0px; height: 277.0px;" /></a>
+<p>Now, its a habit in the Institute of Nifty New Materials to give the sample the
+same name as the deposition.  Therefore, immediately after having added the
+deposition, you are redirected to a page where you can check and change the new
+sample names.  JuliaBase suggests the deposition&#8217;s name for all samples (in the
+case of the screenshot, three of them).  However, names must be unique, so
+Rosalee appends “…-a”, “…-b”, and&nbsp;“…-c” (see screenshot, second column).  Click
+on “Submit”, that&#8217;s it!  The newly deposited samples appear with their proper
+names under “My Samples” on the main menu page.</p>
+<p>Of course, your institute may have another workflow without such renaming,
+which is a bad idea anyway – names in a database should never change.  So you
+can just leave out the renaming page in your own code.</p>
+</div>
+<div class="section" id="change-permissions-for-processes">
+<span id="permissions-to-processes"></span><span id="index-14"></span><h3>Change permissions for processes<a class="headerlink" href="#change-permissions-for-processes" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/ss_change_permissions.png"><img alt="Change permissions screenshot" class="align-right" src="_images/ss_change_permissions.png" style="width: 428.0px; height: 155.5px;" /></a>
+<p>As already mentioned, Rosalee is responsible for the 5-chamber deposition
+setup.  But let&#8217;s assume Eddie wants to do such depositions, too, and gets an
+introduction?  Then, he should also be allowed to add such depositions to
+JuliaBase.</p>
+<p>Rosalee visits “Miscellaneous – Permissions to processes” from the main menu,
+selects Eddie from the drop-down menu and clicks on “Submit”.  She puts tick
+marks into the first two checkboxes and clicks again on “Submit”.  Now Eddie
+has got the following additional permissions:</p>
+<ul class="simple">
+<li>He can add new 5-chamber depositions.</li>
+<li>He can edit his own 5-chamber depositions (those that he&#8217;s the operator of).</li>
+<li>He can view all 5-chamber depositions.  In particular, this implies that he
+can view the lab notebook.</li>
+</ul>
+</div>
+<div class="section" id="claims-of-samples">
+<span id="index-15"></span><h3>Claims of samples<a class="headerlink" href="#claims-of-samples" title="Permalink to this headline">¶</a></h3>
+<p>There is one of Juliette&#8217;s samples that Rosalee wants to acquire possession of.
+In principle, Juliette could set the sample&#8217;s “currently responsible person” to
+Rosalee, but Juliette is reluctant to do work that also other could do (more on
+that later).</p>
+<p>Moreover, sometimes you must acquire possesion of orphaned samples; or of
+samples that were imported as legacy data without any ownership information.
+In these cases, it is really <em>necessary</em> to be able to claim samples.  This is
+done in two steps.</p>
+<a class="reference internal image-reference" href="_images/ss_search_for_sample.png"><img alt="Search for sample by name screenshot" class="align-right" src="_images/ss_search_for_sample.png" style="width: 428.0px; height: 199.0px;" /></a>
+<div class="section" id="adding-a-sample-to-my-samples">
+<h4>Adding a sample to My Samples<a class="headerlink" href="#adding-a-sample-to-my-samples" title="Permalink to this headline">¶</a></h4>
+<p>Rosalee clicks on “Search for things – Samples by name” in the main menu and
+enters the name “14-JS-2” into the field.  She puts a tick into the checkbox
+and clicks on “add samples”.  This way, the sample 14-JS-2 is added to
+Rosalee&#8217;s “My Samples”.</p>
+<div style="clear: both"/></div>
+<div class="section" id="the-actual-claim">
+<h4>The actual claim<a class="headerlink" href="#the-actual-claim" title="Permalink to this headline">¶</a></h4>
+<a class="reference internal image-reference" href="_images/ss_sample_claim.png"><img alt="Sample claim screenshot" class="align-right" src="_images/ss_sample_claim.png" style="width: 428.0px; height: 173.0px;" /></a>
+<p>Next, Rosalee visits “Miscellaneous – Sample claims” from the main menu, and on
+the next page, selects “existing samples”.  Here, she selects 14-JS-2, and
+“Sean Renard” as the reviewer of the claim (he&#8217;s the only choice anyway).
+That&#8217;s it.  The next page lets Rosalee review the claim.  But now she has to
+wait for Sean (who got an automatic email) for approving it.</p>
+</div>
+</div>
+</div>
+<div class="section" id="juliette-the-assigner-of-work">
+<h2>Juliette: The assigner of work<a class="headerlink" href="#juliette-the-assigner-of-work" title="Permalink to this headline">¶</a></h2>
+<p>Juliette has a lot to do and cannot deal with such things as sample preparation
+and characterization itself.  Thus, she assigns tasks to other people and
+analyses the results.  Logout and re-login as j.silverton/12345.</p>
+<div class="section" id="adding-a-task">
+<h3>Adding a task<a class="headerlink" href="#adding-a-task" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/ss_task_lists.png"><img alt="Task lists screenshot" class="align-right" src="_images/ss_task_lists.png" style="width: 420.5px; height: 435.5px;" /></a>
+<p>Let us assume Juliette wants to have a PDS measurement for her sample 14-JS-1.
+Therefore, visit “Miscellaneous – Task lists” from the main menu.  There,
+first set up the page by selecting the processes that you&#8217;re interested in.
+Select “PDS measurements” and click on “Submit”.</p>
+<p>Now you add a new task for the PDS setup by clicking on the plus icon <img alt="layout add icon" src="_images/layout_add.png" /> for PDS measurements.  Select the sample 14-JS-1, click on “Submit”
+and you&#8217;re finished.  You can see the new task in the list of tasks.  There,
+you may withdraw it by clicking on the minus icon&nbsp;<img alt="layout delete icon" src="_images/layout_delete.png" />, or edit
+it by clicking on the pencil icon&nbsp;<img alt="layout edit icon" src="_images/layout_edit.png" />.</p>
+<div style="clear: both"/></div>
+<div class="section" id="sending-a-sample-to-another-user">
+<span id="index-16"></span><h3>Sending a sample to another user<a class="headerlink" href="#sending-a-sample-to-another-user" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/ss_edit_my_samples.png"><img alt="Edit My Samples screenshot" class="align-right" src="_images/ss_edit_my_samples.png" style="width: 489.5px; height: 404.0px;" /></a>
+<p>Juliette wants to show the sample 14-JS-1 to Nick so that he can have a look at
+it.  Of course, Nick could look for the sample himself, but since the sample is
+in the topic “Juliette&#8217;s PhD thesis” and Nick isn&#8217;t, he cannot view the
+sample&#8217;s data sheet.</p>
+<p>To send the sample to Nick, click on the pencil icon <img alt="pencil icon" src="_images/pencil.png" /> next to “My
+samples” on the main menu page.  Select the sample 14-JS-1 on the left.  Then,
+on the right, select Nick in the multiple choice “Copy to user” and enter, say,
+“Please have a look at this sample” at “Comment for recipient”.  Finally, set
+“Clearance” to “all processes up to now”, because Juliette wants Nick to be
+able to see the whole data sheet of 14-JS-1.</p>
+</div>
+</div>
+<div class="section" id="nick-technical-service-for-others">
+<h2>Nick: Technical service for others<a class="headerlink" href="#nick-technical-service-for-others" title="Permalink to this headline">¶</a></h2>
+<p>Now login as n.burkhardt/12345.  You can see 14-JS-1 under “My Samples”, and
+you can view its data sheet.  The transfer has worked.</p>
+<div class="section" id="the-newsfeed">
+<span id="index-17"></span><h3>The newsfeed<a class="headerlink" href="#the-newsfeed" title="Permalink to this headline">¶</a></h3>
+<p>Moreover, Nick has been notified by the transfer in “Main menu – Miscellaneous
+– Newsfeed”.  There, he can also see that Juliette has files a new task for PDS
+measurements because Nick has the necessary permissions for the PDS.  The
+newsfeed contains all important news for the respective user: Changes in their
+samples, new samples in their topics, samples transferred to them, new tasks,
+and much more.</p>
+<p>The newsfeed is not really intended to be view in the browser.  You may do so,
+but it is a little bit awkward.  Rather, use a program capable of RSS feeds
+like Thunderbird.  It is able to show you which entries in the feed are really
+new.</p>
+</div>
+<div class="section" id="tasks">
+<span id="index-18"></span><h3>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/ss_edit_task.png"><img alt="Edit task screenshot" class="align-right" src="_images/ss_edit_task.png" style="width: 445.0px; height: 273.0px;" /></a>
+<p>Since Nick has read that Juliette had filed a new PDS task, he visits the “Task
+lists” page himself.  When doing this the first time, you have to select the
+PDS and click on “Submit” to make PDS tasks viewable to Nick.</p>
+<p>In general, there are more than one person working at a setup like the PDS.
+Sometimes, people are absent (holidays, illness, etc).  Therefore, it is not
+a-priori clear who will actually do a task, and the task must be explicitly
+accepted by someone and assigned to someone.  In order to so this, click on the
+pencil icon to edit it.  Set the “status” to “accepted” and “operator” to Nick
+himself.  Juliette will get notified of this.</p>
+<p>Nick can edit all PDS tasks by clicking on the pencil icon <img alt="layout edit icon" src="_images/layout_edit.png" />.
+When Nick is actually doing the measurement, he may set the task&#8217;s status to
+“in progress”, and after that, to “finished”.  A finished task may even be
+connected with the concrete PDS measurement.</p>
+<p>Some of these steps are optional.  It depends on your workflow.  An operator
+might only set finished tasks to “finished” without further ado.  Or he may use
+all of the features offered by task lists.  Or anything in between.</p>
+</div>
+</div>
+<div class="section" id="sean-the-team-leader">
+<h2>Sean: The team leader<a class="headerlink" href="#sean-the-team-leader" title="Permalink to this headline">¶</a></h2>
+<p id="index-19">Login as s.renard/12345.  Sean, being the team leader, has extended
+permissions.  They are:</p>
+<ul class="simple">
+<li>View all samples</li>
+<li>Create new topics</li>
+<li>Change memberships in all topics</li>
+<li>Grant and revoke permissions to all setups</li>
+<li>Approve or reject sample claims</li>
+</ul>
+<p>The Institute of Nifty New Materials only has two levels: The team leader and
+the rest.  You may add further levels in your institution, and you may set the
+permissions in a different way.  However, we&#8217;ve made the experience that
+complex permission policies are a burden that should be avoided.</p>
+<div class="section" id="approve-a-sample-claim">
+<span id="index-20"></span><h3>Approve a sample claim<a class="headerlink" href="#approve-a-sample-claim" title="Permalink to this headline">¶</a></h3>
+<a class="reference internal image-reference" href="_images/ss_approve_claim.png"><img alt="Approve sample claim screenshot" class="align-right" src="_images/ss_approve_claim.png" style="width: 428.0px; height: 277.5px;" /></a>
+<p>Visit on the main menu “Miscellaneous – sample claims”.  At the bottom of this
+page, you see the sample claim of Juliette.  Click on it.  Sean can now review
+it in detail, and approve or reject it.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="programming/installation.html" title="Installation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Introduction"
+             >previous</a> |</li>
+        <li><a href="toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

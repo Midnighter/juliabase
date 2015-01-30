@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Sample names &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="../_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="../index.html" />
+    <link rel="next" title="Hacking on JuliaBase" href="hacking_on_juliabase.html" />
+    <link rel="prev" title="Settings reference" href="settings.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('../_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="hacking_on_juliabase.html" title="Hacking on JuliaBase"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="settings.html" title="Settings reference"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sample names</a><ul>
+<li><a class="reference internal" href="#name-format-properties">Name format properties</a><ul>
+<li><a class="reference internal" href="#pattern"><tt class="docutils literal"><span class="pre">&quot;pattern&quot;</span></tt></a></li>
+<li><a class="reference internal" href="#possible-renames"><tt class="docutils literal"><span class="pre">&quot;possible_renames&quot;</span></tt></a></li>
+<li><a class="reference internal" href="#verbose-name"><tt class="docutils literal"><span class="pre">&quot;verbose_name&quot;</span></tt></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#provisional-sample-names">Provisional sample names</a></li>
+<li><a class="reference internal" href="#initials">Initials</a><ul>
+<li><a class="reference internal" href="#id2"><tt class="docutils literal"><span class="pre">&quot;pattern&quot;</span></tt></a></li>
+<li><a class="reference internal" href="#description"><tt class="docutils literal"><span class="pre">&quot;description&quot;</span></tt></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#name-prefix-templates">Name prefix templates</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="settings.html"
+                        title="previous chapter">Settings reference</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="hacking_on_juliabase.html"
+                        title="next chapter">Hacking on JuliaBase</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="sample-names">
+<span id="index-0"></span><h1>Sample names<a class="headerlink" href="#sample-names" title="Permalink to this headline">¶</a></h1>
+<p id="index-1">The naming scheme for samples is an important aspect of your samples database.
+In order to support you with that, JuliaBase allows the definition of so-called
+name formats.  These are string patterns that describe all valid sample names.
+They are defined in <tt class="file docutils literal"><span class="pre">settings.py</span></tt> like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">SAMPLE_NAME_FORMATS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&quot;provisional&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;possible_renames&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;new&quot;</span><span class="p">}},</span>
+    <span class="s">&quot;old&quot;</span><span class="p">:</span>         <span class="p">{</span><span class="s">&quot;pattern&quot;</span><span class="p">:</span> <span class="s">r&quot;{short_year}[A-Z]-\d{{3,4}}([-A-Za-z_/][-A-Za-z_/0-9#()]*)?&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;possible_renames&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;new&quot;</span><span class="p">}},</span>
+    <span class="s">&quot;new&quot;</span><span class="p">:</span>         <span class="p">{</span><span class="s">&quot;pattern&quot;</span><span class="p">:</span> <span class="s">r&quot;({short_year}-{user_initials}|{external_contact_initials})&quot;</span>
+                               <span class="s">r&quot;-[-A-Za-z_/0-9#()]+&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, three name formats are defined, namely “provisional”, “old”,
+and “new”.  They are mapped to dictionaries which contain their properties.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There is a length limit of 30 characters for sample names.  This is
+hard-wired in JuliaBase.</p>
+</div>
+<div class="section" id="name-format-properties">
+<h2>Name format properties<a class="headerlink" href="#name-format-properties" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="pattern">
+<h3><tt class="docutils literal"><span class="pre">&quot;pattern&quot;</span></tt><a class="headerlink" href="#pattern" title="Permalink to this headline">¶</a></h3>
+<p>This is the <a class="reference external" href="https://docs.python.org/3.4/library/re.html#regular-expression-syntax">regular expression pattern</a> for
+this name format.  It should match sample names of this format <em>and only
+these</em>.  In other words, every sample name should be identified unambiguously
+with a name format.  JuliaBase appends an implicit <tt class="docutils literal"><span class="pre">\Z</span></tt> so that the whole
+sample name must match.</p>
+<p>You can use some placeholder in the pattern that are interpreted by JuliaBase
+to enforce additional constraints to new sample names.  These are:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">{year}</span></tt></dt>
+<dd>the current year as a four-digit number</dd>
+<dt><tt class="docutils literal"><span class="pre">{short_year}</span></tt></dt>
+<dd>the current year as a two-digit number</dd>
+<dt><tt class="docutils literal"><span class="pre">{user_initials}</span></tt></dt>
+<dd>the initials of the currently logged-in user</dd>
+<dt><tt class="docutils literal"><span class="pre">{external_contact_initials}</span></tt></dt>
+<dd>the initials of an external contact (a.k.a. external operator) of the
+currently logged-in user</dd>
+<dt><tt class="docutils literal"><span class="pre">{combined_initials}</span></tt></dt>
+<dd>any of the initials above</dd>
+</dl>
+<p>Because placeholders are embraced with <tt class="docutils literal"><span class="pre">{...}</span></tt>, you have to double any curly
+braces used in the pattern itself, as can be seen at the <tt class="docutils literal"><span class="pre">{{3,4}}</span></tt> in the
+example above.</p>
+</div>
+<div class="section" id="possible-renames">
+<h3><tt class="docutils literal"><span class="pre">&quot;possible_renames&quot;</span></tt><a class="headerlink" href="#possible-renames" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">set()</span></tt> (empty set)</p>
+<p>This is a set containing all name formats into which this name format can be
+renamed by the user.  Of course, Python code can rename a sample to anything &#8211;
+although it will cause trouble if the new name is not matched by any name
+format.  However, this property sets limits to what the <em>user</em> can <em>explicitly</em>
+do.  In the JuliaBase code, it affects the bulk-rename view as well as the
+split-and-rename view.  And you may enforce it in your own code.</p>
+</div>
+<div class="section" id="verbose-name">
+<h3><tt class="docutils literal"><span class="pre">&quot;verbose_name&quot;</span></tt><a class="headerlink" href="#verbose-name" title="Permalink to this headline">¶</a></h3>
+<p>This property contains a human-friendly name for the format name.  You should
+enclose it with <tt class="docutils literal"><span class="pre">_(&quot;...&quot;)</span></tt> to make it translatable.</p>
+</div>
+</div>
+<div class="section" id="provisional-sample-names">
+<span id="index-2"></span><h2>Provisional sample names<a class="headerlink" href="#provisional-sample-names" title="Permalink to this headline">¶</a></h2>
+<p>There is a special name format in JuliaBase called “provisional”.  It has a
+fixed pattern <tt class="docutils literal"><span class="pre">r&quot;\*\d{5}$&quot;</span></tt> and a default verbose name.  It is used for newly
+created samples and usually immediately replaced by something real in the “bulk
+rename” view.  You should never use a provisional name outside JuliaBase,
+e.g. on sample boxes, in lab notebooks, or emails!  And, you should never allow
+renaming of any format into provisional names.  In other words, one should get
+rid of a provisional name as quickly as possible.</p>
+</div>
+<div class="section" id="initials">
+<span id="index-3"></span><span id="id1"></span><h2>Initials<a class="headerlink" href="#initials" title="Permalink to this headline">¶</a></h2>
+<p>Initials are a way to generate namespaces for samples.  This way, name
+collisions may be prevented.  For example, the probability that the researcher
+John Doe and the researcher Paula Poe both call their sample “sample-1” is
+pretty high.  However, if they put their initials somewhere in the sample name,
+the samples may be called “JD-sample-1” and “PP-sample-1”; problem solved.</p>
+<p>When it comes to choosing initials, JuliaBase follows the first come first
+served principle.  If John Doe chooses initials after Jane Doe has picked “JD”,
+he must use “JD1” or “JDOE” or whatever.  They cannot be changed anymore by the
+user.</p>
+<p>Initials are at most 4 characters long.  Apart from that, JuliaBase is
+configurable with the setting <a class="reference internal" href="settings.html#initials-formats"><em>INITIALS_FORMATS</em></a>.  It is a dictionary
+mapping <tt class="docutils literal"><span class="pre">&quot;user&quot;</span></tt> and <tt class="docutils literal"><span class="pre">&quot;external_contact&quot;</span></tt> to a properties dictionary.  The
+allowed properties are the following:</p>
+<div class="section" id="id2">
+<h3><tt class="docutils literal"><span class="pre">&quot;pattern&quot;</span></tt><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>This is a <a class="reference external" href="https://docs.python.org/3.4/library/re.html#regular-expression-syntax">regular expression pattern</a>.  The
+whole initials must match it.  In contrast to <tt class="docutils literal"><span class="pre">SAMPLE_NAME_FORMATS</span></tt>, this
+pattern cannot contain placeholders, and therefore, you must not double any
+curly brackets.</p>
+<p>For example, if you want to restrict user initials to two or three uppercase
+letters, you simply add to <tt class="file docutils literal"><span class="pre">settings.py</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">INITIALS_FORMATS</span><span class="p">[</span><span class="s">&quot;user&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&quot;pattern&quot;</span><span class="p">:</span> <span class="s">&quot;[A-Z]{2,3}&quot;</span><span class="p">,</span>
+    <span class="s">&quot;description&quot;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;The initials consist of two or three uppercase letters.&quot;</span><span class="p">)}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h3><tt class="docutils literal"><span class="pre">&quot;description&quot;</span></tt><a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>This is translatable string describing the pattern in a Human-friendly way.  It
+is used for error messages.</p>
+</div>
+</div>
+<div class="section" id="name-prefix-templates">
+<span id="index-4"></span><h2>Name prefix templates<a class="headerlink" href="#name-prefix-templates" title="Permalink to this headline">¶</a></h2>
+<p>In the bulk rename sample view (the view to which the user is redirected after
+having created new samples, in order to give them a name), the user can select
+a name prefix, which is then prepended to every new name.  This is partly for
+convenience and partly for name policy enforcement.  With the setting
+<tt class="docutils literal"><span class="pre">NAME_PREFIX_TEMPLATES</span></tt>, you can configure this behaviour:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">NAME_PREFIX_TEMPLATES</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;{short_year}-{user_initials}-&quot;</span><span class="p">,</span> <span class="s">&quot;{external_contact_initials}-&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This example defines two prefixes.  You may use the following placeholders in
+the templates:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">{year}</span></tt></dt>
+<dd>the current four-digit year</dd>
+<dt><tt class="docutils literal"><span class="pre">{short_year}</span></tt></dt>
+<dd>the current two-digit year</dd>
+<dt><tt class="docutils literal"><span class="pre">{user_initials}</span></tt></dt>
+<dd>the initials of the currently logged-in user</dd>
+<dt><tt class="docutils literal"><span class="pre">{external_contact_initials}</span></tt></dt>
+<dd>the initials of any external contact of the currently logged-in user</dd>
+</dl>
+<p>You may also add the empty string <tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt> as a template.  Then, the user may
+also choose to not use any prefix, and the new names are taken as is.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="hacking_on_juliabase.html" title="Hacking on JuliaBase"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="settings.html" title="Settings reference"
+             >previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

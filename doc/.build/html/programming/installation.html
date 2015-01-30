@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="../_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="../index.html" />
+    <link rel="next" title="Programming" href="programming.html" />
+    <link rel="prev" title="A walk through JuliaBase" href="../demo.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('../_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="programming.html" title="Programming"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../demo.html" title="A walk through JuliaBase"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#linux-configuration">Linux configuration</a></li>
+<li><a class="reference internal" href="#postgresql">PostgreSQL</a></li>
+<li><a class="reference internal" href="#django">Django</a></li>
+<li><a class="reference internal" href="#juliabase">JuliaBase</a></li>
+<li><a class="reference internal" href="#apache">Apache</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../demo.html"
+                        title="previous chapter">A walk through JuliaBase</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="programming.html"
+                        title="next chapter">Programming</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installation">
+<span id="index-0"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prerequisites">
+<span id="index-1"></span><h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>Basically, you only need the current version of the <a class="reference external" href="https://www.djangoproject.com/">Django web framework</a>
+together with its prerequisites.  Typically, this will be a computer with a
+Linux operating system, and with Apache and PostgreSQL running on it.  However,
+Django is flexible.  Is also runs on a Windows server, and it may be combined
+with different webservers and database backends.  See <a class="reference external" href="https://docs.djangoproject.com/en/1.7/topics/install/">Django&#8217;s own
+installation guide</a> for more information.  Still, in this document, we assume
+the default setup, which we also strongly recommend: Linux, Apache, PostgreSQL.
+We deliberately avoid mentioning any particular Linux distribution because we
+assume that at least their server flavours are similar enough.  For what it&#8217;s
+worth, the authors run Ubuntu Server.</p>
+<p>Mostly, no sophisticated finetuning of the components is necessary because
+JuliaBase deployments will serve only a few (&lt;&nbsp;1000) people.  In particular,
+PostgreSQL and Apache can run in default configuration by and large.  On the
+other hand, the computer should be a <a class="reference external" href="http://linux-ha.org/">high-availability system</a>, possibly
+realized with virtual machines.  In our own installation, we manage a
+three-nines system, i.e. 99.9&nbsp;% availability.  Additionally, regular backups
+are a must! To set up these things, however, is beyond the scope of this
+document.  Your IT department may turn out to be very helpful with this.</p>
+<p>In the following, we&#8217;ll show you how to get JuliaBase up and running quickly.
+While our way is already useful for a production system, you may wish or need
+to do it in a different way.  Thus, consider the following a good starting
+point for your own configuration.</p>
+</div>
+<div class="section" id="linux-configuration">
+<h2>Linux configuration<a class="headerlink" href="#linux-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Additionally to the software that is running on any recent and decent Linux
+operating system by default anyway, you must install:</p>
+<ul class="simple">
+<li>Apache2</li>
+<li>PostgreSQL (and the Python module “psycopg2” for it)</li>
+<li>memcached (and the Python module for it)</li>
+<li>matplotlib</li>
+<li>reportlab</li>
+</ul>
+</div>
+<div class="section" id="postgresql">
+<span id="index-2"></span><h2>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h2>
+<p>If you have PostgreSQL and Apache on the same computer, PostgreSQL&#8217;s default
+configuration should work for you.  The defaults are quite restrictive, so they
+can be considered secure.  Otherwise, if you need to change something, it is
+probably in pg_hba.conf (where the <a class="reference external" href="http://www.postgresql.org/docs/9.1/static/auth-methods.html">user authentication</a> resides) or
+postgresql.conf (where the <a class="reference external" href="http://www.postgresql.org/docs/9.1/static/runtime-config.html">general configuration</a> resides), both of which are
+typically found in /etc/postgresql/<em>version</em>/main/.</p>
+<p>Anyway, you create a PostgreSQL user with this:</p>
+<div class="highlight-shell-session"><div class="highlight"><pre><span class="gp">username@server:~$</span> sudo -u postgres psql
+<span class="go">psql (9.3.4)</span>
+<span class="go">Type &quot;help&quot; for help.</span>
+
+<span class="go">postgres=# CREATE USER username WITH PASSWORD ’topsecret’ CREATEDB;</span>
+<span class="go">CREATE ROLE</span>
+<span class="go">postgres=# \q</span>
+</pre></div>
+</div>
+<p>In this snippet, you have to replace <tt class="docutils literal"><span class="pre">username</span></tt> with your UNIX user name, and
+<tt class="docutils literal"><span class="pre">topsecret</span></tt> with a proper password, which shouldn&#8217;t be your UNIX login
+password.  Finally, create the database with:</p>
+<div class="highlight-shell-session"><div class="highlight"><pre><span class="gp">username@server:~$</span> createdb juliabase
+</pre></div>
+</div>
+</div>
+<div class="section" id="django">
+<span id="index-3"></span><h2>Django<a class="headerlink" href="#django" title="Permalink to this headline">¶</a></h2>
+<p>A certain version of JuliaBase works only with a certain version of Django.
+Currently, this is Django&nbsp;1.7.  Install it according to <a class="reference external" href="https://www.djangoproject.com/download/">Django&#8217;s own
+instructions</a>.  Not further configuration is necessary.</p>
+</div>
+<div class="section" id="juliabase">
+<h2>JuliaBase<a class="headerlink" href="#juliabase" title="Permalink to this headline">¶</a></h2>
+<p>JuliaBase is organized in a public <a class="reference external" href="http://git-scm.com/">Git</a> <a class="reference external" href="https://github.com/juliabase">repository on GitHub</a>.  So far,
+there is no public release of JuliaBase 1.0.  However, the master branch in the
+repository is a release candidate, which can be cloned locally with</p>
+<div class="highlight-shell-session"><div class="highlight"><pre><span class="gp">username@server:~$</span> git clone https://github.com/juliabase/juliabase.git
+</pre></div>
+</div>
+<p>It contains three Django apps:</p>
+<ol class="arabic simple">
+<li>jb_common</li>
+<li>samples</li>
+<li>institute</li>
+</ol>
+<p>“jb_common” implements the basic JuliaBase functionality.  On top of that,
+“samples” implements the actual samples database.  And on top of that,
+“institute” implements code that is specific to the specific institution or
+department or work group that wants to use JuliaBase.  “institute” implements a
+<em>generic</em> institute.  You will replace “institute” with your own app.</p>
+</div>
+<div class="section" id="apache">
+<span id="index-4"></span><h2>Apache<a class="headerlink" href="#apache" title="Permalink to this headline">¶</a></h2>
+<p>Add to your Apache configuration something like the following:</p>
+<div class="highlight-apache"><div class="highlight"><pre><span class="nt">&lt;VirtualHost</span> <span class="s">*:80</span><span class="nt">&gt;</span>
+  <span class="nb">ServerName</span> juliabase.example.com
+  <span class="nb">WSGIScriptAlias</span> / <span class="sx">/home/username/myproject/mysite/wsgi.py</span>
+  <span class="nb">XSendFile</span> <span class="k">on</span>
+  <span class="nb">XSendFilePath</span> /
+  <span class="nb">Alias</span> <span class="sx">/media</span> <span class="sx">/var/www/juliabase/media</span>
+  <span class="nt">&lt;Location</span> <span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>
+    <span class="nb">Order</span> allow,deny
+    <span class="nb">Allow</span> from <span class="k">all</span>
+    <span class="nb">Require</span> <span class="k">all</span> granted
+  <span class="nt">&lt;/Location&gt;</span>
+<span class="nt">&lt;/VirtualHost&gt;</span>
+</pre></div>
+</div>
+<p>This snippet contains several parts that highly probably need to be adjusted by
+you, in particular <tt class="docutils literal"><span class="pre">juliabase.example.com</span></tt>, <tt class="docutils literal"><span class="pre">username</span></tt>, and all paths in
+general.  But this should be obvious.  The proper place for it depends on your
+Linux variant.  It may be the (new) file <tt class="docutils literal"><span class="pre">/etc/apache2/httpd.conf</span></tt>, or a new
+file in <tt class="docutils literal"><span class="pre">/etc/apache2/conf.d</span></tt>, or a new file in
+<tt class="docutils literal"><span class="pre">/etc/apache2/sites-available</span></tt> with a symlink in
+<tt class="docutils literal"><span class="pre">/etc/apache2/sites-enabled</span></tt>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="programming.html" title="Programming"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../demo.html" title="A walk through JuliaBase"
+             >previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1771 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Utilities &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="../_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="../index.html" />
+    <link rel="next" title="Template tags and filters" href="template_tags_and_filters.html" />
+    <link rel="prev" title="Hacking on JuliaBase" href="hacking_on_juliabase.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('../_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="template_tags_and_filters.html" title="Template tags and filters"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="hacking_on_juliabase.html" title="Hacking on JuliaBase"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Utilities</a><ul>
+<li><a class="reference internal" href="#common-helpers">Common helpers</a><ul>
+<li><a class="reference internal" href="#string-related">String-related</a></li>
+<li><a class="reference internal" href="#file-related">File-related</a></li>
+<li><a class="reference internal" href="#generating-responses">Generating responses</a></li>
+<li><a class="reference internal" href="#sample-related">Sample-related</a></li>
+<li><a class="reference internal" href="#miscellaneous">Miscellaneous</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#feed-reporting">Feed reporting</a></li>
+<li><a class="reference internal" href="#form-field-classes">Form field classes</a></li>
+<li><a class="reference internal" href="#form-classes">Form classes</a></li>
+<li><a class="reference internal" href="#plots">Plots</a></li>
+<li><a class="reference internal" href="#urls">URLs</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="hacking_on_juliabase.html"
+                        title="previous chapter">Hacking on JuliaBase</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="template_tags_and_filters.html"
+                        title="next chapter">Template tags and filters</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="utilities">
+<span id="index-0"></span><h1>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h1>
+<p>In the following sections, the most important functions, classes, and exception
+classes are mentioned and explained.  This covers everything that is used in
+the “institute” app.  It should give you a solid starting point for creating an
+own institute app.  Nevertheless, the utility modules contain even more
+functions and classes.</p>
+<div class="section" id="common-helpers">
+<h2>Common helpers<a class="headerlink" href="#common-helpers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="string-related">
+<h3>String-related<a class="headerlink" href="#string-related" title="Permalink to this headline">¶</a></h3>
+<p>The following names are found in the module <tt class="xref py py-mod docutils literal"><span class="pre">jb_common.utils.base</span></tt>.</p>
+<dl class="function">
+<dt id="jb_common.utils.base.format_lazy">
+<tt class="descname">format_lazy</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.format_lazy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implements a lazy variant of the <tt class="docutils literal"><span class="pre">format</span></tt> string method.  For
+example, you might say:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">verbose_name</span> <span class="o">=</span> <span class="n">format_lazy</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">u&quot;Raman {0} measurement&quot;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, “<tt class="docutils literal"><span class="pre">_</span></tt>” is <tt class="docutils literal"><span class="pre">ugettext_lazy</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.format_enumeration">
+<tt class="descname">format_enumeration</tt><big>(</big><em>items</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.format_enumeration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a pretty-printed enumeration of all given names.  For
+example, if the list contains <tt class="docutils literal"><span class="pre">[&quot;a&quot;,</span> <span class="pre">&quot;b&quot;,</span> <span class="pre">&quot;c&quot;]</span></tt>, it yields <tt class="docutils literal"><span class="pre">&quot;a,</span> <span class="pre">b,</span> <span class="pre">and</span>
+<span class="pre">c&quot;</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>items</strong> (<em>iterable of unicode</em>) &#8211; iterable of names to be put into the enumeration</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">human-friendly enumeration of all names</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">unicode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.camel_case_to_underscores">
+<tt class="descname">camel_case_to_underscores</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.camel_case_to_underscores" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a CamelCase identifier to one using underscores.  For example,
+<tt class="docutils literal"><span class="pre">&quot;MySamples&quot;</span></tt> is converted to <tt class="docutils literal"><span class="pre">&quot;my_samples&quot;</span></tt>, and <tt class="docutils literal"><span class="pre">&quot;PDSMeasurement&quot;</span></tt>
+to <tt class="docutils literal"><span class="pre">&quot;pds_measurement&quot;</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; the camel-cased identifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the identifier in underscore notation</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.camel_case_to_human_text">
+<tt class="descname">camel_case_to_human_text</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.camel_case_to_human_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a CamelCase identifier to one intended to be read by humans.
+For example, <tt class="docutils literal"><span class="pre">&quot;MySamples&quot;</span></tt> is converted to <tt class="docutils literal"><span class="pre">&quot;my</span> <span class="pre">samples&quot;</span></tt>, and
+<tt class="docutils literal"><span class="pre">&quot;PDSMeasurement&quot;</span></tt> to <tt class="docutils literal"><span class="pre">&quot;PDS</span> <span class="pre">measurement&quot;</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; the camel-cased identifier</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the pretty-printed identifier</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="file-related">
+<h3>File-related<a class="headerlink" href="#file-related" title="Permalink to this headline">¶</a></h3>
+<p>The following names are found in the module <tt class="xref py py-mod docutils literal"><span class="pre">jb_common.utils.base</span></tt>.</p>
+<dl class="function">
+<dt id="jb_common.utils.base.find_file_in_directory">
+<tt class="descname">find_file_in_directory</tt><big>(</big><em>filename</em>, <em>path</em>, <em>max_depth=None</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.find_file_in_directory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches for a file in a directory recursively to a given depth.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) &#8211; The file to be searched for.  Only the basename is
+required.</li>
+<li><strong>path</strong> (<em>str</em>) &#8211; The path from the top level directory where the searching
+starts.</li>
+<li><strong>max_depth</strong> (<em>int</em>) &#8211; The maximum recursion depth; if <tt class="docutils literal"><span class="pre">None</span></tt>, there is no
+limit.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The relative path to the searched file, or <tt class="docutils literal"><span class="pre">None</span></tt> if not found.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.check_filepath">
+<tt class="descname">check_filepath</tt><big>(</big><em>filepath</em>, <em>default_root</em>, <em>allowed_roots=frozenset([])</em>, <em>may_be_directory=False</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.check_filepath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether a certain file is openable by JuliaBase.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filepath</strong> (<em>str</em>) &#8211; Path to the file to be tested.  This may be absolute or
+relative.  If empty, this function does nothing.</li>
+<li><strong>default_root</strong> (<em>str</em>) &#8211; If <tt class="docutils literal"><span class="pre">filepath</span></tt> is relative, this path is prepended to
+it.</li>
+<li><strong>allowed_roots</strong> (<em>iterable of str</em>) &#8211; All absolute root paths where <tt class="docutils literal"><span class="pre">filepath</span></tt> is allowed.
+<tt class="docutils literal"><span class="pre">default_root</span></tt> is implicitly added to it.</li>
+<li><strong>may_be_directory</strong> (<em>bool</em>) &#8211; if <tt class="docutils literal"><span class="pre">True</span></tt>, <tt class="docutils literal"><span class="pre">filepath</span></tt> may be a readable directory</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the normalised <tt class="docutils literal"><span class="pre">filepath</span></tt></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">str</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises ValidationError:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">if the <tt class="docutils literal"><span class="pre">text</span></tt> contained forbidden syntax
+elements.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.is_update_necessary">
+<tt class="descname">is_update_necessary</tt><big>(</big><em>destination</em>, <em>source_files=</em>, <span class="optional">[</span><span class="optional">]</span><em>timestamps=</em>, <span class="optional">[</span><span class="optional">]</span><em>additional_inaccuracy=0</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.is_update_necessary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether the destination file needs to be re-created from the
+sources.  It bases of the timestamps of last file modification.  If the
+union of <tt class="xref py py-obj docutils literal"><span class="pre">source_files</span></tt> and <tt class="xref py py-obj docutils literal"><span class="pre">timestamps</span></tt> is empty, the function returns
+<tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>destination</strong> (<em>unicode</em>) &#8211; the path to the destination file</li>
+<li><strong>source_files</strong> (<em>list of unicode</em>) &#8211; the paths of the source files</li>
+<li><strong>timestamps</strong> (<em>list of datetime.datetime</em>) &#8211; timestamps of non-file source objects</li>
+<li><strong>additional_inaccuracy</strong> (<em>int or float</em>) &#8211; When comparing file timestamps across
+computers, there may be trouble due to inaccurate clocks or filesystems
+where the modification timestamps have an accuracy of only 2 seconds
+(some Windows FS&#8217;es).  Set this parameter to a positive number to avoid
+this.  Note that usually, JuliaBase <em>copies</em> <em>existing</em> timestamps, so
+inaccurate clocks should not be a problem.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">whether the destination file needs to be updated</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">bool</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises OSError:</th><td class="field-body"><p class="first last">if one of the source paths is not found</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.remove_file">
+<tt class="descname">remove_file</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.remove_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the file.  If the file didn&#8217;t exist, this is a no-op.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) &#8211; absolute path to the file to be removed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">whether the file was removed; if <tt class="docutils literal"><span class="pre">False</span></tt>, it hadn&#8217;t existed</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.mkdirs">
+<tt class="descname">mkdirs</tt><big>(</big><em>path</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.mkdirs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a directory and all of its parents if necessary.  If the given
+path doesn&#8217;t end with a slash, it&#8217;s interpreted as a filename and removed.
+If the directory already exists, nothing is done.  (In particular, no
+exception is raised.)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) &#8211; absolute path which should be created</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="generating-responses">
+<h3>Generating responses<a class="headerlink" href="#generating-responses" title="Permalink to this headline">¶</a></h3>
+<p>The following names are found in the module <tt class="xref py py-mod docutils literal"><span class="pre">jb_common.utils.base</span></tt>.</p>
+<dl class="exception">
+<dt id="jb_common.utils.base.JSONRequestException">
+<em class="property">exception </em><tt class="descname">JSONRequestException</tt><big>(</big><em>error_number</em>, <em>error_message</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.JSONRequestException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception which is raised if a JSON response was requested and an error in
+the submitted data occured.  This will result in an HTTP 422 response with
+a JSON-encoded <tt class="samp docutils literal"><span class="pre">(</span><em><span class="pre">error</span> <span class="pre">code</span></em><span class="pre">,</span> <em><span class="pre">error</span> <span class="pre">message</span></em><span class="pre">)</span></tt> body.  For example,
+in a JSON-only view function, you might say:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">if</span> <span class="ow">not</span> <span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_staff</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="n">JSONRequestException</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="s">&quot;Only admins can access this ressource.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The ranges for the error codes are:</p>
+<dl class="docutils">
+<dt>0–999</dt>
+<dd>special codes, codes common to all applications, and JuliaBase-common</dd>
+<dt>1000–1999</dt>
+<dd>JuliaBase-samples</dd>
+<dt>2000–2999</dt>
+<dd>institute-specific extensions to JuliaBase-samples</dd>
+<dt>3000–3999</dt>
+<dd>JuliaBase-kicker</dd>
+</dl>
+<p>The complete table with the error codes is in the main <tt class="docutils literal"><span class="pre">__init__.py</span></tt> of
+the respective app.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.is_json_requested">
+<tt class="descname">is_json_requested</tt><big>(</big><em>request</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.is_json_requested" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests whether the current request should be answered in JSON format
+instead of HTML.  Typically this means that the request was made by the
+JuliaBase Remote Client or by JavaScript code.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<em>HttpRequest</em>) &#8211; the current HTTP Request object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">whether the request should be answered in JSON</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.respond_in_json">
+<tt class="descname">respond_in_json</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.respond_in_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>The communication with the JuliaBase Remote Client or to AJAX clients
+should be done without generating HTML pages in order to have better
+performance.  Thus, all responses are Python objects, serialised in JSON
+notation.</p>
+<p>The views that can be accessed by the Remote Client/AJAX as well as normal
+browsers should distinguish between both by using <tt class="xref py py-obj docutils literal"><span class="pre">is_json_requested</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<tt class="docutils literal"><span class="pre">object</span></tt> (an arbitrary Python object)) &#8211; the data to be sent back to the client that requested JSON.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the HTTP response object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">HttpResponse</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.static_file_response">
+<tt class="descname">static_file_response</tt><big>(</big><em>filepath</em>, <em>served_filename=None</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.static_file_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serves a file of the local file system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filepath</strong> &#8211; the absolute path to the file to be served</li>
+<li><strong>served_filename</strong> &#8211; the filename the should be transmitted; if given,
+the response will be an &#8220;attachment&#8221;</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the HTTP response with the static file</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Rype:</th><td class="field-body"><p class="first last"><tt class="docutils literal"><span class="pre">django.http.HttpResponse</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>The following name is found in the module <tt class="xref py py-mod docutils literal"><span class="pre">samples.utils.views</span></tt>.</p>
+<dl class="function">
+<dt id="samples.utils.views.successful_response">
+<tt class="descname">successful_response</tt><big>(</big><em>request</em>, <em>success_report=None</em>, <em>view=None</em>, <em>kwargs={}</em>, <em>query_string=u''</em>, <em>forced=False</em>, <em>json_response=True</em><big>)</big><a class="headerlink" href="#samples.utils.views.successful_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>After a POST request was successfully processed, there is typically a
+redirect to another page – maybe the main menu, or the page from where the
+add/edit request was started.</p>
+<p>The latter is appended to the URL as a query string with the <tt class="docutils literal"><span class="pre">next</span></tt> key,
+e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre>/juliabase/6-chamber_deposition/08B410/edit/?next=/juliabase/samples/08B410a
+</pre></div>
+</div>
+<p>This routine generated the proper HttpResponse object that contains the
+redirection.  It always has HTTP status code&nbsp;303 (“see&nbsp;other”).</p>
+<p>If the request came from the JuliaBase Remote Client, the response is a
+pickled <tt class="docutils literal"><span class="pre">json_response</span></tt>.  (Normally, a simple <tt class="docutils literal"><span class="pre">True</span></tt>.)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> (<em>HttpRequest</em>) &#8211; the current HTTP request</li>
+<li><strong>success_report</strong> (<em>unicode</em>) &#8211; an optional short success message reported to the
+user on the next view</li>
+<li><strong>view</strong> (<em>str or function</em>) &#8211; the view name/function to redirect to; defaults to the main
+menu page (same when <tt class="docutils literal"><span class="pre">None</span></tt> is given)</li>
+<li><strong>kwargs</strong> (<em>dict</em>) &#8211; group parameters in the URL pattern that have to be filled</li>
+<li><strong>query_string</strong> (<em>unicode</em>) &#8211; the <em>quoted</em> query string to be appended, without the
+leading <tt class="docutils literal"><span class="pre">&quot;?&quot;</span></tt></li>
+<li><strong>forced</strong> (<em>bool</em>) &#8211; If <tt class="docutils literal"><span class="pre">True</span></tt>, go to <tt class="docutils literal"><span class="pre">view</span></tt> even if a “next” URL is
+available.  Defaults to <tt class="docutils literal"><span class="pre">False</span></tt>.  See <tt class="xref py py-obj docutils literal"><span class="pre">bulk_rename.bulk_rename</span></tt> for
+using this option to generate some sort of nested forwarding.</li>
+<li><strong>json_response</strong> (<tt class="docutils literal"><span class="pre">object</span></tt>) &#8211; object which is to be sent as a pickled response to
+the remote client; defaults to <tt class="docutils literal"><span class="pre">True</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the HTTP response object to be returned to the view&#8217;s caller</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">HttpResponse</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="sample-related">
+<h3>Sample-related<a class="headerlink" href="#sample-related" title="Permalink to this headline">¶</a></h3>
+<p>The following names are found in the module <tt class="xref py py-mod docutils literal"><span class="pre">samples.utils.views</span></tt>.</p>
+<dl class="function">
+<dt id="samples.utils.views.dead_samples">
+<tt class="descname">dead_samples</tt><big>(</big><em>samples</em>, <em>timestamp</em><big>)</big><a class="headerlink" href="#samples.utils.views.dead_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine all samples from <tt class="docutils literal"><span class="pre">samples</span></tt> which are already dead at the
+given <tt class="docutils literal"><span class="pre">timestamp</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>samples</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>) &#8211; the samples to be tested</li>
+<li><strong>timestamp</strong> (<em>datetime.datetime</em>) &#8211; the timestamp for which the dead samples should be found</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">set of all samples which are dead at <tt class="docutils literal"><span class="pre">timestamp</span></tt></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">set of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.views.sample_name_format">
+<tt class="descname">sample_name_format</tt><big>(</big><em>name</em>, <em>with_match_object=False</em><big>)</big><a class="headerlink" href="#samples.utils.views.sample_name_format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines which sample name format the given name has.  It doesn&#8217;t test
+whether the sample name is existing, nor if the initials are valid.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>unicode</em>) &#8211; the sample name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The name of the sample name format and the respective match object.  The
+latter can be used to extract groups, for exampe.  <tt class="docutils literal"><span class="pre">None</span></tt> if the name
+had no valid format.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">(unicode, re.MatchObject) or NoneType.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.views.get_sample">
+<tt class="descname">get_sample</tt><big>(</big><em>sample_name</em><big>)</big><a class="headerlink" href="#samples.utils.views.get_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lookup a sample by name.  You may also give an alias.  If more than one
+sample is found (can only happen via aliases), it returns a list.  Matching
+is exact.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_name</strong> (<em>unicode</em>) &#8211; the name or alias of the sample</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the found sample.  If more than one sample was found, a list of them.  If
+none was found, <tt class="docutils literal"><span class="pre">None</span></tt>.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>, list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>, or
+NoneType</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.views.does_sample_exist">
+<tt class="descname">does_sample_exist</tt><big>(</big><em>sample_name</em><big>)</big><a class="headerlink" href="#samples.utils.views.does_sample_exist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <tt class="docutils literal"><span class="pre">True</span></tt> if the sample name exists in the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_name</strong> (<em>unicode</em>) &#8211; the name or alias of the sample</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">whether a sample with this name exists</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.views.normalize_sample_name">
+<tt class="descname">normalize_sample_name</tt><big>(</big><em>sample_name</em><big>)</big><a class="headerlink" href="#samples.utils.views.normalize_sample_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current name of the sample.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_name</strong> (<em>unicode</em>) &#8211; the name or alias of the sample</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The current name of the sample.  This is only different from the input if
+you gave an alias.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">unicode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.views.lookup_sample">
+<tt class="descname">lookup_sample</tt><big>(</big><em>sample_name</em>, <em>user</em>, <em>with_clearance=False</em><big>)</big><a class="headerlink" href="#samples.utils.views.lookup_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Looks up the <tt class="docutils literal"><span class="pre">sample_name</span></tt> in the database (also among the aliases),
+and returns that sample if it was found <em>and</em> the current user is allowed
+to view it.  Shortened provisional names like “*2” are also found.  If
+nothing is found or the permissions are not sufficient, it raises an
+exception.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sample_name</strong> (<em>unicode</em>) &#8211; name of the sample</li>
+<li><strong>user</strong> (<em>django.contrib.auth.models.User</em>) &#8211; the currently logged-in user</li>
+<li><strong>with_clearance</strong> (<em>bool</em>) &#8211; whether also clearances should be serached for and
+returned</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the single found sample; or the sample and the clearance instance if this
+is necessary to view the sample and <tt class="docutils literal"><span class="pre">with_clearance=True</span></tt></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt> or <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>,
+<tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Clearance</span></tt></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>Http404</strong> &#8211; if the sample name could not be found</li>
+<li><strong>AmbiguityException</strong> &#8211; if more than one matching alias was found</li>
+<li><strong>samples.permissions.PermissionError</strong> &#8211; if the user is not allowed to
+view the sample</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.views.remove_samples_from_my_samples">
+<tt class="descname">remove_samples_from_my_samples</tt><big>(</big><em>samples</em>, <em>user</em><big>)</big><a class="headerlink" href="#samples.utils.views.remove_samples_from_my_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the given samples from the user&#8217;s MySamples list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>samples</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>) &#8211; the samples to be removed.</li>
+<li><strong>user</strong> (<em>django.contrib.auth.models.User</em>) &#8211; the user whose MySamples list is affected</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.views.extract_preset_sample">
+<tt class="descname">extract_preset_sample</tt><big>(</big><em>request</em><big>)</big><a class="headerlink" href="#samples.utils.views.extract_preset_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract a sample from a query string.  All physical processes as well
+as result processes may have an optional parameter in the query string,
+namely the sample to which they should be applied (results even a sample
+series, too).  If such a parameter is present, the given sample – if
+existing – must be added to the list of selectable samples, and it must be
+the initially marked sample.</p>
+<p>This routine is used in all views for creating physical processes.  It is
+not used for result processes because they need a given sample <em>series</em>,
+too, and this would have been over-generalisation.</p>
+<p>This routine extracts the sample name from the query string and returns the
+sample.  If nothing was given or the sample non-existing, it returns
+<tt class="docutils literal"><span class="pre">None</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>request</strong> (<em>HttpRequest</em>) &#8211; the current HTTP Request object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the sample given in the query string, if any</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt> or NoneType</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.views.restricted_samples_query">
+<tt class="descname">restricted_samples_query</tt><big>(</big><em>user</em><big>)</big><a class="headerlink" href="#samples.utils.views.restricted_samples_query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a QuerySet which is restricted to samples the names of which the
+given user is allowed to see.  Note that this doesn&#8217;t mean that the user is
+allowed to see all of the samples themselves necessarily.  It is only about
+the names.  See the <tt class="xref py py-func docutils literal"><span class="pre">samples.views.sample.search()</span></tt> view for further
+information.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user</strong> (<em>django.contrib.auth.models.User</em>) &#8211; the user for which the allowed samples should be retrieved</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a queryset with all samples the names of which the user is allowed to
+know</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">QuerySet</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="miscellaneous">
+<h3>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h3>
+<p>The following names are found in the module <tt class="xref py py-mod docutils literal"><span class="pre">samples.utils.views</span></tt>.</p>
+<dl class="function">
+<dt id="samples.utils.views.convert_id_to_int">
+<tt class="descname">convert_id_to_int</tt><big>(</big><em>process_id</em><big>)</big><a class="headerlink" href="#samples.utils.views.convert_id_to_int" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the user gives a process ID via the browser, it must be converted to
+an integer because this is what&#8217;s stored in the database.  (Well, actually
+SQL gives a string, too, but that&#8217;s beside the point.)  This routine
+converts it to a real integer and tests also for validity (not for
+availability in the database).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process_id</strong> (<em>str</em>) &#8211; the pristine process ID as given via the URL by the user</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the process ID as an integer number</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises Http404:</th><td class="field-body">if the process_id didn&#8217;t represent an integer number.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.views.table_export">
+<tt class="descname">table_export</tt><big>(</big><em>request</em>, <em>data</em>, <em>label_column_heading</em><big>)</big><a class="headerlink" href="#samples.utils.views.table_export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function which does almost all work needed for a CSV table
+export view.  This is not a view per se, however, it is called by views,
+which have to do almost nothing anymore by themselves.  See for example
+<tt class="xref py py-obj docutils literal"><span class="pre">sample.export</span></tt>.</p>
+<p>This function return the data in JSON format if this is requested by the
+<tt class="docutils literal"><span class="pre">Accept</span></tt> header field in the HTTP request.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>request</strong> (<em>HttpRequest</em>) &#8211; the current HTTP Request object</li>
+<li><strong>data</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">samples.data_tree.DataNode</span></tt>) &#8211; the root node of the data tree</li>
+<li><strong>label_column_heading</strong> (<em>unicode</em>) &#8211; Description of the very first column with the
+table row headings, see <tt class="xref py py-obj docutils literal"><span class="pre">generate_table_rows</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the HTTP response object or a tuple with all needed forms to create the export view</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">HttpResponse or tuple of django.forms.Form</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>The following names are found in the module <tt class="xref py py-mod docutils literal"><span class="pre">jb_common.utils.base</span></tt>.</p>
+<dl class="function">
+<dt id="jb_common.utils.base.get_really_full_name">
+<tt class="descname">get_really_full_name</tt><big>(</big><em>user</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.get_really_full_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unfortunately, Django&#8217;s <tt class="docutils literal"><span class="pre">get_full_name</span></tt> method for users returns the
+empty string if the user has no first and surname set.  However, it&#8217;d be
+sensible to use the login name as a fallback then.  This is realised here.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user</strong> (<em>django.contrib.auth.models.User</em>) &#8211; the user instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The full, human-friendly name of the user</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">unicode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.check_markdown">
+<tt class="descname">check_markdown</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.check_markdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the Markdown input by the user contains only permitted
+syntax elements.  I forbid images and headings so far.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> &#8211; the Markdown input to be checked</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises ValidationError:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">if the <tt class="docutils literal"><span class="pre">text</span></tt> contained forbidden syntax
+elements.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.help_link">
+<tt class="descname">help_link</tt><big>(</big><em>link</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.help_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function decorator for views functions to set a help link for the view.  The
+help link is embedded into the top line in the layout, see the template
+<tt class="docutils literal"><span class="pre">base.html</span></tt>.  The default template <tt class="file docutils literal"><span class="pre">jb_base.html</span></tt> prepends
+<tt class="docutils literal"><span class="pre">&quot;http://www.juliabase.org/&quot;</span></tt>.  But you may change that by overriding the
+<tt class="docutils literal"><span class="pre">help_link</span></tt> block in your own <tt class="file docutils literal"><span class="pre">jb_base.html</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>link</strong> (<em>str</em>) &#8211; the relative URL to the help page.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.send_email">
+<tt class="descname">send_email</tt><big>(</big><em>subject</em>, <em>content</em>, <em>recipients</em>, <em>format_dict=None</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.send_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends one email to a user.  Both subject and content are translated to
+the recipient&#8217;s language.  To make this work, you must tag the original
+text with a dummy <tt class="docutils literal"><span class="pre">_</span></tt> function in the calling content, e.g.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">_</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+<span class="n">send_mail</span><span class="p">(</span><span class="n">_</span><span class="p">(</span><span class="s">&quot;Error notification&quot;</span><span class="p">),</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;An error has occured.&quot;</span><span class="p">),</span> <span class="n">user</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ugettext</span>
+</pre></div>
+</div>
+<p>If you need to use string formatting à la</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;Hello {name}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">user</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>you must pass a dictionary like <tt class="docutils literal"><span class="pre">{&quot;name&quot;:</span> <span class="pre">user.name}</span></tt> to this function.
+Otherwise, translating wouldn&#8217;t work.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>subject</strong> (<em>unicode</em>) &#8211; the subject of the email</li>
+<li><strong>content</strong> (<em>unicode</em>) &#8211; the content of the email; it may contain substitution tags</li>
+<li><strong>recipients</strong> &#8211; the recipients of the email</li>
+<li><strong>format_dict</strong> (<em>dict mapping unicode to unicode</em>) &#8211; the substitions used for the <tt class="docutils literal"><span class="pre">format</span></tt> string method
+for both the subject and the content</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.round">
+<tt class="descname">round</tt><big>(</big><em>value</em>, <em>digits</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.round" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method for rounding a numeric value to a fixed number of significant
+digits.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>value</strong> (<em>float</em>) &#8211; the numeric value</li>
+<li><strong>digit</strong> &#8211; number of significant digits</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">rounded value</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.utils.base.generate_permissions">
+<tt class="descname">generate_permissions</tt><big>(</big><em>permissions</em>, <em>class_name</em><big>)</big><a class="headerlink" href="#jb_common.utils.base.generate_permissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Auto-generates model permissions.  It may be used in physical process
+classes – but not only there – like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Meta</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">PhysicalProcess</span><span class="o">.</span><span class="n">Meta</span><span class="p">):</span>
+    <span class="n">permissions</span> <span class="o">=</span> <span class="n">generate_permissions</span><span class="p">(</span>
+        <span class="p">{</span><span class="s">&quot;add&quot;</span><span class="p">,</span> <span class="s">&quot;change&quot;</span><span class="p">,</span> <span class="s">&quot;view_every&quot;</span><span class="p">,</span> <span class="s">&quot;edit_permissions&quot;</span><span class="p">},</span> <span class="s">&quot;ModelClassName&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>permissions</strong> (<em>set of unicode</em>) &#8211; The permissions to generate.  Possible values are
+<tt class="docutils literal"><span class="pre">&quot;add&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;change&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;view_every&quot;</span></tt>, and <tt class="docutils literal"><span class="pre">&quot;edit_permissions&quot;</span></tt>.</li>
+<li><strong>class_name</strong> (<em>str</em>) &#8211; python class name of the model class,
+e.g. <tt class="docutils literal"><span class="pre">&quot;LayerThicknessMeasurement&quot;</span></tt>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the permissions tuple</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple of (unicode, unicode)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="feed-reporting">
+<h2>Feed reporting<a class="headerlink" href="#feed-reporting" title="Permalink to this headline">¶</a></h2>
+<p>The following name is found in the module <tt class="xref py py-mod docutils literal"><span class="pre">samples.utils.views</span></tt>.</p>
+<dl class="class">
+<dt id="samples.utils.views.Reporter">
+<em class="property">class </em><tt class="descname">Reporter</tt><big>(</big><em>originator</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class contains all feed-generating routines as methods.  Their
+names start with <tt class="docutils literal"><span class="pre">report_...</span></tt>.  The main reason for putting them into a
+class is that this class assures that no user gets two feed entries.
+Therefore, if you want to report a certain database change to the users,
+create an instance of <tt class="docutils literal"><span class="pre">Reporter</span></tt> and call all methods that are related to
+the database change.  Call the most meaningful method first, and the most
+general last.  For example, when changing the data of a sample, the
+respective view calls the following methods in this order:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">report_new_responsible_person_samples</span>
+<span class="n">report_changed_sample_topic</span>
+<span class="n">report_edited_samples</span>
+</pre></div>
+</div>
+<p>Of course, the first two are only called if the respective data change
+really happend.  Thus, the new responsible person is signalled first, then
+all people about a possible topic change, and if this didn&#8217;t happen, all
+so-far un-signalled users get a general message about changed sample data.</p>
+<p>If you want to signal something to all possibly interested users, no matter
+on which feed entries they already have received, just create a new
+instance of <tt class="docutils literal"><span class="pre">Reporter</span></tt>.</p>
+<p>Mostly, you can call the method directly without binding the instance of
+<tt class="docutils literal"><span class="pre">Reporter</span></tt> to a name, as in:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">feed_utils</span><span class="o">.</span><span class="n">Reporter</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">report_result_process</span><span class="p">(</span>
+        <span class="n">result</span><span class="p">,</span> <span class="n">edit_description</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>interested_users</strong> &#8211; all users that get informed with the next generated
+feed entry by a call to <tt class="xref py py-obj docutils literal"><span class="pre">__connect_with_users</span></tt></li>
+<li><strong>already_informed_users</strong> &#8211; All users who have already received a feed
+entry from this instance of <tt class="docutils literal"><span class="pre">Reporter</span></tt>.  They won&#8217;t get a second
+entry.</li>
+<li><strong>originator</strong> &#8211; the user responsible for the databse change reported by
+the feed entry of this instance of <tt class="docutils literal"><span class="pre">Reporter</span></tt>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Class constructor.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>originator</strong> (<em>django.contrib.auth.models.User</em>) &#8211; the user who did the database change to be reported;
+almost always, this is the currently logged-in user</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_changed_sample_series_topic">
+<tt class="descname">report_changed_sample_series_topic</tt><big>(</big><em>sample_series</em>, <em>old_topic</em>, <em>edit_description</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_changed_sample_series_topic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a feed entry about a topic change for a sample series.
+All members of the former topic and the new topic are informed.
+Note that it is possible that further things were changed in the sample
+series at the same time (reponsible person, samples&nbsp;…).  They should be
+mentioned in the description by the one who changed it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sample_series</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.SampleSeries</span></tt>) &#8211; the sample series that went into a new topic</li>
+<li><strong>old_topic</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">jb_common.models.Topic</span></tt>) &#8211; the old topic of the samples; may be <tt class="docutils literal"><span class="pre">None</span></tt> if
+they weren&#8217;t in any topic before</li>
+<li><strong>edit_description</strong> (dict mapping str to <tt class="docutils literal"><span class="pre">object</span></tt>) &#8211; The dictionary containing data about what was
+edited in the sample series (besides the change of the topic).
+Its keys correspond to the fields of
+<a class="reference internal" href="#samples.utils.views.EditDescriptionForm" title="samples.utils.views.EditDescriptionForm"><tt class="xref py py-obj docutils literal"><span class="pre">EditDescriptionForm</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_changed_sample_topic">
+<tt class="descname">report_changed_sample_topic</tt><big>(</big><em>samples</em>, <em>old_topic</em>, <em>edit_description</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_changed_sample_topic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a feed entry about a topic change for sample(s).  All
+members of the former topic (if any) and the new topic are informed.
+Note that it is possible that further things were changed in the
+sample(s) at the same time (reponsible person, purpose&nbsp;…).  They should
+be mentioned in the description by the one who changed it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>samples</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>) &#8211; the samples that went into a new topic</li>
+<li><strong>old_topic</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">jb_common.models.Topic</span></tt>) &#8211; the old topic of the samples; may be <tt class="docutils literal"><span class="pre">None</span></tt> if
+they weren&#8217;t in any topic before</li>
+<li><strong>edit_description</strong> (dict mapping str to <tt class="docutils literal"><span class="pre">object</span></tt>) &#8211; The dictionary containing data about what was
+edited in the samples (besides the change of the topic).  Its keys
+correspond to the fields of
+<a class="reference internal" href="#samples.utils.views.EditDescriptionForm" title="samples.utils.views.EditDescriptionForm"><tt class="xref py py-obj docutils literal"><span class="pre">EditDescriptionForm</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_changed_topic_membership">
+<tt class="descname">report_changed_topic_membership</tt><big>(</big><em>users</em>, <em>topic</em>, <em>action</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_changed_topic_membership" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate one feed entry for changed topic memberships, i.e. added
+or removed users in a topic.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>users</strong> (<em>iterable of django.contrib.auth.models.User</em>) &#8211; the affected users</li>
+<li><strong>topic</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">jb_common.models.Topic</span></tt>) &#8211; the topic whose memberships have changed</li>
+<li><strong>action</strong> (<em>str</em>) &#8211; what was done; <tt class="docutils literal"><span class="pre">&quot;added&quot;</span></tt> for added users, <tt class="docutils literal"><span class="pre">&quot;removed&quot;</span></tt>
+for removed users</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_copied_my_samples">
+<tt class="descname">report_copied_my_samples</tt><big>(</big><em>samples</em>, <em>recipient</em>, <em>comments</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_copied_my_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a feed entry for sample that one user has copied to
+another user&#8217;s “My Samples” list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>samples</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>) &#8211; the samples that were copied to another user</li>
+<li><strong>recipient</strong> (<em>django.contrib.auth.models.User</em>) &#8211; the other user who got the samples</li>
+<li><strong>comments</strong> (<em>unicode</em>) &#8211; a message from the sender to the recipient</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_edited_sample_series">
+<tt class="descname">report_edited_sample_series</tt><big>(</big><em>sample_series</em>, <em>edit_description</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_edited_sample_series" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a feed entry about an edited of sample series.  All users
+who have watches samples in this series are informed, including the
+currently responsible person (in case that it is not the originator).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sample_series</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.SampleSeries</span></tt>) &#8211; the sample series that was edited</li>
+<li><strong>edit_description</strong> (dict mapping str to <tt class="docutils literal"><span class="pre">object</span></tt>) &#8211; The dictionary containing data about what was
+edited in the sample series.  Its keys correspond to the fields of
+<a class="reference internal" href="#samples.utils.views.EditDescriptionForm" title="samples.utils.views.EditDescriptionForm"><tt class="xref py py-obj docutils literal"><span class="pre">EditDescriptionForm</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_edited_samples">
+<tt class="descname">report_edited_samples</tt><big>(</big><em>samples</em>, <em>edit_description</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_edited_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a feed entry about a general edit of sample(s).  All users
+who are allowed to see the sample and who have the sample on their “My
+Samples” list are informed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>samples</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>) &#8211; the samples that was edited</li>
+<li><strong>edit_description</strong> (dict mapping str to <tt class="docutils literal"><span class="pre">object</span></tt>) &#8211; The dictionary containing data about what was
+edited in the samples.  Its keys correspond to the fields of
+<a class="reference internal" href="#samples.utils.views.EditDescriptionForm" title="samples.utils.views.EditDescriptionForm"><tt class="xref py py-obj docutils literal"><span class="pre">EditDescriptionForm</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_new_responsible_person_sample_series">
+<tt class="descname">report_new_responsible_person_sample_series</tt><big>(</big><em>sample_series</em>, <em>edit_description</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_new_responsible_person_sample_series" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a feed entry for a sample series that changed their
+currently responsible person.  This feed entry is only sent to that new
+responsible person.  Note that it is possible that further things were
+changed in the sample series at the same time (topic, samples&nbsp;…).
+They should be mentioned in the description by the formerly responsible
+person.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sample_series</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.SampleSeries</span></tt>) &#8211; the sample series that got a new responsible
+person</li>
+<li><strong>edit_description</strong> (dict mapping str to <tt class="docutils literal"><span class="pre">object</span></tt>) &#8211; Dictionary containing data about what was
+edited in the sample series (besides the change of the responsible
+person).  Its keys correspond to the fields of
+<a class="reference internal" href="#samples.utils.views.EditDescriptionForm" title="samples.utils.views.EditDescriptionForm"><tt class="xref py py-obj docutils literal"><span class="pre">EditDescriptionForm</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_new_responsible_person_samples">
+<tt class="descname">report_new_responsible_person_samples</tt><big>(</big><em>samples</em>, <em>edit_description</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_new_responsible_person_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a feed entry for samples that changed their currently
+responsible person.  This feed entry is only sent to that new
+responsible person.  Note that it is possible that further things were
+changed in the sample(s) at the same time (topic, purpose&nbsp;…).  They
+should be mentioned in the description by the formerly responsible
+person.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>samples</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>) &#8211; the samples that got a new responsible person</li>
+<li><strong>edit_description</strong> (dict mapping str to <tt class="docutils literal"><span class="pre">object</span></tt>) &#8211; Dictionary containing data about what was
+edited in the samples (besides the change of the responsible
+person).  Its keys correspond to the fields of
+<a class="reference internal" href="#samples.utils.views.EditDescriptionForm" title="samples.utils.views.EditDescriptionForm"><tt class="xref py py-obj docutils literal"><span class="pre">EditDescriptionForm</span></tt></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_new_sample_series">
+<tt class="descname">report_new_sample_series</tt><big>(</big><em>sample_series</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_new_sample_series" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate one feed entry for a new sample series.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_series</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">samples.models.SampleSeries</span></tt>) &#8211; the sample series that was added</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_new_samples">
+<tt class="descname">report_new_samples</tt><big>(</big><em>samples</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_new_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate one feed entry for new samples.  If more than one sample
+is in the given list, they are assumed to have been generated at the
+same time, so they should share the same topic and purpose.</p>
+<p>If the sample or samples are not in a topic, no feed entry is generated
+(because nobody listens).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>samples</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>) &#8211; the samples that were added</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_physical_process">
+<tt class="descname">report_physical_process</tt><big>(</big><em>process</em>, <em>edit_description=None</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_physical_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a feed entry for a physical process (deposition,
+measurement, etching etc) which was recently edited or created.  If the
+process is still unfinished, nothing is done.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>process</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Process</span></tt>) &#8211; the process which was added/edited recently</li>
+<li><strong>edit_description</strong> (dict mapping str to <tt class="docutils literal"><span class="pre">object</span></tt>) &#8211; The dictionary containing data about what was
+edited in the process.  Its keys correspond to the fields of
+<a class="reference internal" href="#samples.utils.views.EditDescriptionForm" title="samples.utils.views.EditDescriptionForm"><tt class="xref py py-obj docutils literal"><span class="pre">EditDescriptionForm</span></tt></a>.  <tt class="docutils literal"><span class="pre">None</span></tt> if the
+process was newly created.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_removed_task">
+<tt class="descname">report_removed_task</tt><big>(</big><em>task</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_removed_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate one feed for a removed task.  It is called immediately
+before the task is actually deleted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>task</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">models.Task</span></tt>) &#8211; the to-be-deleted task</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_result_process">
+<tt class="descname">report_result_process</tt><big>(</big><em>result</em>, <em>edit_description=None</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_result_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a feed entry for a result process which was recently
+edited or created.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>result</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Result</span></tt>) &#8211; the result process which was added/edited recently</li>
+<li><strong>edit_description</strong> (dict mapping str to <tt class="docutils literal"><span class="pre">object</span></tt>) &#8211; The dictionary containing data about what was
+edited in the result.  Its keys correspond to the fields of
+<a class="reference internal" href="#samples.utils.views.EditDescriptionForm" title="samples.utils.views.EditDescriptionForm"><tt class="xref py py-obj docutils literal"><span class="pre">EditDescriptionForm</span></tt></a>.  <tt class="docutils literal"><span class="pre">None</span></tt> if the
+process was newly created.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_sample_split">
+<tt class="descname">report_sample_split</tt><big>(</big><em>sample_split</em>, <em>sample_completely_split</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_sample_split" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a feed entry for a sample split.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>sample_split</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">samples.models.SampleSplit</span></tt>) &#8211; sample split that is to be reported</li>
+<li><strong>sample_completely_split</strong> (<em>bool</em>) &#8211; whether the sample was completely split,
+i.e. no piece of the parent sample is left</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_status_message">
+<tt class="descname">report_status_message</tt><big>(</big><em>process_class</em>, <em>status_message</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_status_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate one feed entry for new status messages for physical
+processes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>process_class</strong> (<em>django.contrib.contenttypes.models.ContentType</em>) &#8211; the content type of the physical process whose
+status has changed</li>
+<li><strong>status_message</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">samples.models.StatusMessage</span></tt>) &#8211; the status message for the physical process</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_task">
+<tt class="descname">report_task</tt><big>(</big><em>task</em>, <em>edit_description=None</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate one feed entry for a new task or an edited task.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>task</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">models.Task</span></tt>) &#8211; the task that was created or edited</li>
+<li><strong>edit_description</strong> (dict mapping str to <tt class="docutils literal"><span class="pre">object</span></tt> or <tt class="docutils literal"><span class="pre">None</span></tt>) &#8211; The dictionary containing data about what was
+edited in the task.  Its keys correspond to the fields of
+<a class="reference internal" href="#samples.utils.views.EditDescriptionForm" title="samples.utils.views.EditDescriptionForm"><tt class="xref py py-obj docutils literal"><span class="pre">EditDescriptionForm</span></tt></a>. <tt class="docutils literal"><span class="pre">None</span></tt> if the task
+was newly created.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.Reporter.report_withdrawn_status_message">
+<tt class="descname">report_withdrawn_status_message</tt><big>(</big><em>process_class</em>, <em>status_message</em><big>)</big><a class="headerlink" href="#samples.utils.views.Reporter.report_withdrawn_status_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate one feed entry for a withdrawn status message for physical
+processes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>process_class</strong> (<em>django.contrib.contenttypes.models.ContentType</em>) &#8211; the content type of the physical process one of
+whose statuses was withdrawn</li>
+<li><strong>status_message</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">samples.models.StatusMessage</span></tt>) &#8211; the status message for the physical process</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="form-field-classes">
+<h2>Form field classes<a class="headerlink" href="#form-field-classes" title="Permalink to this headline">¶</a></h2>
+<p>The following names are found in the module <tt class="xref py py-mod docutils literal"><span class="pre">jb_common.utils.views</span></tt>.</p>
+<dl class="class">
+<dt id="jb_common.utils.views.UserField">
+<em class="property">class </em><tt class="descname">UserField</tt><big>(</big><em>choices=()</em>, <em>required=True</em>, <em>widget=None</em>, <em>label=None</em>, <em>initial=None</em>, <em>help_text=u''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#jb_common.utils.views.UserField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form field class for the selection of a single user.  This can be the
+new currently responsible person for a sample, or the person you wish to
+send “My Samples” to.</p>
+<dl class="method">
+<dt id="jb_common.utils.views.UserField.set_users">
+<tt class="descname">set_users</tt><big>(</big><em>user</em>, <em>additional_user=None</em><big>)</big><a class="headerlink" href="#jb_common.utils.views.UserField.set_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the user list shown in the widget.  You <em>must</em> call this method (or
+<a class="reference internal" href="#jb_common.utils.views.UserField.set_users_without" title="jb_common.utils.views.UserField.set_users_without"><tt class="xref py py-meth docutils literal"><span class="pre">set_users_without()</span></tt></a>) in the
+constructor of the form in which you use this field, otherwise the
+selection box will remain emtpy.  The selection list will consist of
+all currently active users, plus the given additional user if any.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> (<em>django.contrib.auth.models.User</em>) &#8211; Thr user who wants to see the user list</li>
+<li><strong>additional_user</strong> (<em>django.contrib.auth.models.User</em>) &#8211; Optional additional user to be included into the
+list.  Typically, it is the current user for the process to be
+edited.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="jb_common.utils.views.UserField.set_users_without">
+<tt class="descname">set_users_without</tt><big>(</big><em>user</em>, <em>excluded_user</em><big>)</big><a class="headerlink" href="#jb_common.utils.views.UserField.set_users_without" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the user list shown in the widget.  You <em>must</em> call this method (or
+<a class="reference internal" href="#jb_common.utils.views.UserField.set_users" title="jb_common.utils.views.UserField.set_users"><tt class="xref py py-meth docutils literal"><span class="pre">set_users()</span></tt></a>) in the
+constructor of the form in which you use this field, otherwise the
+selection box will remain emtpy.  The selection list will consist of
+all currently active users, minus the given user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> &#8211; Thr user who wants to see the user list</li>
+<li><strong>excluded_user</strong> (<em>django.contrib.auth.models.User</em>) &#8211; User to be excluded from the list.  Typically, it
+is the currently logged-in user.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="jb_common.utils.views.MultipleUsersField">
+<em class="property">class </em><tt class="descname">MultipleUsersField</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#jb_common.utils.views.MultipleUsersField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form field class for the selection of zero or more users.  This can be
+the set of members for a particular topic.</p>
+<dl class="method">
+<dt id="jb_common.utils.views.MultipleUsersField.set_users">
+<tt class="descname">set_users</tt><big>(</big><em>user</em>, <em>additional_users=</em><span class="optional">[</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#jb_common.utils.views.MultipleUsersField.set_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the user list shown in the widget.  You <em>must</em> call this method
+in the constructor of the form in which you use this field, otherwise
+the selection box will remain emtpy.  The selection list will consist
+of all currently active users, plus the given additional users if any.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> &#8211; Thr user who wants to see the user list</li>
+<li><strong>additional_users</strong> (<em>iterable of django.contrib.auth.models.User</em>) &#8211; Optional additional users to be included into
+the list.  Typically, it is the current users for the topic whose
+memberships are to be changed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="jb_common.utils.views.TopicField">
+<em class="property">class </em><tt class="descname">TopicField</tt><big>(</big><em>choices=()</em>, <em>required=True</em>, <em>widget=None</em>, <em>label=None</em>, <em>initial=None</em>, <em>help_text=u''</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#jb_common.utils.views.TopicField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form field class for the selection of a single topic.  This can be
+the topic for a sample or a sample series, for example.</p>
+<dl class="method">
+<dt id="jb_common.utils.views.TopicField.set_topics">
+<tt class="descname">set_topics</tt><big>(</big><em>user</em>, <em>additional_topic=None</em><big>)</big><a class="headerlink" href="#jb_common.utils.views.TopicField.set_topics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the topic list shown in the widget.  You <em>must</em> call this
+method in the constructor of the form in which you use this field,
+otherwise the selection box will remain emtpy.  The selection list will
+consist of all currently active topics, plus the given additional
+topic if any.  The “currently active topics” are all topics with
+at least one active user amongst its members.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> (<em>django.contrib.auth.models.User</em>) &#8211; the currently logged-in user</li>
+<li><strong>additional_topic</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">jb_common.models.Topic</span></tt>) &#8211; Optional additional topic to be included
+into the list.  Typically, it is the current topic of the sample,
+for example.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="form-classes">
+<h2>Form classes<a class="headerlink" href="#form-classes" title="Permalink to this headline">¶</a></h2>
+<p>The following names are found in the module <tt class="xref py py-mod docutils literal"><span class="pre">samples.utils.views</span></tt>.</p>
+<dl class="class">
+<dt id="samples.utils.views.ProcessForm">
+<em class="property">class </em><tt class="descname">ProcessForm</tt><big>(</big><em>user</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.ProcessForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract model form class for processes.  It ensures that timestamps are not
+in the future, and that comments contain only allowed Markdown syntax.</p>
+<p>Moreover, it defines a field “combined_operator” of the type
+<tt class="xref py py-class docutils literal"><span class="pre">OperatorField</span></tt>.  In the HTML template, you should offer this
+field to non-staff, and the usual operator/external operator to staff.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>user</strong> (<em>django.contrib.auth.models.User</em>) &#8211; the currently logged-in user</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="samples.utils.views.ProcessForm.is_referentially_valid">
+<tt class="descname">is_referentially_valid</tt><big>(</big><em>sample_form</em><big>)</big><a class="headerlink" href="#samples.utils.views.ProcessForm.is_referentially_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether the forms are consistent with each other and with the database.
+In its current form, it only checks whether the sample is still “alive”
+at the time of the measurement.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_form</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">SampleForm</span></tt>) &#8211; a bound sample selection form</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">whether the forms are consistent with each other and the database</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="samples.utils.views.DepositionForm">
+<em class="property">class </em><tt class="descname">DepositionForm</tt><big>(</big><em>user</em>, <em>data=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.DepositionForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model form for depositions (not their layers).</p>
+<dl class="method">
+<dt id="samples.utils.views.DepositionForm.is_referentially_valid">
+<tt class="descname">is_referentially_valid</tt><big>(</big><em>sample_form</em><big>)</big><a class="headerlink" href="#samples.utils.views.DepositionForm.is_referentially_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether the forms are consistent with each other and with the database.
+In its current form, it only checks whether the sample is still “alive”
+at the time of the measurement.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_form</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">SampleForm</span></tt>) &#8211; a bound sample selection form</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">whether the forms are consistent with each other and the database</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="samples.utils.views.SampleSelectForm">
+<em class="property">class </em><tt class="descname">SampleSelectForm</tt><big>(</big><em>user</em>, <em>process_instance</em>, <em>preset_sample</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.SampleSelectForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form for the sample selection field.  You can only select <em>one</em> sample
+per process (in contrast to depositions).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>user</strong> (<em>django.contrib.auth.models.User</em>) &#8211; the current user</li>
+<li><strong>process_instance</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Process</span></tt>) &#8211; the process instance to be edited, or <tt class="docutils literal"><span class="pre">None</span></tt> if
+a new is about to be created</li>
+<li><strong>preset_sample</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Sample</span></tt>) &#8211; the sample to which the process should be
+appended when creating a new process; see
+<tt class="xref py py-obj docutils literal"><span class="pre">utils.extract_preset_sample</span></tt></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="samples.utils.views.DepositionSamplesForm">
+<em class="property">class </em><tt class="descname">DepositionSamplesForm</tt><big>(</big><em>user</em>, <em>deposition</em>, <em>preset_sample</em>, <em>data=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.DepositionSamplesForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form for the list selection of samples that took part in the deposition.
+This form has the special behaviour that it prevents changing the samples
+when editing an <em>existing</em> process.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="samples.utils.views.EditDescriptionForm">
+<em class="property">class </em><tt class="descname">EditDescriptionForm</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.EditDescriptionForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form for letting the user enter a short description of the changes they
+made.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="samples.utils.views.RemoveFromMySamplesForm">
+<em class="property">class </em><tt class="descname">RemoveFromMySamplesForm</tt><big>(</big><em>data=None</em>, <em>files=None</em>, <em>auto_id=u'id_%s'</em>, <em>prefix=None</em>, <em>initial=None</em>, <em>error_class=&lt;class 'django.forms.utils.ErrorList'&gt;</em>, <em>label_suffix=None</em>, <em>empty_permitted=False</em><big>)</big><a class="headerlink" href="#samples.utils.views.RemoveFromMySamplesForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Form for the question whether the user wants to remove the samples
+from the “My Samples” list after the process.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="plots">
+<h2>Plots<a class="headerlink" href="#plots" title="Permalink to this headline">¶</a></h2>
+<p>The following names are found in the module <tt class="xref py py-mod docutils literal"><span class="pre">samples.utils.plots</span></tt>.</p>
+<dl class="exception">
+<dt id="samples.utils.plots.PlotError">
+<em class="property">exception </em><tt class="descname">PlotError</tt><a class="headerlink" href="#samples.utils.plots.PlotError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised if an error occurs while generating a plot.  Usually, it is raised in
+<tt class="xref py py-meth docutils literal"><span class="pre">samples.models.Process.draw_plot()</span></tt> and caught in
+<tt class="xref py py-func docutils literal"><span class="pre">samples.views.plots.show_plot()</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.plots.read_plot_file_beginning_at_line_number">
+<tt class="descname">read_plot_file_beginning_at_line_number</tt><big>(</big><em>filename</em>, <em>columns</em>, <em>start_line_number</em>, <em>end_line_number=None</em>, <em>separator=None</em><big>)</big><a class="headerlink" href="#samples.utils.plots.read_plot_file_beginning_at_line_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a datafile and returns the content of selected columns beginning at
+start_line_number.  You shouldn&#8217;t use this function directly. Use the
+specific functions instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) &#8211; full path to the data file</li>
+<li><strong>columns</strong> (<em>list of int</em>) &#8211; the columns that should be read.</li>
+<li><strong>start_line_number</strong> (<em>int</em>) &#8211; the line number where the data starts</li>
+<li><strong>end_line_number</strong> (<em>int or None</em>) &#8211; the line number where the record should end.
+The default is <tt class="docutils literal"><span class="pre">None</span></tt>, means till end of file.</li>
+<li><strong>separator</strong> (<em>str or None</em>) &#8211; the separator which separates the values from each other.
+Default is <tt class="docutils literal"><span class="pre">None</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of all columns.  Every column is represented as a list of floating
+point values.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list of list of float</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises PlotError:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">if something wents wrong with interpreting the file (I/O,
+unparseble data)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.utils.plots.read_plot_file_beginning_after_start_value">
+<tt class="descname">read_plot_file_beginning_after_start_value</tt><big>(</big><em>filename</em>, <em>columns</em>, <em>start_value</em>, <em>end_value=u''</em>, <em>separator=None</em><big>)</big><a class="headerlink" href="#samples.utils.plots.read_plot_file_beginning_after_start_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read a datafile and return the content of selected columns after the
+start_value was detected.  You shouldn&#8217;t use this function directly. Use
+the specific functions instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>filename</strong> (<em>str</em>) &#8211; full path to the data file</li>
+<li><strong>columns</strong> (<em>list of int</em>) &#8211; the columns that should be read.</li>
+<li><strong>start_value</strong> (<em>str</em>) &#8211; the start_value indicates the line after the data
+should be read</li>
+<li><strong>end_value</strong> (<em>str</em>) &#8211; the end_value marks the line where the record should
+end.  The default is the empty string</li>
+<li><strong>separator</strong> (<em>str or None</em>) &#8211; the separator which separates the values from each
+other.  Default is <tt class="docutils literal"><span class="pre">None</span></tt></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">List of all columns.  Every column is represented as a list of floating
+point values.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">list of list of float</p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Raises PlotError:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"><p class="first last">if something wents wrong with interpreting the file (I/O,
+unparseble data)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="urls">
+<h2>URLs<a class="headerlink" href="#urls" title="Permalink to this headline">¶</a></h2>
+<p>The following name is found in the module <tt class="xref py py-mod docutils literal"><span class="pre">samples.utils.urls</span></tt>.</p>
+<dl class="class">
+<dt id="samples.utils.urls.PatternGenerator">
+<em class="property">class </em><tt class="descname">PatternGenerator</tt><big>(</big><em>url_patterns</em>, <em>views_prefix</em><big>)</big><a class="headerlink" href="#samples.utils.urls.PatternGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class helps to build URL pattern lists for physical processes.  You
+instantiate it once in your URLconf file.  Then, you add URLs by calling
+<tt class="xref py py-obj docutils literal"><span class="pre">physical_process</span></tt> for every physical process:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">pattern_generator</span> <span class="o">=</span> <span class="n">PatternGenerator</span><span class="p">(</span><span class="n">urlpatterns</span><span class="p">,</span> <span class="s">&quot;institute.views.samples&quot;</span><span class="p">)</span>
+<span class="n">pattern_generator</span><span class="o">.</span><span class="n">deposition</span><span class="p">(</span><span class="s">&quot;ClusterToolDeposition&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;add&quot;</span><span class="p">,</span> <span class="s">&quot;edit&quot;</span><span class="p">})</span>
+<span class="n">pattern_generator</span><span class="o">.</span><span class="n">deposition</span><span class="p">(</span><span class="s">&quot;FiveChamberDeposition&quot;</span><span class="p">,</span> <span class="s">&quot;5-chamber_depositions&quot;</span><span class="p">)</span>
+<span class="n">pattern_generator</span><span class="o">.</span><span class="n">physical_process</span><span class="p">(</span><span class="s">&quot;PDSMeasurement&quot;</span><span class="p">,</span> <span class="s">&quot;number&quot;</span><span class="p">)</span>
+<span class="n">pattern_generator</span><span class="o">.</span><span class="n">physical_process</span><span class="p">(</span><span class="s">&quot;Substrate&quot;</span><span class="p">,</span> <span class="n">views</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;edit&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>url_patterns</strong> (list of <tt class="xref py py-obj docutils literal"><span class="pre">url()</span></tt> instances) &#8211; The URL patterns to populate in situ.</li>
+<li><strong>views_prefix</strong> (<em>unicode</em>) &#8211; the prefix for the view functions as a Python path,
+e.g. <tt class="docutils literal"><span class="pre">&quot;my_app.views.samples&quot;</span></tt></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="samples.utils.urls.PatternGenerator.deposition">
+<tt class="descname">deposition</tt><big>(</big><em>class_name</em>, <em>url_name=None</em>, <em>views=set([u'edit'</em>, <em>u'add'</em>, <em>u'lab_notebook'])</em><big>)</big><a class="headerlink" href="#samples.utils.urls.PatternGenerator.deposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add URLs for the views of the deposition process <tt class="xref py py-obj docutils literal"><span class="pre">class_name</span></tt>.  This is a
+shorthand for <tt class="xref py py-obj docutils literal"><span class="pre">physical_process</span></tt> with defaults optimized for
+depositions: <tt class="docutils literal"><span class="pre">identifying_field</span></tt> is <tt class="docutils literal"><span class="pre">&quot;number&quot;</span></tt>, and the views
+include a lab notebook.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>class_name</strong> (<em>unicode</em>) &#8211; Name of the deposition class,
+e.g. <tt class="docutils literal"><span class="pre">&quot;FiveChamberDeposition&quot;</span></tt>.</li>
+<li><strong>url_name</strong> (<em>unicode</em>) &#8211; The URL path component to be used for this deposition.
+By default, this is the class name converted to underscores
+notation, with an “s” appended, e.g. <tt class="docutils literal"><span class="pre">&quot;thickness_measurements&quot;</span></tt>.</li>
+<li><strong>views</strong> (<em>set of unicode</em>) &#8211; The view functions for which URLs should be generated.
+You may choose from <tt class="docutils literal"><span class="pre">&quot;add&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;edit&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;custom_show&quot;</span></tt>, and
+<tt class="docutils literal"><span class="pre">&quot;lab_notebook&quot;</span></tt>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.urls.PatternGenerator.physical_process">
+<tt class="descname">physical_process</tt><big>(</big><em>class_name</em>, <em>identifying_field=None</em>, <em>url_name=None</em>, <em>views=set([u'edit'</em>, <em>u'add'])</em><big>)</big><a class="headerlink" href="#samples.utils.urls.PatternGenerator.physical_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add URLs for the views of the physical process <tt class="xref py py-obj docutils literal"><span class="pre">class_name</span></tt>.  For the “add”
+and the “edit” view, an <tt class="samp docutils literal"><span class="pre">edit(request,</span> <em><span class="pre">process_class_name</span></em><span class="pre">_id)</span></tt>
+function must exist.  In case of “add”, <tt class="docutils literal"><span class="pre">None</span></tt> is passed as the
+second parameter.  For the “custom show” view, a <tt class="samp docutils literal"><span class="pre">show(request,</span>
+<em><span class="pre">process_class_name</span></em><span class="pre">_id)</span></tt> function must exist.  If there is an
+<tt class="xref py py-obj docutils literal"><span class="pre">identifying_field</span></tt>, this is used for the second parameter name
+instead.  If no URL for a custom show view is requested, a default one
+is generated using a generic view function (which is mostly
+sufficient).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>class_name</strong> (<em>unicode</em>) &#8211; Name of the physical process class,
+e.g. <tt class="docutils literal"><span class="pre">&quot;ThicknessMeasurement&quot;</span></tt>.</li>
+<li><strong>identifying_field</strong> (<em>unicode</em>) &#8211; If applicable, name of the model field which
+serves as “poor man&#8217;s” primary key.  If not given, the <tt class="docutils literal"><span class="pre">id</span></tt> is
+used.</li>
+<li><strong>url_name</strong> (<em>unicode</em>) &#8211; The URL path component to be used for this process.  By
+default, this is the class name converted to underscores notation,
+with an “s” appended, e.g. <tt class="docutils literal"><span class="pre">&quot;thickness_measurements&quot;</span></tt>.  It may
+contain slashs.</li>
+<li><strong>views</strong> (<em>set of unicode</em>) &#8211; The view functions for which URLs should be generated.
+You may choose from <tt class="docutils literal"><span class="pre">&quot;add&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;edit&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;custom_show&quot;</span></tt>, and
+<tt class="docutils literal"><span class="pre">&quot;lab_notebook&quot;</span></tt>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="template_tags_and_filters.html" title="Template tags and filters"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="hacking_on_juliabase.html" title="Hacking on JuliaBase"
+             >previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,168 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Technical overview}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Getting started}{2}{section.1.2}
+\contentsline {chapter}{\numberline {2}A walk through JuliaBase}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}The demo site}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}The demo accounts}{3}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}The boss}{3}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}The technical staff}{3}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}The scientific staff}{4}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}Rosalee: The everyday work}{4}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}The \IeC {\textquotedblleft }My Samples\IeC {\textquotedblright } list}{4}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Topics}{4}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Sample data sheet}{5}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Edit samples}{6}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}Add processes}{6}{subsection.2.3.5}
+\contentsline {subsubsection}{Split a sample}{6}{subsubsection*.3}
+\contentsline {subsubsection}{Result process}{6}{subsubsection*.4}
+\contentsline {subsection}{\numberline {2.3.6}Advanced search}{7}{subsection.2.3.6}
+\contentsline {subsection}{\numberline {2.3.7}Data export}{8}{subsection.2.3.7}
+\contentsline {subsection}{\numberline {2.3.8}Add samples}{8}{subsection.2.3.8}
+\contentsline {subsection}{\numberline {2.3.9}Lab notebooks}{8}{subsection.2.3.9}
+\contentsline {subsection}{\numberline {2.3.10}Add new deposition process}{9}{subsection.2.3.10}
+\contentsline {subsection}{\numberline {2.3.11}Change permissions for processes}{9}{subsection.2.3.11}
+\contentsline {subsection}{\numberline {2.3.12}Claims of samples}{10}{subsection.2.3.12}
+\contentsline {subsubsection}{Adding a sample to My Samples}{10}{subsubsection*.5}
+\contentsline {subsubsection}{The actual claim}{10}{subsubsection*.6}
+\contentsline {section}{\numberline {2.4}Juliette: The assigner of work}{10}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Adding a task}{11}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Sending a sample to another user}{11}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Nick: Technical service for others}{12}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}The newsfeed}{12}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Tasks}{12}{subsection.2.5.2}
+\contentsline {section}{\numberline {2.6}Sean: The team leader}{13}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Approve a sample claim}{13}{subsection.2.6.1}
+\contentsline {chapter}{\numberline {3}Installation}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}Prerequisites}{15}{section.3.1}
+\contentsline {section}{\numberline {3.2}Linux configuration}{15}{section.3.2}
+\contentsline {section}{\numberline {3.3}PostgreSQL}{16}{section.3.3}
+\contentsline {section}{\numberline {3.4}Django}{16}{section.3.4}
+\contentsline {section}{\numberline {3.5}JuliaBase}{16}{section.3.5}
+\contentsline {section}{\numberline {3.6}Apache}{17}{section.3.6}
+\contentsline {chapter}{\numberline {4}Programming}{19}{chapter.4}
+\contentsline {section}{\numberline {4.1}Organizing your source code}{19}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Git subtree}{20}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.2}Creating a new Django app}{20}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Branding}{20}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}The \IeC {\textquotedblleft }add new samples\IeC {\textquotedblright } view}{21}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Physical processes}{21}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}Adding a new process module}{21}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Overview}{22}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Creating the database models}{22}{subsection.4.3.2}
+\contentsline {subsubsection}{Schema migration}{23}{subsubsection*.7}
+\contentsline {subsection}{\numberline {4.3.3}Creating the URLs}{23}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Creating the view}{23}{subsection.4.3.4}
+\contentsline {subsubsection}{The form}{23}{subsubsection*.8}
+\contentsline {subsubsection}{View class}{23}{subsubsection*.9}
+\contentsline {subsection}{\numberline {4.3.5}Creating the templates}{24}{subsection.4.3.5}
+\contentsline {section}{\numberline {4.4}A more complex example: Writing a deposition module}{24}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}The models}{24}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Populating user context}{25}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}The view}{25}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}The lab notebook}{25}{subsection.4.4.4}
+\contentsline {section}{\numberline {4.5}Process glossary}{26}{section.4.5}
+\contentsline {chapter}{\numberline {5}Model permissions}{27}{chapter.5}
+\contentsline {section}{\numberline {5.1}Semantics and conventions}{27}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Example}{27}{subsection.5.1.1}
+\contentsline {section}{\numberline {5.2}Omitting permissions}{28}{section.5.2}
+\contentsline {section}{\numberline {5.3}Django's default permissions}{28}{section.5.3}
+\contentsline {chapter}{\numberline {6}Class-based views}{29}{chapter.6}
+\contentsline {section}{\numberline {6.1}The API}{29}{section.6.1}
+\contentsline {section}{\numberline {6.2}Main classes}{31}{section.6.2}
+\contentsline {section}{\numberline {6.3}Mixins}{32}{section.6.3}
+\contentsline {chapter}{\numberline {7}The remote client}{35}{chapter.7}
+\contentsline {section}{\numberline {7.1}Use cases}{35}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Crawlers}{35}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Connecting the setup with the database}{36}{subsection.7.1.2}
+\contentsline {subsection}{\numberline {7.1.3}Data mining and analysis}{36}{subsection.7.1.3}
+\contentsline {section}{\numberline {7.2}Extending the remote client}{36}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Settings}{37}{subsection.7.2.1}
+\contentsline {section}{\numberline {7.3}Local installation and usage}{37}{section.7.3}
+\contentsline {section}{\numberline {7.4}Other programming languages}{37}{section.7.4}
+\contentsline {section}{\numberline {7.5}Classes and functions}{38}{section.7.5}
+\contentsline {chapter}{\numberline {8}Settings reference}{43}{chapter.8}
+\contentsline {section}{\numberline {8.1}General JuliaBase settings}{43}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}ADD\_SAMPLES\_VIEW}{43}{subsection.8.1.1}
+\contentsline {subsection}{\numberline {8.1.2}CACHE\_ROOT}{43}{subsection.8.1.2}
+\contentsline {subsection}{\numberline {8.1.3}CRAWLER\_LOGS\_ROOT}{43}{subsection.8.1.3}
+\contentsline {subsection}{\numberline {8.1.4}CRAWLER\_LOGS\_WHITELIST}{44}{subsection.8.1.4}
+\contentsline {subsection}{\numberline {8.1.5}DEBUG\_EMAIL\_REDIRECT\_USERNAME}{44}{subsection.8.1.5}
+\contentsline {subsection}{\numberline {8.1.6}INITIALS\_FORMATS}{44}{subsection.8.1.6}
+\contentsline {subsection}{\numberline {8.1.7}JAVASCRIPT\_I18N\_APPS}{44}{subsection.8.1.7}
+\contentsline {subsection}{\numberline {8.1.8}MERGE\_CLEANUP\_FUNCTION}{44}{subsection.8.1.8}
+\contentsline {subsection}{\numberline {8.1.9}NAME\_PREFIX\_TEMPLATES}{45}{subsection.8.1.9}
+\contentsline {subsection}{\numberline {8.1.10}SAMPLE\_NAME\_FORMATS}{45}{subsection.8.1.10}
+\contentsline {subsection}{\numberline {8.1.11}THUMBNAIL\_WIDTH}{45}{subsection.8.1.11}
+\contentsline {subsection}{\numberline {8.1.12}USE\_X\_SENDFILE}{45}{subsection.8.1.12}
+\contentsline {section}{\numberline {8.2}Settings for LDAP}{45}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}LDAP\_ACCOUNT\_FILTER}{45}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}LDAP\_ADDITIONAL\_ATTRIBUTES}{45}{subsection.8.2.2}
+\contentsline {subsection}{\numberline {8.2.3}LDAP\_ADDITIONAL\_USERS}{46}{subsection.8.2.3}
+\contentsline {subsection}{\numberline {8.2.4}LDAP\_DEPARTMENTS}{46}{subsection.8.2.4}
+\contentsline {subsection}{\numberline {8.2.5}LDAP\_GROUPS\_TO\_PERMISSIONS}{46}{subsection.8.2.5}
+\contentsline {subsection}{\numberline {8.2.6}LDAP\_LOGIN\_TEMPLATE}{46}{subsection.8.2.6}
+\contentsline {subsection}{\numberline {8.2.7}LDAP\_SEARCH\_DN}{47}{subsection.8.2.7}
+\contentsline {subsection}{\numberline {8.2.8}LDAP\_URLS}{47}{subsection.8.2.8}
+\contentsline {section}{\numberline {8.3}Django settings with special meaning in JuliaBase}{47}{section.8.3}
+\contentsline {subsection}{\numberline {8.3.1}LANGUAGES}{47}{subsection.8.3.1}
+\contentsline {subsection}{\numberline {8.3.2}CACHES}{47}{subsection.8.3.2}
+\contentsline {subsection}{\numberline {8.3.3}DEBUG}{48}{subsection.8.3.3}
+\contentsline {subsection}{\numberline {8.3.4}DEFAULT\_FROM\_EMAIL}{48}{subsection.8.3.4}
+\contentsline {subsection}{\numberline {8.3.5}INSTALLED\_APPS}{48}{subsection.8.3.5}
+\contentsline {subsection}{\numberline {8.3.6}LOGIN\_URL}{48}{subsection.8.3.6}
+\contentsline {subsection}{\numberline {8.3.7}LOGIN\_REDIRECT\_URL}{48}{subsection.8.3.7}
+\contentsline {subsection}{\numberline {8.3.8}MIDDLEWARE\_CLASSES}{48}{subsection.8.3.8}
+\contentsline {subsection}{\numberline {8.3.9}SECRET\_KEY}{49}{subsection.8.3.9}
+\contentsline {subsection}{\numberline {8.3.10}TEMPLATE\_CONTEXT\_PROCESSORS}{49}{subsection.8.3.10}
+\contentsline {subsection}{\numberline {8.3.11}TEMPLATE\_DIRS}{49}{subsection.8.3.11}
+\contentsline {subsection}{\numberline {8.3.12}TEMPLATE\_LOADERS}{49}{subsection.8.3.12}
+\contentsline {subsection}{\numberline {8.3.13}USE\_TZ}{49}{subsection.8.3.13}
+\contentsline {chapter}{\numberline {9}Sample names}{51}{chapter.9}
+\contentsline {section}{\numberline {9.1}Name format properties}{51}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}\texttt {"pattern"}}{51}{subsection.9.1.1}
+\contentsline {subsection}{\numberline {9.1.2}\texttt {"possible\_renames"}}{52}{subsection.9.1.2}
+\contentsline {subsection}{\numberline {9.1.3}\texttt {"verbose\_name"}}{52}{subsection.9.1.3}
+\contentsline {section}{\numberline {9.2}Provisional sample names}{52}{section.9.2}
+\contentsline {section}{\numberline {9.3}Initials}{52}{section.9.3}
+\contentsline {subsection}{\numberline {9.3.1}\texttt {"pattern"}}{52}{subsection.9.3.1}
+\contentsline {subsection}{\numberline {9.3.2}\texttt {"description"}}{53}{subsection.9.3.2}
+\contentsline {section}{\numberline {9.4}Name prefix templates}{53}{section.9.4}
+\contentsline {chapter}{\numberline {10}Hacking on JuliaBase}{55}{chapter.10}
+\contentsline {section}{\numberline {10.1}Architecture}{55}{section.10.1}
+\contentsline {section}{\numberline {10.2}Coding guidelines}{55}{section.10.2}
+\contentsline {subsection}{\numberline {10.2.1}Python\IeC {\nobreakspace }3}{56}{subsection.10.2.1}
+\contentsline {subsection}{\numberline {10.2.2}Boilerplate code}{56}{subsection.10.2.2}
+\contentsline {chapter}{\numberline {11}Utilities}{57}{chapter.11}
+\contentsline {section}{\numberline {11.1}Common helpers}{57}{section.11.1}
+\contentsline {subsection}{\numberline {11.1.1}String-related}{57}{subsection.11.1.1}
+\contentsline {subsection}{\numberline {11.1.2}File-related}{58}{subsection.11.1.2}
+\contentsline {subsection}{\numberline {11.1.3}Generating responses}{59}{subsection.11.1.3}
+\contentsline {subsection}{\numberline {11.1.4}Sample-related}{61}{subsection.11.1.4}
+\contentsline {subsection}{\numberline {11.1.5}Miscellaneous}{63}{subsection.11.1.5}
+\contentsline {section}{\numberline {11.2}Feed reporting}{65}{section.11.2}
+\contentsline {section}{\numberline {11.3}Form field classes}{70}{section.11.3}
+\contentsline {section}{\numberline {11.4}Form classes}{71}{section.11.4}
+\contentsline {section}{\numberline {11.5}Plots}{72}{section.11.5}
+\contentsline {section}{\numberline {11.6}URLs}{74}{section.11.6}
+\contentsline {chapter}{\numberline {12}Template tags and filters}{77}{chapter.12}
+\contentsline {section}{\numberline {12.1}JuliaBase core}{77}{section.12.1}
+\contentsline {subsection}{\numberline {12.1.1}Tags}{77}{subsection.12.1.1}
+\contentsline {subsection}{\numberline {12.1.2}Filters}{78}{subsection.12.1.2}
+\contentsline {section}{\numberline {12.2}Samples}{78}{section.12.2}
+\contentsline {subsection}{\numberline {12.2.1}Tags}{78}{subsection.12.2.1}
+\contentsline {subsection}{\numberline {12.2.2}Filters}{79}{subsection.12.2.2}
+\contentsline {chapter}{\numberline {13}Markdown}{83}{chapter.13}
+\contentsline {section}{\numberline {13.1}Paragraphs}{83}{section.13.1}
+\contentsline {section}{\numberline {13.2}Emphasis}{83}{section.13.2}
+\contentsline {section}{\numberline {13.3}Escaping characters}{83}{section.13.3}
+\contentsline {section}{\numberline {13.4}Special characters}{84}{section.13.4}
+\contentsline {section}{\numberline {13.5}Math equations}{84}{section.13.5}
+\contentsline {section}{\numberline {13.6}Links}{84}{section.13.6}
+\contentsline {section}{\numberline {13.7}Lists}{84}{section.13.7}
+\contentsline {section}{\numberline {13.8}Line breaks}{85}{section.13.8}
+\contentsline {chapter}{\numberline {14}The JuliaBase project}{87}{chapter.14}
+\contentsline {section}{\numberline {14.1}Licenses}{87}{section.14.1}
+\contentsline {subsection}{\numberline {14.1.1}What does this mean?}{88}{subsection.14.1.1}
+\contentsline {section}{\numberline {14.2}Short project history}{88}{section.14.2}
+\contentsline {chapter}{Index}{89}{section*.142}

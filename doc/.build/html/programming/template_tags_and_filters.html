@@ -1,0 +1,439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Template tags and filters &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="../_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="../index.html" />
+    <link rel="next" title="Markdown" href="../markdown.html" />
+    <link rel="prev" title="Utilities" href="utilities.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('../_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../markdown.html" title="Markdown"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="utilities.html" title="Utilities"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Template tags and filters</a><ul>
+<li><a class="reference internal" href="#juliabase-core">JuliaBase core</a><ul>
+<li><a class="reference internal" href="#tags">Tags</a></li>
+<li><a class="reference internal" href="#filters">Filters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#samples">Samples</a><ul>
+<li><a class="reference internal" href="#id1">Tags</a></li>
+<li><a class="reference internal" href="#id2">Filters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="utilities.html"
+                        title="previous chapter">Utilities</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../markdown.html"
+                        title="next chapter">Markdown</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="template-tags-and-filters">
+<span id="index-0"></span><h1>Template tags and filters<a class="headerlink" href="#template-tags-and-filters" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="juliabase-core">
+<h2>JuliaBase core<a class="headerlink" href="#juliabase-core" title="Permalink to this headline">¶</a></h2>
+<p>You use these tags and filter with:</p>
+<div class="highlight-python"><div class="highlight"><pre>{% load juliabase %}
+</pre></div>
+</div>
+<div class="section" id="tags">
+<h3>Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="jb_common.templatetags.juliabase.markdown_hint">
+<tt class="descname">markdown_hint</tt><big>(</big><big>)</big><a class="headerlink" href="#jb_common.templatetags.juliabase.markdown_hint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tag for inserting a short remark that Markdown syntax must be used
+here, with a link to further information.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.templatetags.juliabase.input_field">
+<tt class="descname">input_field</tt><big>(</big><em>field</em><big>)</big><a class="headerlink" href="#jb_common.templatetags.juliabase.input_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tag for inserting a field value into an HTML table as an editable
+field.  It consists of two <tt class="docutils literal"><span class="pre">&lt;td&gt;</span></tt> elements, one for the label and one for
+the value, so it spans two columns.  This tag is primarily used in
+tamplates of edit views.  Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>{% input_field deposition.number %}
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.templatetags.juliabase.error_list">
+<tt class="descname">error_list</tt><big>(</big><em>form</em>, <em>form_error_title</em>, <em>outest_tag=u'&lt;table&gt;'</em>, <em>colspan=1</em><big>)</big><a class="headerlink" href="#jb_common.templatetags.juliabase.error_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Includes a comprehensive error list for one particular form into the
+page.  It is an HTML table, so take care that the tags are nested
+properly.  Its template can be found in the file <tt class="docutils literal"><span class="pre">&quot;error_list.html&quot;</span></tt>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>form</strong> (<em>forms.Form</em>) &#8211; the bound form whose errors should be displayed; if <tt class="docutils literal"><span class="pre">None</span></tt>,
+nothing is generated</li>
+<li><strong>form_error_title</strong> (<em>unicode</em>) &#8211; The title used for general error messages.  These
+are not connected to one particular field but the form as a
+whole. Typically, they are generated in the <tt class="docutils literal"><span class="pre">is_referentially_valid</span></tt>
+functions.</li>
+<li><strong>outest_tag</strong> (<em>unicode</em>) &#8211; May be <tt class="docutils literal"><span class="pre">&quot;&lt;table&gt;&quot;</span></tt> or <tt class="docutils literal"><span class="pre">&quot;&lt;tr&gt;&quot;</span></tt>, with <tt class="docutils literal"><span class="pre">&quot;&lt;table&gt;&quot;</span></tt> as
+the default.  It is the outmost HTML tag which is generated for the
+error list.</li>
+<li><strong>colspan</strong> (<em>int</em>) &#8211; the width of the table in the number of columns; necessary
+because those &amp;%$# guys of WHATWG have dropped colspan=&#8221;0&#8221;; see
+<a class="reference external" href="http://www.w3.org/Bugs/Public/show_bug.cgi?id=13770">http://www.w3.org/Bugs/Public/show_bug.cgi?id=13770</a></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="filters">
+<h3>Filters<a class="headerlink" href="#filters" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="jb_common.templatetags.juliabase.get_really_full_name">
+<tt class="descname">get_really_full_name</tt><big>(</big><em>user</em>, <em>anchor_type=u'http'</em>, <em>autoescape=False</em><big>)</big><a class="headerlink" href="#jb_common.templatetags.juliabase.get_really_full_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unfortunately, Django&#8217;s get_full_name method for users returns the
+empty string if the user has no first and surname set. However, it&#8217;d be
+sensible to use the login name as a fallback then. This is realised here.
+See also <tt class="xref py py-obj docutils literal"><span class="pre">jb_common.utils.get_really_full_name</span></tt>.</p>
+<p>The optional parameter to this filter determines whether the name should be
+linked or not, and if so, how.  There are three possible parameter values:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">&quot;http&quot;</span></tt> (default)</dt>
+<dd>The user&#8217;s name should be linked with his web page on JuliaBase</dd>
+<dt><tt class="docutils literal"><span class="pre">&quot;mailto&quot;</span></tt></dt>
+<dd>The user&#8217;s name should be linked with his email address</dd>
+<dt><tt class="docutils literal"><span class="pre">&quot;plain&quot;</span></tt></dt>
+<dd>There should be no link, the name is just printed as plain unformatted
+text.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.templatetags.juliabase.markdown">
+<tt class="descname">markdown</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#jb_common.templatetags.juliabase.markdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for formatting the value by assuming Markdown syntax.  Embedded
+HTML tags are always escaped.  Warning: You need at least Python Markdown
+1.7 or later so that this works.</p>
+<p>FixMe: Before Markdown sees the text, all named entities are replaced, see
+<tt class="xref py py-func docutils literal"><span class="pre">jb_common.utils.substitute_html_entities()</span></tt>.  This creates a mild
+escaping problem.  <tt class="docutils literal"><span class="pre">\&amp;amp;</span></tt> becomes <tt class="docutils literal"><span class="pre">&amp;amp;amp;</span></tt> instead of <tt class="docutils literal"><span class="pre">\&amp;amp;</span></tt>.
+It can only be solved by getting python-markdown to replace the entities,
+however, I can&#8217;t easily do that without allowing HTML tags, too.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.templatetags.juliabase.fancy_bool">
+<tt class="descname">fancy_bool</tt><big>(</big><em>boolean</em><big>)</big><a class="headerlink" href="#jb_common.templatetags.juliabase.fancy_bool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for coverting a bool into a translated “Yes” or “No”.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.templatetags.juliabase.urlquote">
+<tt class="descname">urlquote</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#jb_common.templatetags.juliabase.urlquote" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for quoting strings so that they can be used as parts of URLs.
+Note that also slashs&nbsp;»/« are escaped.</p>
+<p>Also note that this filter is “not safe” because for example ampersands
+need to be further escaped.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_common.templatetags.juliabase.urlquote_plus">
+<tt class="descname">urlquote_plus</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#jb_common.templatetags.juliabase.urlquote_plus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for quoting URLs so that they can be used within other URLs.
+This is useful for added “next” URLs in query strings, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre>&lt;a href=&quot;{{ process.edit_url }}?next={{ sample.get_absolute_url|urlquote_plus }}&quot;
+       &gt;{% trans &#39;edit&#39; %}&lt;/a&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="samples">
+<h2>Samples<a class="headerlink" href="#samples" title="Permalink to this headline">¶</a></h2>
+<p>You use these tags and filter with:</p>
+<div class="highlight-python"><div class="highlight"><pre>{% load samples_extras %}
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h3>Tags<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.verbose_name">
+<tt class="descname">verbose_name</tt><big>(</big><em>parser</em>, <em>token</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.verbose_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tag for retrieving the descriptive name for an instance attribute.  For
+example:</p>
+<div class="highlight-python"><div class="highlight"><pre>{% verbose_name Deposition.pressure %}
+</pre></div>
+</div>
+<p>will print “pressure”.  Note that it will be translated for a non-English
+user.  It is useful for creating labels.  The model name may be of any
+model in any installed app.  If two model names collide, the one of the
+firstly installed app is taken.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.value_field">
+<tt class="descname">value_field</tt><big>(</big><em>parser</em>, <em>token</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.value_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tag for inserting a field value into an HTML table.  It consists of two
+<tt class="docutils literal"><span class="pre">&lt;td&gt;</span></tt> elements, one for the label and one for the value, so it spans two
+columns.  This tag is primarily used in templates of show views, especially
+those used to compile the sample history.  Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>{% value_field layer.base_pressure &quot;W&quot; 3 %}
+</pre></div>
+</div>
+<p>The unit (<tt class="docutils literal"><span class="pre">&quot;W&quot;</span></tt> for “Watt”) is optional.  If you have a boolean field,
+you can give <tt class="docutils literal"><span class="pre">&quot;yes/no&quot;</span></tt> as the unit, which converts the boolean value to
+a yes/no string (in the current language).  For gas flow fields that should
+collapse if the gas wasn&#8217;t used, use <tt class="docutils literal"><span class="pre">&quot;sccm_collapse&quot;</span></tt>.  If not given but
+the model field has a unit set (i.e. <tt class="docutils literal"><span class="pre">...QuantityField</span></tt>), that unit is
+used.</p>
+<p>The number 3 is also optional.  However, if it is set, the unit must be at
+least <tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt>.  With this option you can set the number of significant
+digits of the value.  The value will be rounded to match the number of
+significant digits.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.split_field">
+<tt class="descname">split_field</tt><big>(</big><em>field1</em>, <em>field2</em>, <em>field3=None</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.split_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tag for combining two or three input fields wich have the same label
+and help text.  It consists of two or three <tt class="docutils literal"><span class="pre">&lt;td&gt;</span></tt> elements, one for the
+label and one for the input fields, so it spans multiple columns.  This tag
+is primarily used in templates of edit views.  Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>{% split_field layer.voltage1 layer.voltage2 %}
+</pre></div>
+</div>
+<p>The tag assumes that for from–to fields, the field name of the upper limit
+must end in <tt class="docutils literal"><span class="pre">&quot;_end&quot;</span></tt>, and for ordinary multiple fields, the verbose name
+of the first field must end in a space-separated number or letter.  For
+example, the verbose names may be <tt class="docutils literal"><span class="pre">&quot;voltage</span> <span class="pre">1&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;voltage</span> <span class="pre">2&quot;</span></tt>, and
+<tt class="docutils literal"><span class="pre">&quot;voltage</span> <span class="pre">3&quot;</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.value_split_field">
+<tt class="descname">value_split_field</tt><big>(</big><em>parser</em>, <em>token</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.value_split_field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tag for combining two or more value fields wich have the same label and
+help text.  It consists of two <tt class="docutils literal"><span class="pre">&lt;td&gt;</span></tt> elements, one for the label and one
+for the value fields, so it spans two columns.  This tag is primarily used
+in templates of show views, especially those used to compile the sample
+history.  Example:</p>
+<div class="highlight-python"><div class="highlight"><pre>{% value_split_field layer.voltage_1 layer.voltage_2 &quot;V&quot; %}
+</pre></div>
+</div>
+<p>The unit (<tt class="docutils literal"><span class="pre">&quot;V&quot;</span></tt> for “Volt”) is optional.  If you have a boolean field,
+you can give <tt class="docutils literal"><span class="pre">&quot;yes/no&quot;</span></tt> as the unit, which converts the boolean value to
+a yes/no string (in the current language).  For gas flow fields that should
+collapse if the gas wasn&#8217;t used, use <tt class="docutils literal"><span class="pre">&quot;sccm_collapse&quot;</span></tt>.  If not given but
+the model field has a unit set (i.e. <tt class="docutils literal"><span class="pre">...QuantityField</span></tt>), that unit is
+used.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id2">
+<h3>Filters<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.round">
+<tt class="descname">round</tt><big>(</big><em>value</em>, <em>digits</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.round" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for rounding a numeric value to a fixed number of significant digits.
+The result may be used for the <tt class="xref py py-func docutils literal"><span class="pre">quantity()</span></tt> filter below.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.quantity">
+<tt class="descname">quantity</tt><big>(</big><em>value</em>, <em>unit=None</em>, <em>autoescape=False</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.quantity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for pretty-printing a physical quantity.  It converts <tt class="docutils literal"><span class="pre">3.4e-3</span></tt> into
+<span class="math">\(3.4\cdot10^{-3}\)</span>.  The number is the part that is actually filtered, while the
+unit is the optional argument of this filter.  So, you may write:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{{</span> <span class="n">deposition</span><span class="o">.</span><span class="n">pressure</span><span class="o">|</span><span class="n">quantity</span><span class="p">:</span><span class="s">&quot;mbar&quot;</span> <span class="p">}}</span>
+</pre></div>
+</div>
+<p>It is also possible to give a list of two values.  This is formatted in a
+from–to notation.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.get_really_full_name">
+<tt class="descname">get_really_full_name</tt><big>(</big><em>user</em>, <em>anchor_type=u'http'</em>, <em>autoescape=False</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.get_really_full_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unfortunately, Django&#8217;s get_full_name method for users returns the empty
+string if the user has no first and surname set. However, it&#8217;d be sensible
+to use the login name as a fallback then. This is realised here.  See also
+<tt class="xref py py-func docutils literal"><span class="pre">samples.utils.views.get_really_full_name()</span></tt>.</p>
+<p>The optional parameter to this filter determines whether the name should be
+linked or not, and if so, how.  There are three possible parameter values:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">&quot;http&quot;</span></tt> (default)</dt>
+<dd>The user&#8217;s name should be linked with his web page on JuliaBase</dd>
+<dt><tt class="docutils literal"><span class="pre">&quot;mailto&quot;</span></tt></dt>
+<dd>The user&#8217;s name should be linked with his email address</dd>
+<dt><tt class="docutils literal"><span class="pre">&quot;plain&quot;</span></tt></dt>
+<dd>There should be no link, the name is just printed as plain unformatted
+text.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.get_safe_operator_name">
+<tt class="descname">get_safe_operator_name</tt><big>(</big><em>user</em>, <em>autoescape=False</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.get_safe_operator_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the name of the operator (with the markup generated by
+<tt class="xref py py-obj docutils literal"><span class="pre">get_really_full_name</span></tt> and the <tt class="docutils literal"><span class="pre">&quot;http&quot;</span></tt> option) unless it is a
+confidential external operator.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.timestamp">
+<tt class="descname">timestamp</tt><big>(</big><em>value</em>, <em>minimal_inaccuracy=0</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for formatting the timestamp of a process properly to reflect
+the inaccuracy connected with this timestamp.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<tt class="xref py py-obj docutils literal"><span class="pre">samples.models.Process</span></tt> or dict mapping str to object) &#8211; the process whose timestamp should be formatted</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the rendered timestamp</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">unicode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.markdown_samples">
+<tt class="descname">markdown_samples</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.markdown_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for formatting the value by assuming Markdown syntax.
+Additionally, sample names and sample series names are converted to
+clickable links.  Embedded HTML tags are always escaped.  Warning: You need
+at least Python Markdown 1.7 or later so that this works.</p>
+<p>FixMe: Before Markdown sees the text, all named entities are replaced, see
+<tt class="xref py py-obj docutils literal"><span class="pre">samples.utils.views.substitute_html_entities</span></tt>.  This creates a mild
+escaping problem.  <tt class="docutils literal"><span class="pre">\&amp;amp;</span></tt> becomes <tt class="docutils literal"><span class="pre">&amp;amp;amp;</span></tt> instead of <tt class="docutils literal"><span class="pre">\&amp;amp;</span></tt>.
+It can only be solved by getting python-markdown to replace the entities,
+however, I can&#8217;t easily do that without allowing HTML tags, too.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.first_upper">
+<tt class="descname">first_upper</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.first_upper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for formatting the value to set the first character to uppercase.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.sample_tags">
+<tt class="descname">sample_tags</tt><big>(</big><em>sample</em>, <em>user</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.sample_tags" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows the sample&#8217;s tags.  The tags are shortened.  Moreover, they are
+suppressed if the user is not allowed to view them.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="samples.templatetags.samples_extras.camel_case_to_human_text">
+<tt class="descname">camel_case_to_human_text</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#samples.templatetags.samples_extras.camel_case_to_human_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="utilities.html#jb_common.utils.base.camel_case_to_human_text" title="jb_common.utils.base.camel_case_to_human_text"><tt class="xref py py-obj docutils literal"><span class="pre">jb_common.utils.base.camel_case_to_human_text</span></tt></a> for documentation.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../markdown.html" title="Markdown"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="utilities.html" title="Utilities"
+             >previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

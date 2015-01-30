@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Hacking on JuliaBase &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="../_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="../index.html" />
+    <link rel="next" title="Utilities" href="utilities.html" />
+    <link rel="prev" title="Sample names" href="sample_names.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('../_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="utilities.html" title="Utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sample_names.html" title="Sample names"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Hacking on JuliaBase</a><ul>
+<li><a class="reference internal" href="#architecture">Architecture</a></li>
+<li><a class="reference internal" href="#coding-guidelines">Coding guidelines</a><ul>
+<li><a class="reference internal" href="#python-3">Python&nbsp;3</a></li>
+<li><a class="reference internal" href="#boilerplate-code">Boilerplate code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="sample_names.html"
+                        title="previous chapter">Sample names</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="utilities.html"
+                        title="next chapter">Utilities</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="hacking-on-juliabase">
+<h1>Hacking on JuliaBase<a class="headerlink" href="#hacking-on-juliabase" title="Permalink to this headline">¶</a></h1>
+<p>This <em>unfinished</em> chapter explains how to contribute to the JuliaBase project
+itself instead of adapting it to your institution.</p>
+<div class="section" id="architecture">
+<span id="index-0"></span><h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<p>Since JuliaBase is based on the Django Web framework, it consists of several
+Django apps.  The core app is called “jb_common”.  It provides functionality
+which is essential for all JuliaBase components.  On top of that, the app
+“samples” contains all features of a samples database.  However, it does not
+contain institute-specific code in order to remain generic and flexible.  This
+institute-specific code resides in an app of its own and must be created by a
+skilled programmer.</p>
+<p>JuliaBase is shipped together with an example institute app called “inm”.  It
+provides not only a demo for JuliaBase, it also is a good starting point for
+your own app.  Besides, essential testing of JuliaBase can only be done on top
+of inm.</p>
+</div>
+<div class="section" id="coding-guidelines">
+<span id="index-1"></span><h2>Coding guidelines<a class="headerlink" href="#coding-guidelines" title="Permalink to this headline">¶</a></h2>
+<p>JuliaBase source code modules should not exceed 1000 lines of code.  You should
+stick to <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP 8</a> and the <a class="reference external" href="http://docs.djangoproject.com/en/dev/internals/contributing/?from=olddocs#coding-style">Django coding guidelines</a>.  String literals are
+double-quoted unless double quotes appear in them:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="s">&quot;This is a string literal&quot;</span>
+<span class="s">&#39;This is &quot;another&quot; string literal&#39;</span>
+</pre></div>
+</div>
+<p>Never use <tt class="docutils literal"><span class="pre">u</span></tt> in front of a string literal.  Instead, JuliaBase code uses the
+<tt class="docutils literal"><span class="pre">unicode_literals</span></tt> future import.</p>
+<p>JuliaBase makes one exception from PEP 8: It allows lines with 125 columns
+instead of only 80.</p>
+<p>All variables and source code comments should be in English.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">I skip all docstrings in the code examples in this document because
+otherwise, the examples would be too bloated.  However, write rich
+Docstrings for all non-trivial functions and methods.  Write them in <a class="reference external" href="http://sphinx-doc.org/rest.html">ReST
+format</a>.</p>
+</div>
+<p>Internationalization is a very important point in JuliaBase.  All strings
+exposed to the user should be marked as translatable by putting them in
+<tt class="docutils literal"><span class="pre">_(&quot;...&quot;)</span></tt> unless you have very good reason not to do so (e.g. for some
+proper names).  Note that in code which is executed at module load time
+(e.g. model and form fields), <tt class="docutils literal"><span class="pre">_</span></tt> should stand for <tt class="docutils literal"><span class="pre">ugettext_lazy</span></tt>, whereas
+within functions and methods which are executed on each request, it should be
+<tt class="docutils literal"><span class="pre">ugettext</span></tt>.  You may achieve this by setting <tt class="docutils literal"><span class="pre">_</span></tt> to <tt class="docutils literal"><span class="pre">ugettext_lazy</span></tt> at
+the beginning of the module, and to <tt class="docutils literal"><span class="pre">ugettext</span></tt> at the end.</p>
+<div class="section" id="python-3">
+<span id="index-2"></span><h3>Python&nbsp;3<a class="headerlink" href="#python-3" title="Permalink to this headline">¶</a></h3>
+<p>JuliaBase runs on both Python&nbsp;2.7 and Python&nbsp;3.2+.  Take care that your
+contributions do the same.  We found the <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/python3/">Django documentation on this topic</a>
+extremely useful.  The remote client comes with its own copy of the <tt class="docutils literal"><span class="pre">six</span></tt>
+module in order to keep external dependencies at a minimum.</p>
+</div>
+<div class="section" id="boilerplate-code">
+<h3>Boilerplate code<a class="headerlink" href="#boilerplate-code" title="Permalink to this headline">¶</a></h3>
+<p>Start every file with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#!/usr/bin/env python</span>
+<span class="c"># -*- coding: utf-8 -*-</span>
+<span class="c">#</span>
+<span class="c"># {Licence}</span>
+
+<span class="sd">&quot;&quot;&quot;{Module docstring}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">unicode_literals</span><span class="p">,</span> <span class="n">division</span>
+<span class="p">{</span><span class="n">Python</span> <span class="mi">3</span> <span class="n">compatibility</span> <span class="n">statements</span><span class="p">}</span>
+
+<span class="p">{</span><span class="n">Python</span> <span class="n">standard</span> <span class="n">library</span> <span class="n">imports</span><span class="p">}</span>
+<span class="p">{</span><span class="n">Non</span><span class="o">-</span><span class="n">standard</span> <span class="n">imports</span> <span class="p">(</span><span class="n">Numpy</span><span class="p">,</span> <span class="n">Scipy</span><span class="p">,</span> <span class="n">matplotlib</span> <span class="n">etc</span><span class="p">)</span>
+<span class="p">{</span><span class="n">Django</span> <span class="n">imports</span><span class="p">}</span>
+<span class="p">{</span><span class="n">JuliaBase</span> <span class="n">imports</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The “Python&nbsp;3 compatibility statements“ may be lines like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">django.utils.six</span> <span class="kn">as</span> <span class="nn">six</span>
+<span class="kn">from</span> <span class="nn">django.utils.six.moves</span> <span class="kn">import</span> <span class="n">cStringIO</span> <span class="k">as</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">django.utils.encoding</span> <span class="kn">import</span> <span class="n">python_2_unicode_compatible</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="utilities.html" title="Utilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sample_names.html" title="Sample names"
+             >previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

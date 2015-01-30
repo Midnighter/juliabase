@@ -1,0 +1,378 @@
+\begin{theindex}
+\def\bigletter#1{{\Large\sffamily#1}\nopagebreak\vspace{1mm}}
+
+  \bigletter A
+  \item adapting, \hyperpage{17}
+  \item add
+    \subitem process module, \hyperpage{21}
+    \subitem sample, \hyperpage{8}, \hyperpage{21}
+  \item ADD\_SAMPLES\_VIEW, \hyperpage{43}
+  \item advanced
+    \subitem search, \hyperpage{6}
+  \item Apache
+    \subitem configuration, \hyperpage{16}
+  \item architecture, \hyperpage{55}
+
+  \indexspace
+  \bigletter B
+  \item branding, \hyperpage{20}
+  \item build\_forms() (ProcessWithoutSamplesView method), \hyperpage{30}
+
+  \indexspace
+  \bigletter C
+  \item CACHE\_ROOT, \hyperpage{43}
+  \item CACHES (setting), \hyperpage{47}
+  \item camel\_case\_to\_human\_text() (in module jb\_common.utils.base), \hyperpage{57}
+  \item camel\_case\_to\_human\_text() (in module samples.templatetags.samples\_extras), 
+		\hyperpage{80}
+  \item camel\_case\_to\_underscores() (in module jb\_common.utils.base), \hyperpage{57}
+  \item chat room, \hyperpage{85}
+  \item check\_filepath() (in module jb\_common.utils.base), \hyperpage{58}
+  \item check\_markdown() (in module jb\_common.utils.base), \hyperpage{64}
+  \item claim
+    \subitem sample, \hyperpage{13}
+  \item coding
+    \subitem guidelines, \hyperpage{55}
+  \item comments
+    \subitem process, \hyperpage{81}
+  \item community, \hyperpage{85}
+  \item configuration
+    \subitem Apache, \hyperpage{16}
+    \subitem Django, \hyperpage{16}
+    \subitem PostgreSQL, \hyperpage{15}
+  \item connection (in module jb\_remote.common), \hyperpage{38}
+  \item convert\_id\_to\_int() (in module samples.utils.views), \hyperpage{63}
+  \item CRAWLER\_LOGS\_ROOT, \hyperpage{43}
+  \item CRAWLER\_LOGS\_WHITELIST, \hyperpage{43}
+  \item crawlers, \hyperpage{35}
+  \item CSV
+    \subitem export, data, \hyperpage{7}
+
+  \indexspace
+  \bigletter D
+  \item data
+    \subitem CSV export, \hyperpage{7}
+  \item data sheet
+    \subitem sample, \hyperpage{5}
+  \item dead\_samples() (in module samples.utils.views), \hyperpage{61}
+  \item DEBUG (setting), \hyperpage{47}
+  \item DEBUG\_EMAIL\_REDIRECT\_USERNAME, \hyperpage{44}
+  \item DEFAULT\_FROM\_EMAIL, \hyperpage{48}
+  \item Delphi, \hyperpage{37}
+  \item demo, \hyperpage{3}
+  \item deposition() (PatternGenerator method), \hyperpage{74}
+  \item DepositionForm (class in samples.utils.views), \hyperpage{72}
+  \item DepositionMultipleTypeView (class in samples.utils.views), \hyperpage{32}
+  \item DepositionSamplesForm (class in samples.utils.views), \hyperpage{72}
+  \item DepositionView (class in samples.utils.views), \hyperpage{32}
+  \item Django
+    \subitem configuration, \hyperpage{16}
+  \item does\_sample\_exist() (in module samples.utils.views), \hyperpage{62}
+  \item double\_urlquote() (in module jb\_remote.common), \hyperpage{40}
+
+  \indexspace
+  \bigletter E
+  \item edit
+    \subitem sample, \hyperpage{6}
+  \item EditDescriptionForm (class in samples.utils.views), \hyperpage{72}
+  \item environment variable
+    \subitem PYTHONPATH, \hyperpage{37}
+  \item equations, \hyperpage{84}
+  \item error\_list() (in module jb\_common.templatetags.juliabase), \hyperpage{77}
+  \item export
+    \subitem data CSV, \hyperpage{7}
+  \item extract\_preset\_sample() (in module samples.utils.views), \hyperpage{62}
+
+  \indexspace
+  \bigletter F
+  \item fancy\_bool() (in module jb\_common.templatetags.juliabase), \hyperpage{78}
+  \item feed, \hyperpage{12}
+  \item filters
+    \subitem template, \hyperpage{75}
+  \item find\_file\_in\_directory() (in module jb\_common.utils.base), \hyperpage{58}
+  \item first\_upper() (in module samples.templatetags.samples\_extras), \hyperpage{80}
+  \item format\_enumeration() (in module jb\_common.utils.base), \hyperpage{57}
+  \item format\_lazy() (in module jb\_common.utils.base), \hyperpage{57}
+  \item format\_timestamp() (in module jb\_remote.common), \hyperpage{40}
+  \item formulae, \hyperpage{84}
+  \item functions
+    \subitem utility, \hyperpage{56}
+
+  \indexspace
+  \bigletter G
+  \item generate\_permissions() (in module jb\_common.utils.base), \hyperpage{65}
+  \item get\_context\_data() (ProcessWithoutSamplesView method), \hyperpage{30}
+  \item get\_context\_for\_user(), \hyperpage{24}
+  \item get\_next\_id() (ProcessWithoutSamplesView method), \hyperpage{30}
+  \item get\_really\_full\_name() (in module jb\_common.templatetags.juliabase), \hyperpage{78}
+  \item get\_really\_full\_name() (in module jb\_common.utils.base), \hyperpage{64}
+  \item get\_really\_full\_name() (in module samples.templatetags.samples\_extras), \hyperpage{80}
+  \item get\_safe\_operator\_name() (in module samples.templatetags.samples\_extras), 
+		\hyperpage{80}
+  \item get\_sample() (in module samples.utils.views), \hyperpage{61}
+  \item get\_title() (ProcessWithoutSamplesView method), \hyperpage{31}
+  \item git, \hyperpage{20}
+  \item guidelines
+    \subitem coding, \hyperpage{55}
+
+  \indexspace
+  \bigletter H
+  \item help\_link() (in module jb\_common.utils.base), \hyperpage{64}
+  \item history
+    \subitem project, \hyperpage{88}
+
+  \indexspace
+  \bigletter I
+  \item initials
+    \subitem user, \hyperpage{52}
+  \item INITIALS\_FORMATS, \hyperpage{44}
+  \item input\_field() (in module jb\_common.templatetags.juliabase), \hyperpage{77}
+  \item installation, \hyperpage{13}
+  \item INSTALLED\_APPS, \hyperpage{48}
+  \item irc, \hyperpage{85}
+  \item is\_all\_valid() (ProcessWithoutSamplesView method), \hyperpage{31}
+  \item is\_json\_requested() (in module jb\_common.utils.base), \hyperpage{59}
+  \item is\_referentially\_valid() (DepositionForm method), \hyperpage{72}
+  \item is\_referentially\_valid() (ProcessForm method), \hyperpage{71}
+  \item is\_referentially\_valid() (ProcessWithoutSamplesView method), \hyperpage{31}
+  \item is\_update\_necessary() (in module jb\_common.utils.base), \hyperpage{58}
+
+  \indexspace
+  \bigletter J
+  \item JAVASCRIPT\_I18N\_APPS, \hyperpage{44}
+  \item jb\_remote.common (module), \hyperpage{38}
+  \item jb\_remote.samples (module), \hyperpage{40}
+  \item JSONRequestException, \hyperpage{59}
+  \item JuliaBaseConnection (class in jb\_remote.common), \hyperpage{38}
+  \item JuliaBaseError, \hyperpage{39}
+
+  \indexspace
+  \bigletter L
+  \item lab notebook, \hyperpage{8}, \hyperpage{25}
+  \item LANGUAGES (setting), \hyperpage{47}
+  \item LDAP, \hyperpage{45}
+  \item LDAP\_ACCOUNT\_FILTER, \hyperpage{45}
+  \item LDAP\_ADDITIONAL\_ATTRIBUTES, \hyperpage{45}
+  \item LDAP\_ADDITIONAL\_USERS, \hyperpage{46}
+  \item LDAP\_DEPARTMENTS, \hyperpage{46}
+  \item LDAP\_GROUPS\_TO\_PERMISSIONS, \hyperpage{46}
+  \item LDAP\_LOGIN\_TEMPLATE, \hyperpage{46}
+  \item LDAP\_SEARCH\_DN, \hyperpage{47}
+  \item LDAP\_URLS, \hyperpage{47}
+  \item license, \hyperpage{87}
+  \item login() (in module jb\_remote.common), \hyperpage{38}
+  \item LOGIN\_REDIRECT\_URL, \hyperpage{48}
+  \item LOGIN\_URL, \hyperpage{48}
+  \item logout() (in module jb\_remote.common), \hyperpage{39}
+  \item lookup\_sample() (in module samples.utils.views), \hyperpage{62}
+
+  \indexspace
+  \bigletter M
+  \item mailing list, \hyperpage{85}
+  \item main menu, \hyperpage{4}
+  \item markdown, \hyperpage{81}
+  \item markdown() (in module jb\_common.templatetags.juliabase), \hyperpage{78}
+  \item markdown\_hint() (in module jb\_common.templatetags.juliabase), \hyperpage{77}
+  \item markdown\_samples() (in module samples.templatetags.samples\_extras), \hyperpage{80}
+  \item maths, \hyperpage{84}
+  \item measurement, \hyperindexformat{\textbf}{26}
+  \item MERGE\_CLEANUP\_FUNCTION, \hyperpage{44}
+  \item MIDDLEWARE\_CLASSES, \hyperpage{48}
+  \item migration
+    \subitem schema, \hyperpage{22}
+  \item mkdirs() (in module jb\_common.utils.base), \hyperpage{59}
+  \item module
+    \subitem add process, \hyperpage{21}
+  \item MultipleUsersField (class in jb\_common.utils.views), \hyperpage{71}
+  \item My Samples, \hyperpage{4}
+
+  \indexspace
+  \bigletter N
+  \item name
+    \subitem prefix templates, \hyperpage{53}
+  \item NAME\_PREFIX\_TEMPLATES, \hyperpage{44}
+  \item names
+    \subitem sample, \hyperpage{49}
+    \subitem sample provisional, \hyperpage{52}
+  \item newsfeed, \hyperpage{12}
+  \item newsgroup, \hyperpage{85}
+  \item normalize\_sample\_name() (in module samples.utils.views), \hyperpage{62}
+  \item notifications, \hyperpage{12}
+
+  \indexspace
+  \bigletter O
+  \item open() (JuliaBaseConnection method), \hyperpage{38}
+
+  \indexspace
+  \bigletter P
+  \item parse\_timestamp() (in module jb\_remote.common), \hyperpage{40}
+  \item PatternGenerator (class in samples.utils.urls), \hyperpage{74}
+  \item permissions, \hyperpage{4}, \hyperpage{9}, \hyperpage{13}, \hyperpage{26}
+    \subitem user, \hyperpage{3}
+  \item physical process, \hyperindexformat{\textbf}{26}
+  \item physical\_process() (PatternGenerator method), \hyperpage{74}
+  \item PlotError, \hyperpage{72}
+  \item PostgreSQL
+    \subitem configuration, \hyperpage{15}
+  \item prefix
+    \subitem templates, name, \hyperpage{53}
+  \item prerequisites, \hyperpage{15}
+  \item primary\_keys (in module jb\_remote.common), \hyperpage{38}
+  \item PrimaryKeys (class in jb\_remote.common), \hyperpage{39}
+  \item privileges
+    \subitem user, \hyperpage{3}
+  \item process, \hyperpage{6}, \hyperpage{21}, \hyperindexformat{\textbf}{26}
+    \subitem comments, \hyperpage{81}
+    \subitem module, add, \hyperpage{21}
+    \subitem template, \hyperpage{23}
+    \subitem unfinished, \hyperpage{27}
+    \subitem view, \hyperpage{23}
+  \item ProcessForm (class in samples.utils.views), \hyperpage{71}
+  \item ProcessMultipleSamplesView (class in samples.utils.views), \hyperpage{32}
+  \item ProcessView (class in samples.utils.views), \hyperpage{31}
+  \item ProcessWithoutSamplesView (class in samples.utils.views.class\_views), \hyperpage{29}
+  \item project
+    \subitem history, \hyperpage{88}
+  \item provisional
+    \subitem names, sample, \hyperpage{52}
+  \item Python\IeC {\nobreakspace  }3, \hyperpage{56}
+  \item PYTHONPATH, \hyperpage{37}
+
+  \indexspace
+  \bigletter Q
+  \item quantity() (in module samples.templatetags.samples\_extras), \hyperpage{79}
+
+  \indexspace
+  \bigletter R
+  \item read\_plot\_file\_beginning\_after\_start\_value() (in module samples.utils.plots), 
+		\hyperpage{73}
+  \item read\_plot\_file\_beginning\_at\_line\_number() (in module samples.utils.plots), 
+		\hyperpage{73}
+  \item remote client, \hyperpage{33}
+  \item remove\_file() (in module jb\_common.utils.base), \hyperpage{59}
+  \item remove\_samples\_from\_my\_samples() (in module samples.utils.views), \hyperpage{62}
+  \item RemoveFromMySamplesForm (class in samples.utils.views), \hyperpage{72}
+  \item RemoveFromMySamplesMixin (class in samples.utils.views), \hyperpage{32}
+  \item report\_changed\_sample\_series\_topic() (Reporter method), \hyperpage{66}
+  \item report\_changed\_sample\_topic() (Reporter method), \hyperpage{66}
+  \item report\_changed\_topic\_membership() (Reporter method), \hyperpage{67}
+  \item report\_copied\_my\_samples() (Reporter method), \hyperpage{67}
+  \item report\_edited\_sample\_series() (Reporter method), \hyperpage{67}
+  \item report\_edited\_samples() (Reporter method), \hyperpage{67}
+  \item report\_new\_responsible\_person\_sample\_series() (Reporter method), \hyperpage{68}
+  \item report\_new\_responsible\_person\_samples() (Reporter method), \hyperpage{68}
+  \item report\_new\_sample\_series() (Reporter method), \hyperpage{68}
+  \item report\_new\_samples() (Reporter method), \hyperpage{68}
+  \item report\_physical\_process() (Reporter method), \hyperpage{69}
+  \item report\_removed\_task() (Reporter method), \hyperpage{69}
+  \item report\_result\_process() (Reporter method), \hyperpage{69}
+  \item report\_sample\_split() (Reporter method), \hyperpage{69}
+  \item report\_status\_message() (Reporter method), \hyperpage{69}
+  \item report\_task() (Reporter method), \hyperpage{70}
+  \item report\_withdrawn\_status\_message() (Reporter method), \hyperpage{70}
+  \item Reporter (class in samples.utils.views), \hyperpage{65}
+  \item repository, \hyperpage{85}
+  \item respond\_in\_json() (in module jb\_common.utils.base), \hyperpage{60}
+  \item restricted\_samples\_query() (in module samples.utils.views), \hyperpage{63}
+  \item result, \hyperpage{6}, \hyperindexformat{\textbf}{26}
+  \item Result (class in jb\_remote.samples), \hyperpage{40}
+  \item round() (in module jb\_common.utils.base), \hyperpage{65}
+  \item round() (in module samples.templatetags.samples\_extras), \hyperpage{79}
+
+  \indexspace
+  \bigletter S
+  \item sample
+    \subitem add, \hyperpage{8}, \hyperpage{21}
+    \subitem claim, \hyperpage{10}, \hyperpage{13}
+    \subitem data sheet, \hyperpage{5}
+    \subitem edit, \hyperpage{6}
+    \subitem names, \hyperpage{49}
+    \subitem provisional names, \hyperpage{52}
+    \subitem send to user, \hyperpage{11}
+    \subitem series, \hyperpage{4}
+    \subitem split, \hyperpage{6}
+  \item Sample (class in jb\_remote.samples), \hyperpage{41}
+  \item sample\_name\_format() (in module samples.utils.views), \hyperpage{61}
+  \item SAMPLE\_NAME\_FORMATS, \hyperpage{45}, \hyperpage{51}
+  \item sample\_tags() (in module samples.templatetags.samples\_extras), \hyperpage{80}
+  \item SampleSelectForm (class in samples.utils.views), \hyperpage{72}
+  \item sanitize\_for\_markdown() (in module jb\_remote.common), \hyperpage{40}
+  \item save\_to\_database() (ProcessWithoutSamplesView method), \hyperpage{31}
+  \item schema
+    \subitem migration, \hyperpage{22}
+  \item SECRET\_KEY, \hyperpage{48}
+  \item send to user
+    \subitem sample, \hyperpage{11}
+  \item send\_email() (in module jb\_common.utils.base), \hyperpage{64}
+  \item series
+    \subitem sample, \hyperpage{4}
+  \item set\_topics() (TopicField method), \hyperpage{71}
+  \item set\_users() (MultipleUsersField method), \hyperpage{71}
+  \item set\_users() (UserField method), \hyperpage{70}
+  \item set\_users\_without() (UserField method), \hyperpage{70}
+  \item settings, \hyperpage{41}
+  \item setup\_logging() (in module jb\_remote.common), \hyperpage{39}
+  \item source code, \hyperpage{85}
+    \subitem structure, \hyperpage{19}
+  \item split
+    \subitem sample, \hyperpage{6}
+  \item split\_field() (in module samples.templatetags.samples\_extras), \hyperpage{79}
+  \item startup() (ProcessWithoutSamplesView method), \hyperpage{31}
+  \item static\_file\_response() (in module jb\_common.utils.base), \hyperpage{60}
+  \item structure
+    \subitem source code, \hyperpage{19}
+  \item submit() (Result method), \hyperpage{40}
+  \item submit() (Sample method), \hyperpage{41}
+  \item SubprocessesMixin (class in samples.utils.views), \hyperpage{32}
+  \item SubprocessForm (class in samples.utils.views), \hyperpage{32}
+  \item successful\_response() (in module samples.utils.views), \hyperpage{60}
+
+  \indexspace
+  \bigletter T
+  \item table\_export() (in module samples.utils.views), \hyperpage{63}
+  \item tags
+    \subitem template, \hyperpage{75}
+  \item tasks, \hyperpage{12}
+  \item template
+    \subitem filters, \hyperpage{75}
+    \subitem process, \hyperpage{23}
+    \subitem tags, \hyperpage{75}
+  \item TEMPLATE\_CONTEXT\_PROCESSORS, \hyperpage{49}
+  \item TEMPLATE\_DIRS, \hyperpage{49}
+  \item TEMPLATE\_LOADERS, \hyperpage{49}
+  \item templates
+    \subitem name prefix, \hyperpage{53}
+  \item TemporaryMySamples (class in jb\_remote.samples), \hyperpage{41}
+  \item THUMBNAIL\_WIDTH, \hyperpage{45}
+  \item timestamp() (in module samples.templatetags.samples\_extras), \hyperpage{80}
+  \item TopicField (class in jb\_common.utils.views), \hyperpage{71}
+  \item topics, \hyperindexformat{\textbf}{4}, \hyperpage{4}
+
+  \indexspace
+  \bigletter U
+  \item unfinished
+    \subitem process, \hyperpage{27}
+  \item urlquote() (in module jb\_common.templatetags.juliabase), \hyperpage{78}
+  \item urlquote\_plus() (in module jb\_common.templatetags.juliabase), \hyperpage{78}
+  \item URLs, \hyperpage{23}
+  \item USE\_TZ, \hyperpage{49}
+  \item USE\_X\_SENDFILE, \hyperpage{45}
+  \item usenet, \hyperpage{85}
+  \item user
+    \subitem initials, \hyperpage{52}
+    \subitem permissions, \hyperpage{3}
+    \subitem privileges, \hyperpage{3}
+  \item user context, \hyperpage{24}
+  \item UserField (class in jb\_common.utils.views), \hyperpage{70}
+  \item utility
+    \subitem functions, \hyperpage{56}
+
+  \indexspace
+  \bigletter V
+  \item value\_field() (in module samples.templatetags.samples\_extras), \hyperpage{79}
+  \item value\_split\_field() (in module samples.templatetags.samples\_extras), \hyperpage{79}
+  \item verbose\_name() (in module samples.templatetags.samples\_extras), \hyperpage{78}
+  \item view
+    \subitem process, \hyperpage{23}
+
+\end{theindex}

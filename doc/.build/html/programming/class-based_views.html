@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Class-based views &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="../_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="../index.html" />
+    <link rel="next" title="The remote client" href="remote_client.html" />
+    <link rel="prev" title="Model permissions" href="permissions.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('../_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="remote_client.html" title="The remote client"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="permissions.html" title="Model permissions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Class-based views</a><ul>
+<li><a class="reference internal" href="#the-api">The API</a></li>
+<li><a class="reference internal" href="#main-classes">Main classes</a></li>
+<li><a class="reference internal" href="#mixins">Mixins</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="permissions.html"
+                        title="previous chapter">Model permissions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="remote_client.html"
+                        title="next chapter">The remote client</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="class-based-views">
+<h1>Class-based views<a class="headerlink" href="#class-based-views" title="Permalink to this headline">¶</a></h1>
+<p>Class-based views are highly practical for the add/edit view of physical
+processes because they keep code duplication at a minimum.  In some cases, you
+get away with only a few lines of code.  Mixin classes reduce the redundancy
+further.  Although it is still possible to have ordinary view <em>functions</em> for
+physical processes, we do not recommend this.  If you follow the convention of
+calling your view class “<tt class="xref py py-class docutils literal"><span class="pre">EditView</span></tt>” and place it in a module called
+<tt class="file docutils literal"><span class="pre">class_name.py</span></tt>, the <a class="reference internal" href="utilities.html#samples.utils.urls.PatternGenerator" title="samples.utils.urls.PatternGenerator"><tt class="xref py py-class docutils literal"><span class="pre">PatternGenerator</span></tt></a>
+will detect it and create the URL dispatch for it.</p>
+<div class="section" id="the-api">
+<h2>The API<a class="headerlink" href="#the-api" title="Permalink to this headline">¶</a></h2>
+<p>The API of JuliaBase&#8217;s class-based view classes is best described by discussing
+the attributes and methods of the common base class
+<a class="reference internal" href="#samples.utils.views.class_views.ProcessWithoutSamplesView" title="samples.utils.views.class_views.ProcessWithoutSamplesView"><tt class="xref py py-class docutils literal"><span class="pre">ProcessWithoutSamplesView</span></tt></a>.  Not
+only if you derive your views, but also if you need to define your own
+<em>abstract</em> view class, you should derive it from one of the concrete classes
+presented in the next section, though, because you probably want to re-use part
+of their functionality.</p>
+<p>This class is found in the module <tt class="xref py py-mod docutils literal"><span class="pre">samples.utils.views.class_views</span></tt>.</p>
+<dl class="class">
+<dt id="samples.utils.views.class_views.ProcessWithoutSamplesView">
+<em class="property">class </em><tt class="descname">ProcessWithoutSamplesView</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.class_views.ProcessWithoutSamplesView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract base class for the classed-based views.  It deals only with the
+process per se, and in partuclar, with no samples associated with this
+process.  This is done in the concrete derived classes
+<a class="reference internal" href="#samples.utils.views.ProcessView" title="samples.utils.views.ProcessView"><tt class="xref py py-class docutils literal"><span class="pre">ProcessView</span></tt></a> (one sample) and
+<tt class="xref py py-class docutils literal"><span class="pre">ProcessMultipleSamplesView</span></tt> (multiple samples).  So, you should
+never instantiate this one.</p>
+<p>The methods that you most likely want to redefine in you own concrete class
+are, with decreasing probability:</p>
+<ul class="simple">
+<li><tt class="xref py py-meth docutils literal"><span class="pre">is_referentially_valid()</span></tt></li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">save_to_database()</span></tt></li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">get_next_id()</span></tt></li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">build_forms()</span></tt></li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">get_title()</span></tt></li>
+<li><tt class="xref py py-meth docutils literal"><span class="pre">get_context_data()</span></tt></li>
+</ul>
+<p>Note that for <tt class="xref py py-meth docutils literal"><span class="pre">is_referentially_valid()</span></tt>,
+<tt class="xref py py-meth docutils literal"><span class="pre">save_to_database()</span></tt>, <tt class="xref py py-meth docutils literal"><span class="pre">build_forms()</span></tt>, and
+<tt class="xref py py-meth docutils literal"><span class="pre">get_context_data()</span></tt>, it is necessary to call the inherited method.</p>
+<p>Since you connect forms with the view class, the view class expects certain
+constructor signatures of the forms.  As for the process model form, it
+must accept the logged-in user as the first argument.  This is the case for
+<a class="reference internal" href="utilities.html#samples.utils.views.ProcessForm" title="samples.utils.views.ProcessForm"><tt class="xref py py-class docutils literal"><span class="pre">ProcessForm</span></tt></a> and
+<a class="reference internal" href="utilities.html#samples.utils.views.DepositionForm" title="samples.utils.views.DepositionForm"><tt class="xref py py-class docutils literal"><span class="pre">DepositionForm</span></tt></a>, so this should not be a
+problem.  The derived class (see below) may impose constrains on their
+external forms either.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>form_class</strong> &#8211; The model form class of the process of this view.</li>
+<li><strong>model</strong> &#8211; The model class of the view.  If not given, it is derived from
+the process form class.</li>
+<li><strong>class_name</strong> &#8211; The name of the model class,
+e.g. <tt class="docutils literal"><span class="pre">&quot;clustertooldeposition&quot;</span></tt>.</li>
+<li><strong>process</strong> &#8211; The process instance this view is about.  If we are about to
+add a new process, this is <tt class="docutils literal"><span class="pre">None</span></tt> until the respective form is saved.</li>
+<li><strong>forms</strong> &#8211; A dictionary mapping template context names to forms, or lists
+of forms.  Mandatory keys in this dictionary are <tt class="docutils literal"><span class="pre">&quot;process&quot;</span></tt> and
+<tt class="docutils literal"><span class="pre">&quot;edit_description&quot;</span></tt>.  (Derived classes add <tt class="docutils literal"><span class="pre">&quot;sample&quot;</span></tt>,
+<tt class="docutils literal"><span class="pre">&quot;samples&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;remove_from_my_samples&quot;</span></tt>, <tt class="docutils literal"><span class="pre">&quot;layers&quot;</span></tt>, etc.)</li>
+<li><strong>data</strong> &#8211; The POST data if we have a POST request, or <tt class="docutils literal"><span class="pre">None</span></tt> otherwise.</li>
+<li><strong>id</strong> &#8211; The ID of the process to edit, or <tt class="docutils literal"><span class="pre">None</span></tt> if we are about to add
+a new one.  This is the recommended way to distinguish between editing
+and adding.</li>
+<li><strong>preset_sample</strong> &#8211; The sample with which the process should be connected
+by default.  May be <tt class="docutils literal"><span class="pre">None</span></tt>.</li>
+<li><strong>request</strong> &#8211; The current request object.  This is inherited from Django&#8217;s
+view classes.</li>
+<li><strong>template_name</strong> &#8211; The file name of the rendering template, with the same
+path syntax as in the <tt class="docutils literal"><span class="pre">render()</span></tt> function.</li>
+<li><strong>identifying_field</strong> &#8211; The name of the field in the process which is the
+poor man&#8217;s primary key for this process, e.g. the deposition number.  It
+is taken from the model class.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="samples.utils.views.class_views.ProcessWithoutSamplesView.build_forms">
+<tt class="descname">build_forms</tt><big>(</big><big>)</big><a class="headerlink" href="#samples.utils.views.class_views.ProcessWithoutSamplesView.build_forms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills the <tt class="xref py py-attr docutils literal"><span class="pre">forms</span></tt> dictionary with the forms, or lists of them.  In
+this base class, we only add <tt class="docutils literal"><span class="pre">&quot;process&quot;</span></tt> itself and
+<tt class="docutils literal"><span class="pre">&quot;edit_description&quot;</span></tt>.  Note that the dictionary key is later used in
+the template as context variable.</p>
+<p>This method has no parameters and no return values, <tt class="docutils literal"><span class="pre">self</span></tt> is
+modified in-situ.  It is good habit to check for a key before setting
+it, allowing derived methods to set it themselves without doing double
+work.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.class_views.ProcessWithoutSamplesView.get_context_data">
+<tt class="descname">get_context_data</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.class_views.ProcessWithoutSamplesView.get_context_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates the template context.  In particular, we inject the forms and the
+title here into the context.  This method is part of the official
+Django API.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return:</th><td class="field-body">the context dict</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.class_views.ProcessWithoutSamplesView.get_next_id">
+<tt class="descname">get_next_id</tt><big>(</big><big>)</big><a class="headerlink" href="#samples.utils.views.class_views.ProcessWithoutSamplesView.get_next_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the next identifying value for the process class.  In its default
+implementation, it just takes the maximal existing value and adds&nbsp;1.
+This needs to be overridden if the identifying field is non-numeric.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return:</th><td class="field-body">The next untaken of the identifying field, e.g. the next free
+depostion number.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.class_views.ProcessWithoutSamplesView.get_title">
+<tt class="descname">get_title</tt><big>(</big><big>)</big><a class="headerlink" href="#samples.utils.views.class_views.ProcessWithoutSamplesView.get_title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates the title of the response.  This is used in the <tt class="docutils literal"><span class="pre">&lt;title&gt;</span></tt>
+tag and the <tt class="docutils literal"><span class="pre">&lt;h1&gt;</span></tt> tag at the top of the page.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return:</th><td class="field-body">the title of the response</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">unicode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.class_views.ProcessWithoutSamplesView.is_all_valid">
+<tt class="descname">is_all_valid</tt><big>(</big><big>)</big><a class="headerlink" href="#samples.utils.views.class_views.ProcessWithoutSamplesView.is_all_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether all forms are valid.  Unbound forms – which may occur also in
+POST requests – are not checked.  Moreover, this method guarantees that
+the <tt class="xref py py-meth docutils literal"><span class="pre">is_valid()</span></tt> method of every bound form is called in order
+to collect all error messages.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return:</th><td class="field-body">whether all forms are valid</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.class_views.ProcessWithoutSamplesView.is_referentially_valid">
+<tt class="descname">is_referentially_valid</tt><big>(</big><big>)</big><a class="headerlink" href="#samples.utils.views.class_views.ProcessWithoutSamplesView.is_referentially_valid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether the data of all forms is consistent with each other
+and with the database.  This is the partner of <tt class="xref py py-meth docutils literal"><span class="pre">is_all_valid()</span></tt>
+but checks the inter-relations of data.</p>
+<p>This method is frequently overriden in concrete view classes.</p>
+<p>Note that a <tt class="docutils literal"><span class="pre">True</span></tt> here does not imply a <tt class="docutils literal"><span class="pre">True</span></tt> from
+<tt class="xref py py-meth docutils literal"><span class="pre">is_all_valid()</span></tt>.  Both methods are independent of each other.
+In particular, you must check the validity of froms that you use here.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return:</th><td class="field-body">whether the data submitted to the view is valid</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.class_views.ProcessWithoutSamplesView.save_to_database">
+<tt class="descname">save_to_database</tt><big>(</big><big>)</big><a class="headerlink" href="#samples.utils.views.class_views.ProcessWithoutSamplesView.save_to_database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the data to the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return:</th><td class="field-body">the saved process instance</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><tt class="xref py py-obj docutils literal"><span class="pre">samples.models.PhysicalProcess</span></tt></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="samples.utils.views.class_views.ProcessWithoutSamplesView.startup">
+<tt class="descname">startup</tt><big>(</big><big>)</big><a class="headerlink" href="#samples.utils.views.class_views.ProcessWithoutSamplesView.startup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch the process to-be-edited from the database and check permissions.
+This method has no parameters and no return values, <tt class="docutils literal"><span class="pre">self</span></tt> is
+modified in-situ.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="main-classes">
+<h2>Main classes<a class="headerlink" href="#main-classes" title="Permalink to this headline">¶</a></h2>
+<p>The following names are found in the module <tt class="xref py py-mod docutils literal"><span class="pre">samples.utils.views</span></tt>.</p>
+<dl class="class">
+<dt id="samples.utils.views.ProcessView">
+<em class="property">class </em><tt class="descname">ProcessView</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.ProcessView" title="Permalink to this definition">¶</a></dt>
+<dd><p>View class for physical processes with one sample each.  The HTML form for
+the sample is called <tt class="docutils literal"><span class="pre">sample</span></tt> in the template.  Typical usage can be very
+short:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">samples.utils.views</span> <span class="kn">import</span> <span class="n">ProcessForm</span><span class="p">,</span> <span class="n">ProcessView</span>
+
+<span class="k">class</span> <span class="nc">LayerThicknessForm</span><span class="p">(</span><span class="n">ProcessForm</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">LayerThicknessMeasurement</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="s">&quot;__all__&quot;</span>
+
+<span class="k">class</span> <span class="nc">EditView</span><span class="p">(</span><span class="n">ProcessView</span><span class="p">):</span>
+    <span class="n">form_class</span> <span class="o">=</span> <span class="n">LayerThicknessForm</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="samples.utils.views.ProcessMultipleSamplesView">
+<em class="property">class </em><tt class="descname">ProcessMultipleSamplesView</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.ProcessMultipleSamplesView" title="Permalink to this definition">¶</a></dt>
+<dd><p>View class for physical processes with one or more samples each.  The HTML
+form for the sample list is called <tt class="docutils literal"><span class="pre">samples</span></tt> in the template.  The usage
+is analogous to <a class="reference internal" href="#samples.utils.views.ProcessView" title="samples.utils.views.ProcessView"><tt class="xref py py-class docutils literal"><span class="pre">ProcessView</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="samples.utils.views.DepositionView">
+<em class="property">class </em><tt class="descname">DepositionView</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.DepositionView" title="Permalink to this definition">¶</a></dt>
+<dd><p>View class for depositions.  The layers of the deposition must always be of
+the same type.  If they are now, you must use
+<tt class="xref py py-class docutils literal"><span class="pre">DepositionMultipleTypeView</span></tt> instead.  Additionally to
+<tt class="xref py py-attr docutils literal"><span class="pre">form_class</span></tt>, you must set the <tt class="xref py py-attr docutils literal"><span class="pre">layer_form_class</span></tt> class
+variable to the form class to be used for the layers.</p>
+<p>The layer form should be a subclass of <a class="reference internal" href="#samples.utils.views.SubprocessForm" title="samples.utils.views.SubprocessForm"><tt class="xref py py-class docutils literal"><span class="pre">SubprocessForm</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="samples.utils.views.DepositionMultipleTypeView">
+<em class="property">class </em><tt class="descname">DepositionMultipleTypeView</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.DepositionMultipleTypeView" title="Permalink to this definition">¶</a></dt>
+<dd><p>View class for depositions the layers of which are of different types (i.e.,
+different models).  You can see it in action in the module
+<tt class="xref py py-mod docutils literal"><span class="pre">institute.views.samples.cluster_tool_deposition</span></tt>.  Additionally to
+the class variable <tt class="xref py py-attr docutils literal"><span class="pre">form_class</span></tt>, you must set:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>layer_form_classes</strong> &#8211; This is a tuple of the form classes for the layers</li>
+<li><strong>short_labels</strong> &#8211; <em>(optional)</em> This is a dict mapping a layer form class
+to a concise name of that layer type.  It is used in the selection widget
+of the add-layer form.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="samples.utils.views.SubprocessForm">
+<em class="property">class </em><tt class="descname">SubprocessForm</tt><big>(</big><em>view</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.SubprocessForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Model form class for subprocesses and deposition layers.  Its only purpose
+is to eat up the <tt class="docutils literal"><span class="pre">view</span></tt> parameter to the constructor so that you need not
+redefine the constructor every time.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mixins">
+<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="samples.utils.views.RemoveFromMySamplesMixin">
+<em class="property">class </em><tt class="descname">RemoveFromMySamplesMixin</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.RemoveFromMySamplesMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixin for views that like to offer a “Remove from my samples” button.  In
+the template, they may add the following code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{{</span> <span class="n">remove_from_my_samples</span><span class="o">.</span><span class="n">as_p</span> <span class="p">}}</span>
+</pre></div>
+</div>
+<p>This mixin must come before the main view class in the list of parents.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="samples.utils.views.SubprocessesMixin">
+<em class="property">class </em><tt class="descname">SubprocessesMixin</tt><big>(</big><em>**kwargs</em><big>)</big><a class="headerlink" href="#samples.utils.views.SubprocessesMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mixing for views that represent processes with subprocesses.  Have a look at
+<tt class="xref py py-mod docutils literal"><span class="pre">institute.views.samples.solarsimulator_measurement</span></tt> for an
+example.  For this to work, you must define the followin additional class
+variables:</p>
+<ul class="simple">
+<li><tt class="xref py py-attr docutils literal"><span class="pre">subform_class</span></tt>: the model form class for the subprocesses</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">process_field</span></tt>: the name of the field of the parent process in
+the subprocess model</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">subprocess_field</span></tt>: the <tt class="docutils literal"><span class="pre">related_name</span></tt> parameter in the field
+of the parent process in the subprocess model</li>
+</ul>
+<p>You should derive the model form class of the subprocess from
+<a class="reference internal" href="#samples.utils.views.SubprocessForm" title="samples.utils.views.SubprocessForm"><tt class="xref py py-class docutils literal"><span class="pre">SubprocessForm</span></tt></a>.  This is not mandatory but
+convenient, see there.</p>
+<p>In the template, the forms of the subprocesses are available in a list
+called <tt class="docutils literal"><span class="pre">subprocesses</span></tt>.  Furthermore, you should include</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">{{</span> <span class="n">number</span><span class="o">.</span><span class="n">as_p</span> <span class="p">}}</span>
+</pre></div>
+</div>
+<p>in the template so that the user can set the number of subprocesses.</p>
+<p>This mixin must come before the main view class in the list of parents.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="remote_client.html" title="The remote client"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="permissions.html" title="Model permissions"
+             >previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The remote client &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="../_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="../index.html" />
+    <link rel="next" title="Settings reference" href="settings.html" />
+    <link rel="prev" title="Class-based views" href="class-based_views.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('../_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="settings.html" title="Settings reference"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="class-based_views.html" title="Class-based views"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The remote client</a><ul>
+<li><a class="reference internal" href="#use-cases">Use cases</a><ul>
+<li><a class="reference internal" href="#crawlers">Crawlers</a></li>
+<li><a class="reference internal" href="#connecting-the-setup-with-the-database">Connecting the setup with the database</a></li>
+<li><a class="reference internal" href="#data-mining-and-analysis">Data mining and analysis</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#extending-the-remote-client">Extending the remote client</a><ul>
+<li><a class="reference internal" href="#settings">Settings</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#local-installation-and-usage">Local installation and usage</a></li>
+<li><a class="reference internal" href="#other-programming-languages">Other programming languages</a></li>
+<li><a class="reference internal" href="#classes-and-functions">Classes and functions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="class-based_views.html"
+                        title="previous chapter">Class-based views</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="settings.html"
+                        title="next chapter">Settings reference</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-remote-client">
+<span id="index-0"></span><h1>The remote client<a class="headerlink" href="#the-remote-client" title="Permalink to this headline">¶</a></h1>
+<p>The “remote client” is a programming library for contacting JuliaBase over the
+network.  Being a library, it is not a program per se but used by your own code
+for the bidirectional communication with the database.  The remote client
+communicates through a REST HTTP interface implemented in the JuliaBase server.
+This interface could be used directly, however, the remote client makes it much
+easier.</p>
+<p>In the following, we will describe what the remote client can do and how to get
+it running.  For the API itself, we have to refer to the documentation in the
+sources of the Python files in <tt class="file docutils literal"><span class="pre">remote_client/</span></tt>.  Note especially the
+examples in <tt class="file docutils literal"><span class="pre">remote_client/examples/</span></tt>.</p>
+<div class="section" id="use-cases">
+<h2>Use cases<a class="headerlink" href="#use-cases" title="Permalink to this headline">¶</a></h2>
+<p>The remote client has many applications.</p>
+<div class="section" id="crawlers">
+<span id="index-1"></span><h3>Crawlers<a class="headerlink" href="#crawlers" title="Permalink to this headline">¶</a></h3>
+<p>Crawlers are programs that go through a bunch of data or log files and transmit
+their content to the database.  For example, a measurement setup may write a
+data file for every measurement run.  Every hour, a crawler is called, which
+scans for new files.  It reads the new files and uses the content to add new
+measurements processes to the database.  This way, new measurements
+automatically end up in the database.  You may have more than one crawler
+regularly running in your institute.</p>
+<p>The very same crawler can also be used to import legacy data.  The crawler can
+be programmed in such a way that during its first run, it imports thousands of
+data sets of recent years, and from there on, it imports newly added data sets
+every hour.</p>
+<p>Since crawlers run unattendedly, they must be very robust.  If a data file is
+invalid, or if the central server is temporarily unavailable, it must gently
+exit and try again next time, without forgetting to add something, and without
+adding things twice.</p>
+<p>Moreover, legacy data mostly is poorly structured and organized.  If you think
+your data is the exception, think again.  During writing the crawler, you will
+be surprised how many odd ideas and mistakes your colleagues are capable of.</p>
+<p>Be that as it may, crawlers are the primary use case for the remote client.
+The remote client contains functions especially for making writing them as easy
+as possible.</p>
+</div>
+<div class="section" id="connecting-the-setup-with-the-database">
+<h3>Connecting the setup with the database<a class="headerlink" href="#connecting-the-setup-with-the-database" title="Permalink to this headline">¶</a></h3>
+<p>A more direct way than the crawler for bringing processing and measurement data
+into the database, albeit not always feasible, is to extend the control program
+of the experimental setup.  For this, you must have access to the source code
+of the control program.  Then, you can use the remote client for writing new
+runs immediately into the database.</p>
+<p>However, the communication needn&#8217;t be one-way.  You can also use the remote
+client to authenticate the user, to check whether he or she is allowed to use
+this setup, and to check whether the sample names belong to valid and for the
+user accessible samples.</p>
+<p>The remote client is written in Python, however, it is easy to use it from
+programs written in other programming languages, and JuliaBase ships with a
+Delphi binding.</p>
+</div>
+<div class="section" id="data-mining-and-analysis">
+<h3>Data mining and analysis<a class="headerlink" href="#data-mining-and-analysis" title="Permalink to this headline">¶</a></h3>
+<p>Everyone with browser access to the JuliaBase database can use the remote
+client for accessing, too.  The permissions will be the same in both cases, of
+course.  This can be used by researchers capable of programming to get data
+from the database and do something with it, e.g. creating statistics or
+evaluating raw data.</p>
+<p>Imagine the following: A researcher makes many sample series and measures their
+temperature-dependent conductivity.  The researcher can write a program that
+extracts the names of the raw data files from the database, then creates a plot
+for each sample series with the conductivity curves of all samples of that
+series, and writes these plots back to the database.  There, one can see them
+on the series&#8217; pages, and in every sample&#8217;s data sheet.</p>
+</div>
+</div>
+<div class="section" id="extending-the-remote-client">
+<h2>Extending the remote client<a class="headerlink" href="#extending-the-remote-client" title="Permalink to this headline">¶</a></h2>
+<p>As for JuliaBase itself, also the remote client should be extended with the
+functionality special to your institution.  This is not absolutely necessary,
+but without it, you can only use the very basic functionality.  However,
+extending the remote client is <em>much</em> easier than extending JuliaBase.</p>
+<p id="remote-client-file-list">In JuliaBases&#8217; source code, the default remote client resides in the directory
+<tt class="file docutils literal"><span class="pre">remote_client/</span></tt>, and it has the following structure:</p>
+<div class="highlight-python"><div class="highlight"><pre>remote_client/
+    jb_remote_inm.py
+    jb_remote/
+        __init__.py
+        common.py
+        samples.py
+        settings.py
+        ...
+</pre></div>
+</div>
+<p>Replace the file <tt class="file docutils literal"><span class="pre">jb_remote_inm.py</span></tt> with your own institute&#8217;s code,
+and give your file a name derived from your institution&#8217;s name.  Your file
+should start with something like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span>
+<span class="kn">from</span> <span class="nn">jb_remote</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="n">ROOT_URL</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">TESTSERVER_ROOT_URL</span> <span class="o">=</span> <span class="s">&quot;https://juliabase.my-institute.edu/&quot;</span>
+</pre></div>
+</div>
+<p>From there on, you are totally free how to program your incarnation of the
+remote client.  You may use <tt class="file docutils literal"><span class="pre">jb_remote_inm.py</span></tt> as a source of
+inspiration, of course.</p>
+<div class="section" id="settings">
+<h3>Settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h3>
+<p>The following settings in the remote client are available and should be set in
+your <tt class="file docutils literal"><span class="pre">jb_remote_inm.py</span></tt>:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">ROOT_URL</span></tt></dt>
+<dd>The URL of the production server.  It must end in a slash.  Default: <tt class="docutils literal"><span class="pre">None</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">TESTSERVER_ROOT_URL</span></tt></dt>
+<dd>The URL of the test server.  It must end in a slash.  Default:
+<tt class="docutils literal"><span class="pre">&quot;https://demo.juliabase.org/&quot;</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">SMTP_SERVER</span></tt></dt>
+<dd>The DNS name of the SMTP server used for outgoing mail.  It may be used in
+crawlers to send success or error emails.  You may add a port number after a
+colon.  Default: <tt class="docutils literal"><span class="pre">&quot;mailrelay.example.com:587&quot;</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">SMTP_LOGIN</span></tt></dt>
+<dd>The login name of the SMTP server.  If empty, no login is performed.  If not
+empty, TLS is used.  Default: <tt class="docutils literal"><span class="pre">&quot;username&quot;</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">SMTP_PASSWORD</span></tt></dt>
+<dd>The password used to login to the SMTP server through TLS.  Default:
+<tt class="docutils literal"><span class="pre">&quot;password&quot;</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">EMAIL_FROM</span></tt></dt>
+<dd>The sender used for outgoing mails.  Default: <tt class="docutils literal"><span class="pre">&quot;me&#64;example.com&quot;</span></tt></dd>
+<dt><tt class="docutils literal"><span class="pre">EMAIL_TO</span></tt></dt>
+<dd>The recipient of outgoing mails.  Default: <tt class="docutils literal"><span class="pre">&quot;admins&#64;example.com&quot;</span></tt></dd>
+</dl>
+</div>
+</div>
+<div class="section" id="local-installation-and-usage">
+<h2>Local installation and usage<a class="headerlink" href="#local-installation-and-usage" title="Permalink to this headline">¶</a></h2>
+<p>Once you finished extending the default remote client, <em>your</em> remote client
+consists of the files listed <a class="reference internal" href="#remote-client-file-list"><em>above</em></a>, with
+<tt class="file docutils literal"><span class="pre">jb_remote_inm.py</span></tt> substituted by your file called, say,
+<tt class="file docutils literal"><span class="pre">jb_remote_my_institute.py</span></tt>.  This set of files needs to be copied to the machines
+where the remote client is supposed to be used, and the top directory (the one
+with your <tt class="file docutils literal"><span class="pre">jb_remote_my_institute.py</span></tt>) should be in <span class="target" id="index-2"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PYTHONPATH</span></tt>.</p>
+<p>Then, you use the remote client with a Python script as easy as this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">jb_remote_my_institute</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">setup_logging</span><span class="p">(</span><span class="s">&quot;console&quot;</span><span class="p">)</span>
+<span class="n">login</span><span class="p">(</span><span class="s">&quot;juliabase&quot;</span><span class="p">,</span> <span class="s">&quot;12345&quot;</span><span class="p">)</span>
+
+<span class="n">sample</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">(</span><span class="s">&quot;14-JS-1&quot;</span><span class="p">)</span>
+<span class="n">sample</span><span class="o">.</span><span class="n">current_location</span> <span class="o">=</span> <span class="s">&quot;Sean&#39;s office&quot;</span>
+<span class="n">sample</span><span class="o">.</span><span class="n">edit_description</span> <span class="o">=</span> <span class="s">&quot;location changed&quot;</span>
+<span class="n">sample</span><span class="o">.</span><span class="n">submit</span><span class="p">()</span>
+
+<span class="n">logout</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>By the way, the files are organized in a way that you can update very
+conveniently: If a new version of JuliaBase is released, you simply have to
+replace the <tt class="file docutils literal"><span class="pre">jb_remote/</span></tt> subdirectory with the new one.</p>
+</div>
+<div class="section" id="other-programming-languages">
+<span id="index-3"></span><h2>Other programming languages<a class="headerlink" href="#other-programming-languages" title="Permalink to this headline">¶</a></h2>
+<p>You can communicate with a JuliaBase server using any programming language.
+You can implement the HTTP communication directly in most modern languages.
+However, it is probably much easier to write a thin wrapper around the Python
+implementation.</p>
+<p>For Delphi, this has already been done in
+<tt class="file docutils literal"><span class="pre">remote_client/delphi/juliabase.pas</span></tt>.  The code is only 150&nbsp;lines long.
+Using it is as simple as</p>
+<div class="highlight-delphi"><div class="highlight"><pre><span class="k">program</span> <span class="n">juliabase_example</span><span class="o">;</span>
+
+<span class="cm">{$APPTYPE CONSOLE}</span>
+
+<span class="k">uses</span>
+  <span class="n">SysUtils</span><span class="o">,</span> <span class="n">juliabase</span><span class="o">;</span>
+<span class="k">var</span>
+  <span class="bp">result</span> <span class="o">:</span> <span class="k">String</span>
+
+<span class="k">begin</span>
+  <span class="n">execute_jb</span><span class="p">(</span><span class="s">&#39;juliabase&#39;</span><span class="o">,</span> <span class="s">&#39;12345&#39;</span><span class="o">,</span>
+       <span class="s">&#39;sample = Sample(&quot;14-JS-1&quot;);&#39;</span> <span class="o">+</span>
+       <span class="s">&#39;sample.current_location = &quot;Sean</span><span class="se">&#39;&#39;</span><span class="s">s office&quot;;&#39;</span> <span class="o">+</span>
+       <span class="s">&#39;sample.edit_description = &quot;location changed&quot;;&#39;</span> <span class="o">+</span>
+       <span class="s">&#39;sample.submit()&#39;</span><span class="p">)</span><span class="o">;</span>
+<span class="k">end</span><span class="o">.</span>
+</pre></div>
+</div>
+<p><tt class="code docutils literal"><span class="pre">execute_jb</span></tt> adds some boilerplate code and calls the Python interpreter,
+which executes the commands you passed as a string.  You must install the Python
+interpreter and the Python version of the remote client on the machine, but the
+avoidance of code duplication makes up for it.</p>
+<p>See the top comment in <tt class="file docutils literal"><span class="pre">remote_client/delphi/juliabase.pas</span></tt> for further
+instructions.</p>
+</div>
+<div class="section" id="classes-and-functions">
+<h2>Classes and functions<a class="headerlink" href="#classes-and-functions" title="Permalink to this headline">¶</a></h2>
+<p>As explained in <a class="reference internal" href="#extending-the-remote-client">Extending the remote client</a>, the following names become
+available by saying</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">jb_remote</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<span class="target" id="module-jb_remote.common"></span><dl class="data">
+<dt id="jb_remote.common.connection">
+<tt class="descname">connection</tt><a class="headerlink" href="#jb_remote.common.connection" title="Permalink to this definition">¶</a></dt>
+<dd><p>The connection to the database server.  It is of the type
+<a class="reference internal" href="#jb_remote.common.JuliaBaseConnection" title="jb_remote.common.JuliaBaseConnection"><tt class="xref py py-class docutils literal"><span class="pre">JuliaBaseConnection</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="jb_remote.common.primary_keys">
+<tt class="descname">primary_keys</tt><a class="headerlink" href="#jb_remote.common.primary_keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dict-like object of type <a class="reference internal" href="#jb_remote.common.PrimaryKeys" title="jb_remote.common.PrimaryKeys"><tt class="xref py py-class docutils literal"><span class="pre">PrimaryKeys</span></tt></a> that is a mapping of
+identifying keys to IDs.  Possible keys are:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">&quot;users&quot;</span></tt></dt>
+<dd>mapping user names to user IDs.</dd>
+<dt><tt class="docutils literal"><span class="pre">&quot;external_operators&quot;</span></tt></dt>
+<dd>mapping external operator names to external operator IDs.</dd>
+<dt><tt class="docutils literal"><span class="pre">&quot;topics&quot;</span></tt></dt>
+<dd>mapping topic names to topic IDs.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_remote.common.login">
+<tt class="descname">login</tt><big>(</big><em>username</em>, <em>password</em>, <em>testserver=False</em><big>)</big><a class="headerlink" href="#jb_remote.common.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logins to JuliaBase.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>username</strong> (<em>unicode</em>) &#8211; the username used to log in</li>
+<li><strong>password</strong> (<em>unicode</em>) &#8211; the user&#8217;s password</li>
+<li><strong>testserver</strong> (<em>bool</em>) &#8211; whether the testserver should be user.  If <tt class="docutils literal"><span class="pre">False</span></tt>, the
+production server is used.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="jb_remote.common.JuliaBaseConnection">
+<em class="property">class </em><tt class="descname">JuliaBaseConnection</tt><a class="headerlink" href="#jb_remote.common.JuliaBaseConnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class for the routines that connect to the database at HTTP level.
+This is a singleton class, and its only instance resides at top-level in
+this module.</p>
+<dl class="method">
+<dt id="jb_remote.common.JuliaBaseConnection.open">
+<tt class="descname">open</tt><big>(</big><em>relative_url</em>, <em>data=None</em>, <em>response_is_json=True</em><big>)</big><a class="headerlink" href="#jb_remote.common.JuliaBaseConnection.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do an HTTP request with the JuliaBase server.  If <tt class="docutils literal"><span class="pre">data</span></tt> is not
+<tt class="docutils literal"><span class="pre">None</span></tt>, its a POST request, and GET otherwise.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>relative_url</strong> (<em>str</em>) &#8211; the non-domain part of the URL, for example
+<tt class="docutils literal"><span class="pre">&quot;/samples/10-TB-1&quot;</span></tt>.  “Relative” may be misguiding here: only
+the domain is omitted.</li>
+<li><strong>data</strong> (<em>dict mapping unicode to unicode, int, float, bool, file, or
+list</em>) &#8211; the POST data, or <tt class="docutils literal"><span class="pre">None</span></tt> if it&#8217;s supposed to be a GET
+request.</li>
+<li><strong>response_is_json</strong> (<em>bool</em>) &#8211; whether the content type of the response must
+be JSON</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the response to the request</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first"><tt class="docutils literal"><span class="pre">object</span></tt></p>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>JuliaBaseError</strong> &#8211; if JuliaBase couldn&#8217;t fulfill the request
+because it contained errors.  For example, you requested a sample
+that doesn&#8217;t exist, or the transmitted measurement data was
+incomplete.</li>
+<li><strong>urllib.error.URLError</strong> &#8211; if a lower-level error occured, e.g. the
+HTTP connection couldn&#8217;t be established.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="jb_remote.common.JuliaBaseError">
+<em class="property">exception </em><tt class="descname">JuliaBaseError</tt><big>(</big><em>error_code</em>, <em>message</em><big>)</big><a class="headerlink" href="#jb_remote.common.JuliaBaseError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception class for high-level JuliaBase errors.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>error_code</strong> &#8211; The numerical error code.  See <tt class="xref py py-mod docutils literal"><span class="pre">jb_common.utils</span></tt>
+for further information, and the root <tt class="docutils literal"><span class="pre">__init__.py</span></tt> file of the various
+JuliaBase apps for the tables with the error codes.</li>
+<li><strong>error_message</strong> &#8211; A description of the error.  If <tt class="xref py py-obj docutils literal"><span class="pre">error_code</span></tt> is <tt class="docutils literal"><span class="pre">1</span></tt>, it
+contains the URL to the error page (without the domain name).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_remote.common.logout">
+<tt class="descname">logout</tt><big>(</big><big>)</big><a class="headerlink" href="#jb_remote.common.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs out of JuliaBase.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="jb_remote.common.PrimaryKeys">
+<em class="property">class </em><tt class="descname">PrimaryKeys</tt><a class="headerlink" href="#jb_remote.common.PrimaryKeys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary-like class for storing primary keys.  I use this class only
+to delay the costly loading of the primary keys until they are really
+accessed.  This way, GET-request-only usage of the Remote Client becomes
+faster.  It is a singleton.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><strong>components</strong> &#8211; set of types of primary keys that should be fetched.  For
+example, it may contain <tt class="docutils literal"><span class="pre">&quot;external_operators=*&quot;</span></tt> if all external
+operator&#8217;s primary keys should be fetched.  The modules the are part of
+jb_remote are supposed to populate this attribute in top-level module
+code.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_remote.common.setup_logging">
+<tt class="descname">setup_logging</tt><big>(</big><em>destination=None</em><big>)</big><a class="headerlink" href="#jb_remote.common.setup_logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>If the user wants to call this in order to enable logging, he must do
+so before logging in.  Note that it is a no-op if called a second time.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>destination</strong> (<em>str</em>) &#8211; <p>Where to log to; possible values are:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">&quot;file&quot;</span></tt></dt>
+<dd>Log to <tt class="file docutils literal"><span class="pre">/tmp/jb_remote.log</span></tt> if <tt class="file docutils literal"><span class="pre">/tmp</span></tt> is existing,
+otherwise (i.e. on Windows), log to <tt class="file docutils literal"><span class="pre">jb_remote.log</span></tt> in the
+current directory.</dd>
+<dt><tt class="docutils literal"><span class="pre">&quot;console&quot;</span></tt></dt>
+<dd>Log to stderr.</dd>
+<dt><tt class="docutils literal"><span class="pre">None</span></tt></dt>
+<dd>Do not log.</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_remote.common.parse_timestamp">
+<tt class="descname">parse_timestamp</tt><big>(</big><em>timestamp</em><big>)</big><a class="headerlink" href="#jb_remote.common.parse_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a timestamp coming from the server to a Python <tt class="xref py py-obj docutils literal"><span class="pre">datetime</span></tt> object.
+The server serialises with the <tt class="xref py py-obj docutils literal"><span class="pre">DjangoJSONEncoder</span></tt>, which in turn uses the
+<tt class="docutils literal"><span class="pre">.isoformat()</span></tt> method.  As long as the server does not handle
+timezone-aware timestamps (i.e., <tt class="docutils literal"><span class="pre">USE_TZ=False</span></tt>), this works.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>timestamp</strong> (<em>str</em>) &#8211; the timestamp to parse, coming from the server.  It must
+have ISO&nbsp;8601 format format without timezone information.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the timestamp as a Python datetime object</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">datetime.datetime</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_remote.common.double_urlquote">
+<tt class="descname">double_urlquote</tt><big>(</big><em>string</em><big>)</big><a class="headerlink" href="#jb_remote.common.double_urlquote" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a double-percent-quoted string.  This mimics the behaviour of
+Django, which quotes every URL retrieved by
+<tt class="docutils literal"><span class="pre">django.core.urlresolvers.resolve</span></tt>.  Because it does not quote the slash
+“/” for obvious reasons, I have to quote sample names, sample series names,
+deposition numbers, and non-int process “identifying fields” <em>before</em> they
+are fed into <tt class="docutils literal"><span class="pre">resolve</span></tt> (and quoted again).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_remote.common.format_timestamp">
+<tt class="descname">format_timestamp</tt><big>(</big><em>timestamp</em><big>)</big><a class="headerlink" href="#jb_remote.common.format_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Serializses a timestamp.  This is the counter function to <a class="reference internal" href="#jb_remote.common.parse_timestamp" title="jb_remote.common.parse_timestamp"><tt class="xref py py-obj docutils literal"><span class="pre">parse_timestamp</span></tt></a>,
+however, there is an asymmetry: Here, we don&#8217;t generate ISO&nbsp;8601 timestamps
+(with the <tt class="docutils literal"><span class="pre">&quot;T&quot;</span></tt> inbetween).  The reason is that Django&#8217;s <tt class="xref py py-obj docutils literal"><span class="pre">DateTimeField</span></tt>
+would not be able to parse it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>timestamp</strong> (<em>datetime.datetime</em>) &#8211; the timestamp to format</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the timestamp in the format “YYYY-MM-DD HH:MM:SS”.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="jb_remote.common.sanitize_for_markdown">
+<tt class="descname">sanitize_for_markdown</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#jb_remote.common.sanitize_for_markdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a raw string to Markdown syntax.  This is used when external
+(legacy) strings are imported.  For example, comments found in data files
+must be sent through this function before being stored in the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>text</strong> (<em>unicode</em>) &#8211; the original string</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the Markdown-ready string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">unicode</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<span class="target" id="module-jb_remote.samples"></span><dl class="class">
+<dt id="jb_remote.samples.Result">
+<em class="property">class </em><tt class="descname">Result</tt><big>(</big><em>id_=None</em>, <em>with_image=True</em><big>)</big><a class="headerlink" href="#jb_remote.samples.Result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class representing result processes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>id</strong> (<em>int or unicode</em>) &#8211; if given, the instance represents an existing result process
+of the database.  Note that this triggers an exception if the
+result ID is not found in the database.</li>
+<li><strong>with_image</strong> (<em>bool</em>) &#8211; whether the image data should be loaded, too</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="jb_remote.samples.Result.submit">
+<tt class="descname">submit</tt><big>(</big><big>)</big><a class="headerlink" href="#jb_remote.samples.Result.submit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Submit the result to the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the result process ID if succeeded.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="jb_remote.samples.Sample">
+<em class="property">class </em><tt class="descname">Sample</tt><big>(</big><em>name=None</em>, <em>id_=None</em><big>)</big><a class="headerlink" href="#jb_remote.samples.Sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class representing samples.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>unicode</em>) &#8211; the name of an existing sample; it is ignored if <tt class="xref py py-obj docutils literal"><span class="pre">id_</span></tt> is
+given</li>
+<li><strong>id</strong> (<em>int</em>) &#8211; the ID of an existing sample</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="jb_remote.samples.Sample.submit">
+<tt class="descname">submit</tt><big>(</big><big>)</big><a class="headerlink" href="#jb_remote.samples.Sample.submit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Submit the sample to the database.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the sample&#8217;s ID if succeeded.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="jb_remote.samples.TemporaryMySamples">
+<em class="property">class </em><tt class="descname">TemporaryMySamples</tt><big>(</big><em>sample_ids</em><big>)</big><a class="headerlink" href="#jb_remote.samples.TemporaryMySamples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager for adding samples to the “My Samples” list
+temporarily.  This is used when editing or adding processes.  In order to
+be able to link the process with samples, they must be on your “My Samples”
+list.</p>
+<p>This context manager should be used linke this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="n">TemporaryMySamples</span><span class="p">(</span><span class="n">sample_ids</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>The code at <tt class="docutils literal"><span class="pre">...</span></tt> can safely assume that the <tt class="docutils literal"><span class="pre">sample_ids</span></tt> have been
+added to “My Samples”.  After having execuded this code, those samples that
+hadn&#8217;t been on “My Samples” already are removed from “My Samples”.  This
+way, the “My Samples” list is unchanged eventually.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sample_ids</strong> (<em>list of int or int</em>) &#8211; the IDs of the samples that must be on the “My Samples”
+list; it my also be a single ID</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="settings.html" title="Settings reference"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="class-based_views.html" title="Class-based views"
+             >previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

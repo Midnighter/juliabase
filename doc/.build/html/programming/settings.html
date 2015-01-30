@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Settings reference &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="../_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="../index.html" />
+    <link rel="next" title="Sample names" href="sample_names.html" />
+    <link rel="prev" title="The remote client" href="remote_client.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('../_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="sample_names.html" title="Sample names"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="remote_client.html" title="The remote client"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Settings reference</a><ul>
+<li><a class="reference internal" href="#general-juliabase-settings">General JuliaBase settings</a><ul>
+<li><a class="reference internal" href="#add-samples-view">ADD_SAMPLES_VIEW</a></li>
+<li><a class="reference internal" href="#cache-root">CACHE_ROOT</a></li>
+<li><a class="reference internal" href="#crawler-logs-root">CRAWLER_LOGS_ROOT</a></li>
+<li><a class="reference internal" href="#crawler-logs-whitelist">CRAWLER_LOGS_WHITELIST</a></li>
+<li><a class="reference internal" href="#debug-email-redirect-username">DEBUG_EMAIL_REDIRECT_USERNAME</a></li>
+<li><a class="reference internal" href="#initials-formats">INITIALS_FORMATS</a></li>
+<li><a class="reference internal" href="#javascript-i18n-apps">JAVASCRIPT_I18N_APPS</a></li>
+<li><a class="reference internal" href="#merge-cleanup-function">MERGE_CLEANUP_FUNCTION</a></li>
+<li><a class="reference internal" href="#name-prefix-templates">NAME_PREFIX_TEMPLATES</a></li>
+<li><a class="reference internal" href="#sample-name-formats">SAMPLE_NAME_FORMATS</a></li>
+<li><a class="reference internal" href="#thumbnail-width">THUMBNAIL_WIDTH</a></li>
+<li><a class="reference internal" href="#use-x-sendfile">USE_X_SENDFILE</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#settings-for-ldap">Settings for LDAP</a><ul>
+<li><a class="reference internal" href="#ldap-account-filter">LDAP_ACCOUNT_FILTER</a></li>
+<li><a class="reference internal" href="#ldap-additional-attributes">LDAP_ADDITIONAL_ATTRIBUTES</a></li>
+<li><a class="reference internal" href="#ldap-additional-users">LDAP_ADDITIONAL_USERS</a></li>
+<li><a class="reference internal" href="#ldap-departments">LDAP_DEPARTMENTS</a></li>
+<li><a class="reference internal" href="#ldap-groups-to-permissions">LDAP_GROUPS_TO_PERMISSIONS</a></li>
+<li><a class="reference internal" href="#ldap-login-template">LDAP_LOGIN_TEMPLATE</a></li>
+<li><a class="reference internal" href="#ldap-search-dn">LDAP_SEARCH_DN</a></li>
+<li><a class="reference internal" href="#ldap-urls">LDAP_URLS</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#django-settings-with-special-meaning-in-juliabase">Django settings with special meaning in JuliaBase</a><ul>
+<li><a class="reference internal" href="#languages">LANGUAGES</a></li>
+<li><a class="reference internal" href="#caches">CACHES</a></li>
+<li><a class="reference internal" href="#debug">DEBUG</a></li>
+<li><a class="reference internal" href="#default-from-email">DEFAULT_FROM_EMAIL</a></li>
+<li><a class="reference internal" href="#installed-apps">INSTALLED_APPS</a></li>
+<li><a class="reference internal" href="#login-url">LOGIN_URL</a></li>
+<li><a class="reference internal" href="#login-redirect-url">LOGIN_REDIRECT_URL</a></li>
+<li><a class="reference internal" href="#middleware-classes">MIDDLEWARE_CLASSES</a></li>
+<li><a class="reference internal" href="#secret-key">SECRET_KEY</a></li>
+<li><a class="reference internal" href="#template-context-processors">TEMPLATE_CONTEXT_PROCESSORS</a></li>
+<li><a class="reference internal" href="#template-dirs">TEMPLATE_DIRS</a></li>
+<li><a class="reference internal" href="#template-loaders">TEMPLATE_LOADERS</a></li>
+<li><a class="reference internal" href="#use-tz">USE_TZ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="remote_client.html"
+                        title="previous chapter">The remote client</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="sample_names.html"
+                        title="next chapter">Sample names</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="settings-reference">
+<span id="index-0"></span><h1>Settings reference<a class="headerlink" href="#settings-reference" title="Permalink to this headline">¶</a></h1>
+<p>In order to have the default values for the following settings available, you
+must start your <tt class="file docutils literal"><span class="pre">settings.py</span></tt> with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">jb_common.settings_defaults</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">samples.settings_defaults</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+<p>We recommend to use the <tt class="file docutils literal"><span class="pre">settings.py</span></tt> in JuliaBase&#8217;s root directory as a
+starting point.</p>
+<div class="section" id="general-juliabase-settings">
+<h2>General JuliaBase settings<a class="headerlink" href="#general-juliabase-settings" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-samples-view">
+<span id="index-1"></span><h3>ADD_SAMPLES_VIEW<a class="headerlink" href="#add-samples-view" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt> (Empty string)</p>
+<p>Name of the view in Python&#8217;s dot notation which points to the view to add
+samples.  For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">ADD_SAMPLES_VIEW</span> <span class="o">=</span> <span class="s">&quot;institute.views.samples.sample.add&quot;</span>
+</pre></div>
+</div>
+<p>This view function must have exactly one parameter, namely the <tt class="docutils literal"><span class="pre">request</span></tt>
+instance.</p>
+</div>
+<div class="section" id="cache-root">
+<span id="index-2"></span><h3>CACHE_ROOT<a class="headerlink" href="#cache-root" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;/tmp/juliabase_cache&quot;</span></tt></p>
+<p>The path where dispensable (in the sense of re-creatable) files are stored.
+JuliaBase mostly uses this directory to store images, e.g. plot files.  If the
+path doesn&#8217;t exist when the JuliaBase service is started, it is created.  The
+default value should be changed to e.g. <tt class="docutils literal"><span class="pre">&quot;/var/cache/juliabase&quot;</span></tt>.  Note that
+such a path needs to be created by you because Juliabase doesn&#8217;t have the
+necessary permissions.  Also note that such a path needs to be writable by the
+webserver process JuliaBase is running on.</p>
+</div>
+<div class="section" id="crawler-logs-root">
+<span id="index-3"></span><h3>CRAWLER_LOGS_ROOT<a class="headerlink" href="#crawler-logs-root" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt> (Empty string)</p>
+<p>Path to the crawlers&#8217; log files.  In this directory, the log file for a
+particular process class is called <tt class="file docutils literal"><em><span class="pre">class_name</span></em><span class="pre">.log</span></tt>.  Mind the
+spelling: <tt class="docutils literal"><span class="pre">MyProcessClassName</span></tt> becomes <tt class="file docutils literal"><span class="pre">my_process_class_name.log</span></tt>.</p>
+</div>
+<div class="section" id="crawler-logs-whitelist">
+<span id="index-4"></span><h3>CRAWLER_LOGS_WHITELIST<a class="headerlink" href="#crawler-logs-whitelist" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">()</span></tt> (Empty tuple)</p>
+<p>List of process classes for which the crawler log is public, i.e. not
+restricted to users that are allowed to add new processes of that kind.</p>
+</div>
+<div class="section" id="debug-email-redirect-username">
+<span id="index-5"></span><h3>DEBUG_EMAIL_REDIRECT_USERNAME<a class="headerlink" href="#debug-email-redirect-username" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt> (Empty string)</p>
+<p>Username of a user to which all outgoing email should be sent if the Django
+setting <tt class="docutils literal"><span class="pre">DEBUG=True</span></tt>.  If this name is invalid, in particular if it is empty,
+no emails are sent at all in debugging mode.  This prevents embarrassment
+caused by emails sent to other people while merely debugging your code.</p>
+</div>
+<div class="section" id="initials-formats">
+<span id="index-6"></span><span id="id1"></span><h3>INITIALS_FORMATS<a class="headerlink" href="#initials-formats" title="Permalink to this headline">¶</a></h3>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">INITIALS_FORMATS</span> <span class="o">=</span> \
+    <span class="p">{</span><span class="s">&quot;user&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;pattern&quot;</span><span class="p">:</span> <span class="s">r&quot;[A-Z]{2,4}|[A-Z]{2,3}\d|[A-Z]{2}\d{2}&quot;</span><span class="p">,</span>
+              <span class="s">&quot;description&quot;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;The initials start with two uppercase letters.  &quot;</span>
+                               <span class="s">&quot;They contain uppercase letters and digits only.  &quot;</span>
+                               <span class="s">&quot;Digits are at the end.&quot;</span><span class="p">)},</span>
+     <span class="s">&quot;external_contact&quot;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="s">&quot;pattern&quot;</span><span class="p">:</span> <span class="s">r&quot;[A-Z]{4}|[A-Z]{3}\d|[A-Z]{2}\d{2}&quot;</span><span class="p">,</span>
+              <span class="s">&quot;description&quot;</span><span class="p">:</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;The initials start with two uppercase letters.  &quot;</span>
+                               <span class="s">&quot;They contain uppercase letters and digits only.  &quot;</span>
+                               <span class="s">&quot;Digits are at the end.  &quot;</span>
+                               <span class="s">&quot;The length is exactly 4 characters.&quot;</span><span class="p">)}</span>
+     <span class="p">}</span>
+</pre></div>
+</div>
+<p>This maps the kind of initials to their properties.  It must contain exactly
+the two keys <tt class="docutils literal"><span class="pre">&quot;user&quot;</span></tt> and <tt class="docutils literal"><span class="pre">&quot;external_contact&quot;</span></tt>.  See <a class="reference internal" href="sample_names.html#initials"><em>Initials</em></a> for
+more information.</p>
+</div>
+<div class="section" id="javascript-i18n-apps">
+<span id="index-7"></span><h3>JAVASCRIPT_I18N_APPS<a class="headerlink" href="#javascript-i18n-apps" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">(&quot;django.contrib.auth&quot;,</span> <span class="pre">&quot;samples&quot;,</span> <span class="pre">&quot;jb_common&quot;)</span></tt></p>
+<p>Tuple containing all apps which contain translations that should be used in
+JavaScript code.  The apps are named as in the Django setting
+<tt class="docutils literal"><span class="pre">INSTALLED_APPS</span></tt>.  See the <a class="reference external" href="https://docs.djangoproject.com/en/dev/topics/i18n/translation/#internationalization-in-javascript-code">Django documentation</a>
+for further information.</p>
+</div>
+<div class="section" id="merge-cleanup-function">
+<span id="index-8"></span><h3>MERGE_CLEANUP_FUNCTION<a class="headerlink" href="#merge-cleanup-function" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt> (Empty string)</p>
+<p>Name of the view in Python&#8217;s dot notation which points to a function which is
+called after each sample merge.  This function must take exactly two
+parameters, the sample that is merged and the sample that this sample is merged
+into.  It is possible to leave this settings empty; then, nothing special is
+called.</p>
+</div>
+<div class="section" id="name-prefix-templates">
+<span id="index-9"></span><h3>NAME_PREFIX_TEMPLATES<a class="headerlink" href="#name-prefix-templates" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">()</span></tt> (Empty tuple)</p>
+<p>List of string templates that define possible sample name prefixes.  See
+<a class="reference internal" href="sample_names.html"><em>Sample names</em></a> for more information.</p>
+</div>
+<div class="section" id="sample-name-formats">
+<span id="index-10"></span><h3>SAMPLE_NAME_FORMATS<a class="headerlink" href="#sample-name-formats" title="Permalink to this headline">¶</a></h3>
+<p>Default:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">SAMPLE_NAME_FORMATS</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;provisional&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;possible_renames&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;default&quot;</span><span class="p">}},</span>
+                       <span class="s">&quot;default&quot;</span><span class="p">:</span>     <span class="p">{</span><span class="s">&quot;pattern&quot;</span><span class="p">:</span> <span class="s">r&quot;[-A-Za-z_/0-9#()]*&quot;</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>This setting defines which sample names are allowed in your database.  It maps
+the names of the formats to their properties.  See <a class="reference internal" href="sample_names.html"><em>Sample names</em></a> for more
+information.</p>
+</div>
+<div class="section" id="thumbnail-width">
+<span id="index-11"></span><h3>THUMBNAIL_WIDTH<a class="headerlink" href="#thumbnail-width" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">400</span></tt></p>
+<p>This number represents the width in pixels of the thumbnails of plots and
+images that are generated for the sample data sheet.</p>
+</div>
+<div class="section" id="use-x-sendfile">
+<span id="index-12"></span><h3>USE_X_SENDFILE<a class="headerlink" href="#use-x-sendfile" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">False</span></tt></p>
+<p>If <tt class="docutils literal"><span class="pre">True</span></tt>, JuliaBase assumes that the web server is interpreting the
+<tt class="docutils literal"><span class="pre">X-Sendfile</span></tt> header and serves a static file (e.g. an image) itself.
+Otherwise, JuliaBase serves the file, which may be slower and more
+time-consuming.  In most cases, it doesn&#8217;t matter, though.</p>
+</div>
+</div>
+<div class="section" id="settings-for-ldap">
+<span id="index-13"></span><h2>Settings for LDAP<a class="headerlink" href="#settings-for-ldap" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ldap-account-filter">
+<span id="index-14"></span><h3>LDAP_ACCOUNT_FILTER<a class="headerlink" href="#ldap-account-filter" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;(!(userAccountControl:1.2.840.113556.1.4.803:=2))&quot;</span></tt></p>
+<p>LDAP filter for filtering LDAP members that are eligible for JuliaBase access.
+The default filter finds any member which is not inactive.  The default value
+works well for Active Directory domain controllers.</p>
+</div>
+<div class="section" id="ldap-additional-attributes">
+<span id="index-15"></span><h3>LDAP_ADDITIONAL_ATTRIBUTES<a class="headerlink" href="#ldap-additional-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">()</span></tt> (Empty tuple)</p>
+<p>JuliaBase limits the attributes it receives for every user to a certain subset,
+e.g. the user&#8217;s real name and their department.  If your code needs additional
+LDAP attributes, put their names into this tuple.  Note that its members must
+be byte strings.  An example might be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">LDAP_ADDITIONAL_ATTRIBUTES</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="s">&quot;telephoneNumber&quot;</span><span class="p">,</span> <span class="n">b</span><span class="s">&quot;msExchUserCulture&quot;</span><span class="p">,</span>
+                              <span class="n">b</span><span class="s">&quot;physicalDeliveryOfficeName&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ldap-additional-users">
+<span id="index-16"></span><h3>LDAP_ADDITIONAL_USERS<a class="headerlink" href="#ldap-additional-users" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">{}</span></tt> (Empty dict)</p>
+<p>Dictionary mapping user names to JuliaBase department names.  This contains
+users that are in the LDAP directory but are not in one of the departments
+listed in the setting <a class="reference internal" href="#ldap-departments">LDAP_DEPARTMENTS</a> explained below.  The use case is
+that some people working in the organization but not in the department(s) may
+still be eligible for database access.  By putting them in
+<tt class="docutils literal"><span class="pre">LDAP_ADDITIONAL_USERS</span></tt>, they are allowed to login.  They are associated with
+the department they are mapped to.</p>
+</div>
+<div class="section" id="ldap-departments">
+<span id="index-17"></span><h3>LDAP_DEPARTMENTS<a class="headerlink" href="#ldap-departments" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">{}</span></tt> (Empty dict)</p>
+<p>Dictionary mapping LDAP department names to JuliaBase department names.  If
+your LDAP directory data sets contain the &#8220;department&#8221; attribute, this setting
+determines which department get access to JuliaBase.  If this setting is empty,
+all LDAP members get access.</p>
+<p>If the LDAP doesn&#8217;t contain the &#8220;department&#8221; attribute, this setting should be
+empty.</p>
+</div>
+<div class="section" id="ldap-groups-to-permissions">
+<span id="index-18"></span><h3>LDAP_GROUPS_TO_PERMISSIONS<a class="headerlink" href="#ldap-groups-to-permissions" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">{}</span></tt> (Empty dict)</p>
+<p>Dictionary mapping LDAP group names to sets of Django permission names.  Use
+the Django <tt class="docutils literal"><span class="pre">codename</span></tt> of the permission, without any app label.  An example
+might be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">LDAP_GROUPS_TO_PERMISSIONS</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&quot;TG_IEF-5_teamleaders&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;view_every_sample&quot;</span><span class="p">,</span> <span class="s">&quot;adopt_samples&quot;</span><span class="p">,</span>
+                                 <span class="s">&quot;edit_permissions_for_all_physical_processes&quot;</span><span class="p">,</span>
+                                 <span class="s">&quot;add_externaloperator&quot;</span><span class="p">,</span>
+                                 <span class="s">&quot;view_every_externaloperator&quot;</span><span class="p">,</span>
+                                 <span class="s">&quot;add_topic&quot;</span><span class="p">,</span> <span class="s">&quot;change_topic&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that you should not change permissions in JuliaBase&#8217;s admin interface that
+occur in <tt class="docutils literal"><span class="pre">LDAP_GROUPS_TO_PERMISSIONS</span></tt>.  They will be overwritten during the
+next synchronization with the LDAP directory (in particular, at next user
+login).  Consider these permissions being managed exclusively automatically.</p>
+</div>
+<div class="section" id="ldap-login-template">
+<span id="index-19"></span><h3>LDAP_LOGIN_TEMPLATE<a class="headerlink" href="#ldap-login-template" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;{username}&quot;</span></tt></p>
+<p>This pattern is used to bind to (a.k.a. login into) the LDAP server.  JuliaBase
+uses this binding only to check whether the user&#8217;s credentials (login,
+password) are valid.  <tt class="docutils literal"><span class="pre">{username}</span></tt> is replaced by the username of the user
+that tries to login into JuliaBase.  A typical value for this setting is</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">LDAP_LOGIN_TEMPLATE</span> <span class="o">=</span> <span class="s">&quot;{username}@mycompany.com&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ldap-search-dn">
+<span id="index-20"></span><h3>LDAP_SEARCH_DN<a class="headerlink" href="#ldap-search-dn" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt> (Empty string)</p>
+<p>The “distinguished name” (DN) which should be used as the base of the search
+for user details in the LDAP directory.  It is typically something like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">LDAP_SEARCH_DN</span> <span class="o">=</span> <span class="s">&quot;DC=ad,DC=mycompany,DC=com&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ldap-urls">
+<span id="index-21"></span><h3>LDAP_URLS<a class="headerlink" href="#ldap-urls" title="Permalink to this headline">¶</a></h3>
+<p>Default: <tt class="docutils literal"><span class="pre">()</span></tt> (Empty tuple)</p>
+<p>List of URLs of LDAP directories.  If you want to use LDAP, this must contain
+at least one URL.  It may contain more if there are multiple redundant LDAP
+servers.  In this case, JuliaBase will try each of them until it finds a
+working one.  An example value may be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">LDAP_URLS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;ldaps://dc-e01.ad.mycompany.com:636&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Here, 636 is the port number of LDAP-over-TLS.</p>
+</div>
+</div>
+<div class="section" id="django-settings-with-special-meaning-in-juliabase">
+<h2>Django settings with special meaning in JuliaBase<a class="headerlink" href="#django-settings-with-special-meaning-in-juliabase" title="Permalink to this headline">¶</a></h2>
+<p>Note that JuliaBase does not change the meaning or the default value of Django
+settings.</p>
+<div class="section" id="languages">
+<span id="index-22"></span><h3>LANGUAGES<a class="headerlink" href="#languages" title="Permalink to this headline">¶</a></h3>
+<p>This settings determines which flags to offer at the top of the screen.  Since
+JuliaBase is available in English and German so far, a sensible value may be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">LANGUAGES</span> <span class="o">=</span> <span class="p">((</span><span class="s">&quot;de&quot;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;German&quot;</span><span class="p">)),</span> <span class="p">(</span><span class="s">&quot;en&quot;</span><span class="p">,</span> <span class="n">_</span><span class="p">(</span><span class="s">&quot;English&quot;</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>Note that the <tt class="docutils literal"><span class="pre">_(...)</span></tt> makes the language names themselves translatable.  To
+get this working, you must import <tt class="docutils literal"><span class="pre">ugettext_lazy</span></tt> into <tt class="file docutils literal"><span class="pre">settings.py</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">django.utils.translation</span> <span class="kn">import</span> <span class="n">ugettext_lazy</span> <span class="k">as</span> <span class="n">_</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="caches">
+<span id="index-23"></span><h3>CACHES<a class="headerlink" href="#caches" title="Permalink to this headline">¶</a></h3>
+<p>JuliaBase makes heavy use of Django&#8217;s cache framework.  Thus, we recommend to
+configure an efficient caching backend like memcache:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">CACHES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&quot;default&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&quot;BACKEND&quot;</span><span class="p">:</span> <span class="s">&quot;django.core.cache.backends.memcached.MemcachedCache&quot;</span><span class="p">,</span>
+        <span class="s">&quot;LOCATION&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;localhost&quot;</span><span class="p">],</span>
+        <span class="s">&quot;TIMEOUT&quot;</span><span class="p">:</span> <span class="mi">3600</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">28</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="debug">
+<span id="index-24"></span><h3>DEBUG<a class="headerlink" href="#debug" title="Permalink to this headline">¶</a></h3>
+<p>JuliaBase behaves slightly differently if <tt class="docutils literal"><span class="pre">DEBUG=True</span></tt>.  In particular, all
+outgoing emails are redirected to <a class="reference internal" href="#debug-email-redirect-username">DEBUG_EMAIL_REDIRECT_USERNAME</a>.</p>
+</div>
+<div class="section" id="default-from-email">
+<span id="index-25"></span><h3>DEFAULT_FROM_EMAIL<a class="headerlink" href="#default-from-email" title="Permalink to this headline">¶</a></h3>
+<p>JuliaBase uses this Django setting also for its own outgoing emails.</p>
+</div>
+<div class="section" id="installed-apps">
+<span id="index-26"></span><h3>INSTALLED_APPS<a class="headerlink" href="#installed-apps" title="Permalink to this headline">¶</a></h3>
+<p>The minimal set of installed apps for JuliaBase is:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&quot;django.contrib.auth&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.contrib.contenttypes&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.contrib.sessions&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.contrib.admin&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.contrib.messages&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.contrib.staticfiles&quot;</span><span class="p">,</span>
+    <span class="s">&quot;institute&quot;</span><span class="p">,</span>
+    <span class="s">&quot;samples&quot;</span><span class="p">,</span>
+    <span class="s">&quot;jb_common&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Of course, you must replace <tt class="docutils literal"><span class="pre">j_institute</span></tt> by your own institute&#8217;s app.
+Furthermore, you may add as many apps as you like, as long as the inner order
+is preserved.</p>
+</div>
+<div class="section" id="login-url">
+<span id="index-27"></span><h3>LOGIN_URL<a class="headerlink" href="#login-url" title="Permalink to this headline">¶</a></h3>
+<p>The default URL configuration of JuliaBase puts the login view so that you
+should say:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">LOGIN_URL</span> <span class="o">=</span> <span class="s">&quot;/login&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="login-redirect-url">
+<span id="index-28"></span><h3>LOGIN_REDIRECT_URL<a class="headerlink" href="#login-redirect-url" title="Permalink to this headline">¶</a></h3>
+<p>JuliaBase assumes that this setting contains the home page of the database
+application.  It is used in the default templates if you click on the
+“JuliaBase” name on the top.  You may simply set it to <tt class="docutils literal"><span class="pre">&quot;/&quot;</span></tt>.</p>
+</div>
+<div class="section" id="middleware-classes">
+<span id="index-29"></span><h3>MIDDLEWARE_CLASSES<a class="headerlink" href="#middleware-classes" title="Permalink to this headline">¶</a></h3>
+<p>The following is a minimal set of middleware JuliaBase is working with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">MIDDLEWARE_CLASSES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s">&quot;django.middleware.common.CommonMiddleware&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.contrib.sessions.middleware.SessionMiddleware&quot;</span><span class="p">,</span>
+    <span class="s">&quot;jb_common.middleware.MessageMiddleware&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.middleware.locale.LocaleMiddleware&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.contrib.auth.middleware.AuthenticationMiddleware&quot;</span><span class="p">,</span>
+    <span class="s">&quot;jb_common.middleware.LocaleMiddleware&quot;</span><span class="p">,</span>
+    <span class="s">&quot;samples.middleware.juliabase.ExceptionsMiddleware&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that while you may add further middleware, you must not change the inner
+ordering of existing middleware.</p>
+</div>
+<div class="section" id="secret-key">
+<span id="index-30"></span><h3>SECRET_KEY<a class="headerlink" href="#secret-key" title="Permalink to this headline">¶</a></h3>
+<p>Note that in the <tt class="file docutils literal"><span class="pre">settings.py</span></tt> file shipped with JuliaBase, the
+<tt class="docutils literal"><span class="pre">SECRET_KEY</span></tt> is read from the file <tt class="file docutils literal"><span class="pre">~/.juliabase_secret_key</span></tt>.  If this
+file doesn&#8217;t exist, it is generated.  This is good for quickly gettings things
+running and not insecure per se, but you should be aware of this.  In
+particular, once generated, you must not lose this file in your production
+environment because it would result in data loss, and nobody else should have
+access to it.</p>
+<p>Of course, alternatively, you may set the <tt class="docutils literal"><span class="pre">SECRET_KEY</span></tt> in a completely
+different way.</p>
+</div>
+<div class="section" id="template-context-processors">
+<span id="index-31"></span><h3>TEMPLATE_CONTEXT_PROCESSORS<a class="headerlink" href="#template-context-processors" title="Permalink to this headline">¶</a></h3>
+<p>Make sure that you add <tt class="docutils literal"><span class="pre">&quot;jb_common.context_processors.default&quot;</span></tt> to the list
+of context processors.</p>
+</div>
+<div class="section" id="template-dirs">
+<span id="index-32"></span><h3>TEMPLATE_DIRS<a class="headerlink" href="#template-dirs" title="Permalink to this headline">¶</a></h3>
+<p>So that your can override JuliaBase&#8217;s templates with own templates, you should
+set:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">TEMPLATE_DIRS</span> <span class="o">=</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">),</span> <span class="s">&quot;../juliabase&quot;</span><span class="p">)),)</span>
+</pre></div>
+</div>
+<p>You may add further paths, but if your project layout is structured according
+to <a class="reference internal" href="programming.html#organizing-your-source-code"><em>Organizing your source code</em></a>, this one must be present.  Then, you can
+extend Juliabase templates by beginning your template with e.g.</p>
+<div class="highlight-python"><div class="highlight"><pre>{% extends &quot;samples/templates/samples/list_claims.html&quot; %}
+</pre></div>
+</div>
+</div>
+<div class="section" id="template-loaders">
+<span id="index-33"></span><h3>TEMPLATE_LOADERS<a class="headerlink" href="#template-loaders" title="Permalink to this headline">¶</a></h3>
+<p>In conjunction with <a class="reference internal" href="#template-dirs">TEMPLATE_DIRS</a> you must make sure that Django will look
+for templates first in the app directories, and then in the filesystem.  With
+activated template caching, this looks like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">TEMPLATE_LOADERS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="s">&quot;django.template.loaders.cached.Loader&quot;</span><span class="p">,</span>
+     <span class="p">(</span><span class="s">&quot;django.template.loaders.app_directories.Loader&quot;</span><span class="p">,</span>
+      <span class="s">&quot;django.template.loaders.filesystem.Loader&quot;</span><span class="p">)),)</span>
+</pre></div>
+</div>
+<p>and without caching, like:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">TEMPLATE_LOADERS</span> <span class="o">=</span> <span class="p">(</span><span class="s">&quot;django.template.loaders.app_directories.Loader&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;django.template.loaders.filesystem.Loader&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-tz">
+<span id="index-34"></span><h3>USE_TZ<a class="headerlink" href="#use-tz" title="Permalink to this headline">¶</a></h3>
+<p>You may set it to <tt class="docutils literal"><span class="pre">True</span></tt> (the default for newly created Django projects).
+This may or may not work for you since JuliaBase is not tested with
+timezone-awareness.  In particular, the remote client will surely fail.
+Therefore, we recommend to leave it at the default value <tt class="docutils literal"><span class="pre">False</span></tt>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="sample_names.html" title="Sample names"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="remote_client.html" title="The remote client"
+             >previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

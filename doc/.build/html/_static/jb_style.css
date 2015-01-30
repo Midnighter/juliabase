@@ -1,0 +1,6 @@
+@import url("sphinxdoc.css");
+
+/* Internal links */
+a.reference em {font-style: normal}
+
+div.admonition {overflow: hidden}

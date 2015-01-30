@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Model permissions &mdash; JuliaBase, the samples database</title>
+    
+    <link rel="stylesheet" href="../_static/jb_style.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0c',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  false
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="../_static/juliabase.ico"/>
+    <link rel="top" title="JuliaBase, the samples database" href="../index.html" />
+    <link rel="next" title="Class-based views" href="class-based_views.html" />
+    <link rel="prev" title="Programming" href="programming.html" /> 
+  </head>
+  <body>
+
+<div style="background-color: white; padding: 5px 10px 15px 10px">
+  <div style="width:100%; height:134px; background-size:cover; background-position:top left; background-repeat:no-repeat;
+              background-image:url('../_static/juliabase.png');"/>
+</div>
+
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="class-based_views.html" title="Class-based views"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="programming.html" title="Programming"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../toc.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Model permissions</a><ul>
+<li><a class="reference internal" href="#semantics-and-conventions">Semantics and conventions</a><ul>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#omitting-permissions">Omitting permissions</a></li>
+<li><a class="reference internal" href="#django-s-default-permissions">Django&#8217;s default permissions</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="programming.html"
+                        title="previous chapter">Programming</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="class-based_views.html"
+                        title="next chapter">Class-based views</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="model-permissions">
+<span id="index-0"></span><h1>Model permissions<a class="headerlink" href="#model-permissions" title="Permalink to this headline">¶</a></h1>
+<p>Permissions defined in the <tt class="docutils literal"><span class="pre">Meta</span></tt> class of models are used in Django to
+define user permissions connected with this model.  JuliaBase also makes use of
+this permissions framework.  There are, however, some peculiarities to be taken
+into account when defining model permissions for JuliaBase model classes.</p>
+<div class="section" id="semantics-and-conventions">
+<h2>Semantics and conventions<a class="headerlink" href="#semantics-and-conventions" title="Permalink to this headline">¶</a></h2>
+<p>For models derived from <tt class="xref py py-class docutils literal"><span class="pre">PhysicalProcess</span></tt>, there are
+four permissions with a special meaning to JuliaBase.  Their codenames must
+follow the following naming conventions so that they have effect.</p>
+<dl class="docutils" id="index-1">
+<dt><tt class="samp docutils literal"><span class="pre">add_</span><em><span class="pre">classname</span></em></tt></dt>
+<dd>Means that a user is allowed to add new processes, and to edit unfinished
+processes.</dd>
+<dt><tt class="samp docutils literal"><span class="pre">edit_permissions_for_</span><em><span class="pre">classname</span></em></tt></dt>
+<dd>Means that a user is allowed to edit the permissions of other users for
+this process class.</dd>
+<dt><tt class="samp docutils literal"><span class="pre">view_every_</span><em><span class="pre">classname</span></em></tt></dt>
+<dd>Means that a user is allowed to view all processes.  In particular, such
+users are allowed to read the lab notebook.</dd>
+<dt><tt class="samp docutils literal"><span class="pre">change_</span><em><span class="pre">classname</span></em></tt></dt>
+<dd>Means that a user is allowed to edit <em>all</em> processes.</dd>
+</dl>
+<p>Further rules:</p>
+<ul class="simple">
+<li><tt class="samp docutils literal"><em><span class="pre">classname</span></em></tt> must be given in lowercase letters without underscores.</li>
+<li>If a user has the permission <tt class="samp docutils literal"><span class="pre">add_</span><em><span class="pre">classname</span></em></tt>, this user can edit
+processes he/she is the operator of.</li>
+<li>You can view processes of samples that you can view.</li>
+<li>For obvious reasons, the <tt class="samp docutils literal"><span class="pre">edit_permissions_for_</span><em><span class="pre">classname</span></em></tt> permission
+implies all the others.  Usually, the users in charge of this setup or
+apparatus have this permission.</li>
+</ul>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>The following code snipped defines the permissions for the
+<tt class="xref py py-class docutils literal"><span class="pre">ClusterToolDeposition</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Meta</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">PhysicalProcess</span><span class="o">.</span><span class="n">Meta</span><span class="p">):</span>
+    <span class="n">permissions</span> <span class="o">=</span> <span class="p">((</span><span class="s">&quot;add_clustertooldeposition&quot;</span><span class="p">,</span> <span class="s">&quot;Can add cluster tool depositions&quot;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s">&quot;edit_permissions_for_clustertooldeposition&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;Can edit perms for cluster tool I depositions&quot;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s">&quot;view_every_clustertooldeposition&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;Can view all cluster tool depositions&quot;</span><span class="p">),</span>
+                   <span class="p">(</span><span class="s">&quot;change_clustertooldeposition&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;Can edit all cluster tool depositions&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Using <a class="reference internal" href="utilities.html#jb_common.utils.base.generate_permissions" title="jb_common.utils.base.generate_permissions"><tt class="xref py py-func docutils literal"><span class="pre">jb_common.utils.base.generate_permissions()</span></tt></a>, this can be heavily
+simplified:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Meta</span><span class="p">(</span><span class="n">samples</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">PhysicalProcess</span><span class="o">.</span><span class="n">Meta</span><span class="p">):</span>
+    <span class="n">permissions</span> <span class="o">=</span> <span class="n">generate_permissions</span><span class="p">(</span>
+        <span class="p">{</span><span class="s">&quot;add&quot;</span><span class="p">,</span> <span class="s">&quot;change&quot;</span><span class="p">,</span> <span class="s">&quot;view_every&quot;</span><span class="p">,</span> <span class="s">&quot;edit_permissions&quot;</span><span class="p">},</span> <span class="s">&quot;ClusterToolDeposition&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="omitting-permissions">
+<h2>Omitting permissions<a class="headerlink" href="#omitting-permissions" title="Permalink to this headline">¶</a></h2>
+<p>You may define all four permissions above.  However, if you omit some of them,
+this has influence on JuliaBase&#8217;s treatment of that process class.  The obvious
+effect of omitting a permission is that no user can have that permission.  But
+there are also more subtle effects.</p>
+<p>If you omit the <tt class="docutils literal"><span class="pre">add_...</span></tt> permission, <em>every</em> user is allowed to add such a
+process.  This may be suitable for things like specimen tempering, etching, or
+thickness measurements that are not bound to a specific apparatus.</p>
+<p>If you omit the <tt class="docutils literal"><span class="pre">edit_permissions_for_...</span></tt> permission, the process class will
+not appear in the <a class="reference internal" href="../demo.html#permissions-to-processes"><em>“Permissions to processes”</em></a>
+page.  Moreover, no email is sent to a person in charge of the setup if a user
+creates his/her very first process of that kind.</p>
+</div>
+<div class="section" id="django-s-default-permissions">
+<h2>Django&#8217;s default permissions<a class="headerlink" href="#django-s-default-permissions" title="Permalink to this headline">¶</a></h2>
+<p>By default, Django generates an <tt class="docutils literal"><span class="pre">add_...</span></tt>, <tt class="docutils literal"><span class="pre">change_...</span></tt>, and <tt class="docutils literal"><span class="pre">delete_...</span></tt>
+permission for every model.  You can switch it off for a certain model by
+saying</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+    <span class="n">default_permissions</span> <span class="o">=</span> <span class="p">()</span>
+</pre></div>
+</div>
+<p>For physical processes, this has been done already — this is the reason why we
+derived our <tt class="docutils literal"><span class="pre">Meta</span></tt> class from <tt class="docutils literal"><span class="pre">samples.models.PhysicalProcess.Meta</span></tt> in the
+above <a class="reference internal" href="#example">Example</a>.</p>
+<p>We recommend you to switch off Django&#8217;s default permissions globally for your
+project.  This way, it&#8217;s much easier to control which permissions exist for a
+certain model.  You switch them off by saying in your <tt class="file docutils literal"><span class="pre">manage.py</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">django.contrib.auth.management</span>
+<span class="k">def</span> <span class="nf">_get_only_custom_permissions</span><span class="p">(</span><span class="n">opts</span><span class="p">,</span> <span class="n">ctype</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">opts</span><span class="o">.</span><span class="n">permissions</span><span class="p">)</span>
+<span class="n">django</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">management</span><span class="o">.</span><span class="n">_get_all_permissions</span> <span class="o">=</span> <span class="n">_get_only_custom_permissions</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="class-based_views.html" title="Class-based views"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="programming.html" title="Programming"
+             >previous</a> |</li>
+        <li><a href="../toc.html">JuliaBase documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Torsten Bronger, Forschungszentrum Jülich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
