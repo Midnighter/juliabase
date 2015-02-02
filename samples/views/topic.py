@@ -34,7 +34,7 @@ import django.forms as forms
 from django.forms.util import ValidationError
 from django.utils.text import capfirst
 from jb_common.models import Topic
-from jb_common.utils.base import int_or_zero
+from jb_common.utils.base import int_or_zero, HttpResponseSeeOther
 from jb_common.utils.views import UserField, MultipleUsersField
 from samples import permissions
 from samples.views.permissions import PermissionsModels
@@ -84,11 +84,12 @@ class NewTopicForm(forms.Form):
 
     def clean(self):
         cleaned_data = super(NewTopicForm, self).clean()
-        topic_name = cleaned_data["new_topic_name"]
-        parent_topic = self.cleaned_data.get("parent_topic", None)
-        if Topic.objects.filter(name=topic_name, department=self.user.jb_user_details.department,
-                                parent_topic=parent_topic).exists():
-            self.add_error("new_topic_name", _("This topic name is already used."))
+        if "new_topic_name" in cleaned_data:
+            topic_name = cleaned_data["new_topic_name"]
+            parent_topic = self.cleaned_data.get("parent_topic", None)
+            if Topic.objects.filter(name=topic_name, department=self.user.jb_user_details.department,
+                                    parent_topic=parent_topic).exists():
+                self.add_error("new_topic_name", _("This topic name is already used."))
         if parent_topic and parent_topic.manager != cleaned_data.get("topic_manager"):
             self.add_error("topic_manager", _("The topic manager must be the topic manager from the upper topic."))
         return cleaned_data
@@ -109,6 +110,12 @@ def add(request):
     :rtype: HttpResponse
     """
     permissions.assert_can_edit_users_topics(request.user)
+    if not request.user.jb_user_details.department:
+        if request.user.is_superuser:
+            return HttpResponseSeeOther("/admin/jb_common/topic/add/")
+        else:
+            raise permissions.PermissionError(request.user,
+                                              _("You cannot add topics here because you are not in any department."))
     if request.method == "POST":
         new_topic_form = NewTopicForm(request.user, request.POST)
         if new_topic_form.is_valid():
