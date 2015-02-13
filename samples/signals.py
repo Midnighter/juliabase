@@ -190,22 +190,21 @@ def touch_my_samples(sender, instance, action, reverse, model, pk_set, **kwargs)
     Samples”.  But the gain would be small and the code significantly more
     complex.
     """
-    def touch_my_samples(user):
-        user_details = user.samples_user_details
-        user_details.my_samples_timestamp = datetime.datetime.now()
-        user_details.save()
+    now = datetime.datetime.now()
     if reverse:
         # `instance` is django.contrib.auth.models.User
         if action in ["post_add", "post_remove", "post_clear"]:
-            touch_my_samples(instance)
+            user_details = instance.samples_user_details
+            user_details.my_samples_timestamp = user_details.my_samples_list_timestamp = now
+            user_details.save()
     else:
         # `instance` is ``Sample``.
         if action == "pre_clear":
-            for user in instance.watchers.all():
-                touch_my_samples(user)
+            samples_app.UserDetails.objects.filter(user__in=instance.watchers.all()).update(
+                my_samples_timestamp=now, my_samples_list_timestamp=now)
         elif action in ["post_add", "post_remove"]:
-            for user in User.objects.in_bulk(pk_set).values():
-                touch_my_samples(user)
+            samples_app.UserDetails.objects.filter(user__pk__in=pk_set).update(
+                my_samples_timestamp=now, my_samples_list_timestamp=now)
 
 
 
@@ -363,12 +362,58 @@ def touch_sample_series_results(sender, instance, action, reverse, model, pk_set
         instance.save()
 
 
+@receiver(signals.pre_save, sender=jb_common_app.Topic)
+def touch_my_samples_list_by_topic(sender, instance, raw, **kwargs):
+    """Considers the “My Samples” lists of *all* users as changed if the topic has
+    changed its “confidential” status, so its name may appear differently on
+    the “My Samples” lists.
+
+    Note this is may be called redundantly multiple times in case of subtopics.
+    This is unfortunate but difficult to fix – we don't know whether we are in
+    the genuine ``save()`` call.  However, it should not be too costly either,
+    and topics are changed seldomly.
+    """
+    if not raw and instance.pk:
+        old_instance = jb_common_app.Topic.objects.get(pk=instance.pk)
+        if old_instance.name != instance.name or old_instance.confidential != instance.confidential:
+            samples_app.UserDetails.objects.update(my_samples_list_timestamp=datetime.datetime.now())
+
+
+@receiver(signals.m2m_changed, sender=jb_common_app.Topic.members.through)
+def touch_my_samples_list_by_topic_memberships(sender, instance, action, reverse, model, pk_set, **kwargs):
+    """Considers the “My Samples” lists of such users as changed if the topic is
+    confidential because then, the topic's appearance in the “My Samples” list
+    changes.
+    """
+    # FixMe: This also affects users whose topic memberships haven't changed
+    # but who just happen to be in a topic the memberships of which has
+    # changed.  Could be possibly fixed by not assigning just a list to
+    # ``topic.members`` in the "edit topic" view.
+    now = datetime.datetime.now()
+    if reverse:
+        # `instance` is a user
+        user_details = instance.samples_user_details
+        user_details.my_samples_list_timestamp = now
+        user_details.save()
+    else:
+        # `instance` is a topic
+        if instance.confidential:
+            if action == "pre_clear":
+                samples_app.UserDetails.objects.filter(user__in=instance.members.all()).update(my_samples_list_timestamp=now)
+            elif action in ["post_add", "post_remove"]:
+                samples_app.UserDetails.objects.filter(user__pk__in=pk_set).update(my_samples_list_timestamp=now)
+
+
 @receiver(signals.m2m_changed, sender=jb_common_app.Topic.members.through)
 def touch_display_settings_by_topic(sender, instance, action, reverse, model, pk_set, **kwargs):
     """Touch the display settings of all users for which the topics have
     changed because we must invalidate the browser cache for those users (the
     permissions may have changed).
     """
+    # FixMe: This also affects users whose topic memberships haven't changed
+    # but who just happen to be in a topic the memberships of which has
+    # changed.  Could be possibly fixed by not assigning just a list to
+    # ``topic.members`` in the "edit topic" view.
     if reverse:
         # `instance` is a user
         instance.samples_user_details.touch_display_settings()
