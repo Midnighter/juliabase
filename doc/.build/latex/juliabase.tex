@@ -20,7 +20,7 @@
 
 
 \title{JuliaBase}
-\date{February 03, 2015}
+\date{February 13, 2015}
 \release{1.0c}
 \author{Torsten Bronger}
 \newcommand{\sphinxlogo}{\includegraphics{juliabase_logo.pdf}\par}
@@ -843,6 +843,10 @@ institute
 department or work group that wants to use JuliaBase.  “institute” implements a
 \emph{generic} institute.  You will replace “institute” with your own app.
 
+While the naked Git repo is suitable to get JuliaBase up and running quickly,
+in the section {\hyperref[programming/programming:organizing-your-source-code]{\emph{“Organizing your source code”}}}, we'll explain the directory structure that you should use if you plan
+to actually using JuliaBase.
+
 \index{Apache!configuration}\index{configuration!Apache}
 
 \section{Apache}
@@ -932,7 +936,8 @@ myproject/
 Thus, follow these steps:
 \begin{enumerate}
 \item {} 
-Create the directory \code{myproject/}
+Create the directory \code{myproject/}.  (Don't use Django's
+\code{startproject} command here or in the following.)
 
 \item {} 
 Copy a JuliaBase release to \code{myproject/juliabase}
