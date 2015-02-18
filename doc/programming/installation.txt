@@ -71,6 +71,7 @@ operating system by default anyway, you must install:
 - memcached (and the Python module for it)
 - matplotlib
 - reportlab
+- Python modules for YAML and markdown
 
 
 .. index::
@@ -173,11 +174,11 @@ Add to your Apache configuration something like the following:
     XSendFile on
     XSendFilePath /
     Alias /media /var/www/juliabase/media
-    <Location "/">
-      Order allow,deny
-      Allow from all
-      Require all granted
-    </Location>
+    <Directory /home/username/myproject/mysite>
+      <Files wsgi.py>
+        Require all granted
+      </Files>
+    </Directory>
   </VirtualHost>
 
 This snippet contains several parts that highly probably need to be adjusted by
