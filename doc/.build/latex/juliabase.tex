@@ -20,7 +20,7 @@
 
 
 \title{JuliaBase}
-\date{February 13, 2015}
+\date{February 18, 2015}
 \release{1.0c}
 \author{Torsten Bronger}
 \newcommand{\sphinxlogo}{\includegraphics{juliabase_logo.pdf}\par}
@@ -772,6 +772,9 @@ matplotlib
 \item {} 
 reportlab
 
+\item {} 
+Python modules for YAML and markdown
+
 \end{itemize}
 
 \index{PostgreSQL!configuration}\index{configuration!PostgreSQL}
@@ -860,11 +863,11 @@ Add to your Apache configuration something like the following:
   \PYG{n+nb}{XSendFile} \PYG{k}{on}
   \PYG{n+nb}{XSendFilePath} /
   \PYG{n+nb}{Alias} \PYG{l+s+sx}{/media} \PYG{l+s+sx}{/var/www/juliabase/media}
-  \PYG{n+nt}{\PYGZlt{}Location} \PYG{l+s}{\PYGZdq{}/\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
-    \PYG{n+nb}{Order} allow,deny
-    \PYG{n+nb}{Allow} from \PYG{k}{all}
-    \PYG{n+nb}{Require} \PYG{k}{all} granted
-  \PYG{n+nt}{\PYGZlt{}/Location}\PYG{n+nt}{\PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}Directory} \PYG{l+s}{/home/username/myproject/mysite}\PYG{n+nt}{\PYGZgt{}}
+    \PYG{n+nt}{\PYGZlt{}Files} \PYG{l+s}{wsgi.py}\PYG{n+nt}{\PYGZgt{}}
+      \PYG{n+nb}{Require} \PYG{k}{all} granted
+    \PYG{n+nt}{\PYGZlt{}/Files}\PYG{n+nt}{\PYGZgt{}}
+  \PYG{n+nt}{\PYGZlt{}/Directory}\PYG{n+nt}{\PYGZgt{}}
 \PYG{n+nt}{\PYGZlt{}/VirtualHost}\PYG{n+nt}{\PYGZgt{}}
 \end{Verbatim}
 

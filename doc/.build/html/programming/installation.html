@@ -133,6 +133,7 @@ operating system by default anyway, you must install:</p>
 <li>memcached (and the Python module for it)</li>
 <li>matplotlib</li>
 <li>reportlab</li>
+<li>Python modules for YAML and markdown</li>
 </ul>
 </div>
 <div class="section" id="postgresql">
@@ -198,11 +199,11 @@ to actually using JuliaBase.</p>
   <span class="nb">XSendFile</span> <span class="k">on</span>
   <span class="nb">XSendFilePath</span> /
   <span class="nb">Alias</span> <span class="sx">/media</span> <span class="sx">/var/www/juliabase/media</span>
-  <span class="nt">&lt;Location</span> <span class="s">&quot;/&quot;</span><span class="nt">&gt;</span>
-    <span class="nb">Order</span> allow,deny
-    <span class="nb">Allow</span> from <span class="k">all</span>
-    <span class="nb">Require</span> <span class="k">all</span> granted
-  <span class="nt">&lt;/Location&gt;</span>
+  <span class="nt">&lt;Directory</span> <span class="s">/home/username/myproject/mysite</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Files</span> <span class="s">wsgi.py</span><span class="nt">&gt;</span>
+      <span class="nb">Require</span> <span class="k">all</span> granted
+    <span class="nt">&lt;/Files&gt;</span>
+  <span class="nt">&lt;/Directory&gt;</span>
 <span class="nt">&lt;/VirtualHost&gt;</span>
 </pre></div>
 </div>
