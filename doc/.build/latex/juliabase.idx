@@ -60,10 +60,10 @@
 \indexentry{URLs|hyperpage}{23}
 \indexentry{process!view|hyperpage}{23}
 \indexentry{view!process|hyperpage}{23}
-\indexentry{process!template|hyperpage}{23}
-\indexentry{template!process|hyperpage}{23}
-\indexentry{user context|hyperpage}{24}
-\indexentry{get\_context\_for\_user()|hyperpage}{24}
+\indexentry{process!template|hyperpage}{24}
+\indexentry{template!process|hyperpage}{24}
+\indexentry{user context|hyperpage}{25}
+\indexentry{get\_context\_for\_user()|hyperpage}{25}
 \indexentry{lab notebook|hyperpage}{25}
 \indexentry{process|hyperindexformat{\textbf}}{26}
 \indexentry{measurement|hyperindexformat{\textbf}}{26}

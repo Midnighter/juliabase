@@ -102,7 +102,7 @@
   \bigletter G
   \item generate\_permissions() (in module jb\_common.utils.base), \hyperpage{65}
   \item get\_context\_data() (ProcessWithoutSamplesView method), \hyperpage{30}
-  \item get\_context\_for\_user(), \hyperpage{24}
+  \item get\_context\_for\_user(), \hyperpage{25}
   \item get\_next\_id() (ProcessWithoutSamplesView method), \hyperpage{30}
   \item get\_really\_full\_name() (in module jb\_common.templatetags.juliabase), \hyperpage{78}
   \item get\_really\_full\_name() (in module jb\_common.utils.base), \hyperpage{64}
@@ -224,7 +224,7 @@
   \item process, \hyperpage{6}, \hyperpage{21}, \hyperindexformat{\textbf}{26}
     \subitem comments, \hyperpage{81}
     \subitem module, add, \hyperpage{21}
-    \subitem template, \hyperpage{23}
+    \subitem template, \hyperpage{24}
     \subitem unfinished, \hyperpage{27}
     \subitem view, \hyperpage{23}
   \item ProcessForm (class in samples.utils.views), \hyperpage{71}
@@ -335,7 +335,7 @@
   \item tasks, \hyperpage{12}
   \item template
     \subitem filters, \hyperpage{75}
-    \subitem process, \hyperpage{23}
+    \subitem process, \hyperpage{24}
     \subitem tags, \hyperpage{75}
   \item TEMPLATE\_CONTEXT\_PROCESSORS, \hyperpage{49}
   \item TEMPLATE\_DIRS, \hyperpage{49}
@@ -362,7 +362,7 @@
     \subitem initials, \hyperpage{52}
     \subitem permissions, \hyperpage{3}
     \subitem privileges, \hyperpage{3}
-  \item user context, \hyperpage{24}
+  \item user context, \hyperpage{25}
   \item UserField (class in jb\_common.utils.views), \hyperpage{70}
   \item utility
     \subitem functions, \hyperpage{56}

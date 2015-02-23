@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.10.14)  20 FEB 2015 14:13
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.10.14)  23 FEB 2015 10:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1271,27 +1271,27 @@ LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <8> not available
 Chapter 4.
 [19] [20] [21] [22]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <10.95> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 1209.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 1212.
  [23]
-LaTeX Font Info:    Try loading font information for TS1+pcr on input line 1310
+LaTeX Font Info:    Try loading font information for TS1+pcr on input line 1313
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
-)
-Underfull \hbox (badness 6625) in paragraph at lines 1326--1329
+) [24]
+Underfull \hbox (badness 6625) in paragraph at lines 1329--1332
 \T1/ppl/m/n/10.95 In or-der to en-able users to du-pli-cate ex-ist-ing de-po-si
 -tions, you should over-ride
  []
 
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 1393--1396
+
+Underfull \hbox (badness 10000) in paragraph at lines 1396--1399
 []\T1/ppl/m/n/10.95 Adding the URL for de-po-si-tions is triv-ial as the method
 
  []
 
 
-Underfull \hbox (badness 7433) in paragraph at lines 1393--1396
+Underfull \hbox (badness 7433) in paragraph at lines 1396--1399
 [][]\T1/pcr/m/n/10.95 samples.utils.urls.PatternGenerator.deposition()[][] \T1/
 ppl/m/n/10.95 by de-fault also cre-ates
  []
@@ -1299,17 +1299,17 @@ ppl/m/n/10.95 by de-fault also cre-ates
 [25] [26]
 Chapter 5.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 1459.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 1462.
 LaTeX Font Info:    Font shape `T1/pcr/bx/it' in size <10.95> not available
-(Font)              Font shape `T1/pcr/b/it' tried instead on input line 1459.
+(Font)              Font shape `T1/pcr/b/it' tried instead on input line 1462.
 LaTeX Font Info:    Font shape `T1/pcr/b/it' in size <10.95> not available
-(Font)              Font shape `T1/pcr/b/sl' tried instead on input line 1459.
+(Font)              Font shape `T1/pcr/b/sl' tried instead on input line 1462.
 [27
 
 ] [28]
 Chapter 6.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1623--1626
+Underfull \hbox (badness 10000) in paragraph at lines 1626--1629
 []\T1/ppl/m/n/10.95 Note that for \T1/pcr/m/n/10.95 is_referentially_valid()\T1
 /ppl/m/n/10.95 , \T1/pcr/m/n/10.95 save_to_database()\T1/ppl/m/n/10.95 ,
  []
@@ -1317,25 +1317,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 1623--1626
 [29
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1644--1646
+Underfull \hbox (badness 10000) in paragraph at lines 1647--1649
 []\T1/ppl/b/n/10.95 class_name \T1/ppl/m/n/10.95 -- The name of the model class
 , e.g.
  []
 
 [30] [31]
-Underfull \hbox (badness 10000) in paragraph at lines 1882--1886
+Underfull \hbox (badness 10000) in paragraph at lines 1885--1889
 \T1/ppl/m/n/10.95 View class for de-po-si-tions the lay-ers of which are of dif
 -fer-ent types
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1882--1886
+Underfull \hbox (badness 10000) in paragraph at lines 1885--1889
 \T1/ppl/m/n/10.95 (i.e., dif-fer-ent mod-els). You can see it in ac-tion in the
  mod-ule
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1882--1886
+Underfull \hbox (badness 10000) in paragraph at lines 1885--1889
 \T1/pcr/m/n/10.95 institute.views.samples.cluster_tool_deposition\T1/ppl/m/n/10
 .95 . Ad-di-tion-ally to
  []
@@ -1346,7 +1346,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1882--1886
 Chapter 7.
 [35] [36] [37]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2172.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 2175.
  [38] [39] [40] [41] [42
 
 ]
@@ -1356,7 +1356,7 @@ Chapter 8.
 ]
 Chapter 9.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <12> not available
-(Font)              Font shape `T1/pcr/b/n' tried instead on input line 3097.
+(Font)              Font shape `T1/pcr/b/n' tried instead on input line 3100.
 [51] [52] [53] [54
 
 ]
@@ -1366,58 +1366,58 @@ Chapter 11.
 [57
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 3471--3471
+Underfull \hbox (badness 10000) in paragraph at lines 3474--3474
 []\T1/ppl/m/it/10.95 filepath\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 de-fault_ro
 ot\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 al-lowed_roots=frozenset([])\T1/ppl/m/
 n/10.95 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3509--3509
+Underfull \hbox (badness 10000) in paragraph at lines 3512--3512
 []\T1/ppl/m/it/10.95 destination\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 source_f
 iles=\T1/ppl/m/n/14.4 [ ]\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 times-tamps=\T1
 /ppl/m/n/14.4 [ ]\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 ad-di-
  []
 
 [58] [59]
-Underfull \hbox (badness 10000) in paragraph at lines 3700--3700
+Underfull \hbox (badness 10000) in paragraph at lines 3703--3703
 []\T1/ppl/m/it/10.95 request\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 suc-cess_rep
 ort=None\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 view=None\T1/ppl/m/n/10.95 , \T1
 /ppl/m/it/10.95 kwargs={}\T1/ppl/m/n/10.95 ,
  []
 
 [60] [61]
-Underfull \hbox (badness 10000) in paragraph at lines 3900--3903
+Underfull \hbox (badness 10000) in paragraph at lines 3903--3906
 []\T1/pcr/m/n/10.95 samples.models.Sample \T1/ppl/m/n/10.95 or \T1/pcr/m/n/10.9
 5 samples.models.Sample\T1/ppl/m/n/10.95 ,
  []
 
 [62] [63] [64]
-Underfull \hbox (badness 10000) in paragraph at lines 4204--4206
+Underfull \hbox (badness 10000) in paragraph at lines 4207--4209
 []\T1/ppl/b/n/10.95 permissions \T1/ppl/m/n/10.95 (\T1/ppl/m/it/10.95 set of un
 i-code\T1/ppl/m/n/10.95 ) -- The per-mis-sions to gen-er-ate.
  []
 
 
-Underfull \hbox (badness 6741) in paragraph at lines 4204--4206
+Underfull \hbox (badness 6741) in paragraph at lines 4207--4209
 \T1/ppl/m/n/10.95 Pos-si-ble val-ues are \T1/pcr/m/n/10.95 "add"\T1/ppl/m/n/10.
 95 , \T1/pcr/m/n/10.95 "change"\T1/ppl/m/n/10.95 , \T1/pcr/m/n/10.95 "view_ever
 y"\T1/ppl/m/n/10.95 , and
  []
 
 [65]
-Underfull \hbox (badness 10000) in paragraph at lines 4292--4292
+Underfull \hbox (badness 10000) in paragraph at lines 4295--4295
 []\T1/ppl/m/it/10.95 sample_series\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 old_to
 pic\T1/ppl/m/n/10.95 ,
  []
 
 [66] [67]
-Underfull \hbox (badness 10000) in paragraph at lines 4445--4445
+Underfull \hbox (badness 10000) in paragraph at lines 4448--4448
 []\T1/ppl/m/it/10.95 sample_series\T1/ppl/m/n/10.95 ,
  []
 
 [68] [69]
-Underfull \hbox (badness 6526) in paragraph at lines 4684--4684
+Underfull \hbox (badness 6526) in paragraph at lines 4687--4687
 []\T1/ppl/m/it/10.95 choices=()\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 re-quired
 =True\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 wid-get=None\T1/ppl/m/n/10.95 , \T1
 /ppl/m/it/10.95 la-bel=None\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 ini-tial=None
@@ -1425,80 +1425,80 @@ Underfull \hbox (badness 6526) in paragraph at lines 4684--4684
  []
 
 [70] [71]
-Underfull \hbox (badness 10000) in paragraph at lines 4929--4929
+Underfull \hbox (badness 10000) in paragraph at lines 4932--4932
 []\T1/ppl/m/it/10.95 data=None\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 files=None
 \T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 auto_id=u'id_%s'\T1/ppl/m/n/10.95 , \T1/
 ppl/m/it/10.95 pre-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4929--4929
+Underfull \hbox (badness 10000) in paragraph at lines 4932--4932
 \T1/ppl/m/it/10.95 fix=None\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 ini-tial=None
 \T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 er-ror_class=<class
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4929--4929
+Underfull \hbox (badness 10000) in paragraph at lines 4932--4932
 \T1/ppl/m/it/10.95 `django.forms.utils.ErrorList'>\T1/ppl/m/n/10.95 , \T1/ppl/m
 /it/10.95 la-bel_suffix=None\T1/ppl/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4944--4947
+Underfull \hbox (badness 10000) in paragraph at lines 4947--4950
 \T1/ppl/m/n/10.95 Raised if an er-ror oc-curs while gen-er-at-ing a plot. Usu-a
 lly, it is
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4944--4947
+Underfull \hbox (badness 10000) in paragraph at lines 4947--4950
 \T1/ppl/m/n/10.95 raised in \T1/pcr/m/n/10.95 samples.models.Process.draw_plot(
 ) \T1/ppl/m/n/10.95 and caught in
  []
 
 [72]
-Underfull \hbox (badness 10000) in paragraph at lines 4953--4953
+Underfull \hbox (badness 10000) in paragraph at lines 4956--4956
 []\T1/ppl/m/it/10.95 filename\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 columns\T1/
 ppl/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4953--4953
+Underfull \hbox (badness 10000) in paragraph at lines 4956--4956
 \T1/ppl/m/it/10.95 start_line_number\T1/ppl/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4953--4953
+Underfull \hbox (badness 10000) in paragraph at lines 4956--4956
 \T1/ppl/m/it/10.95 end_line_number=None\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 s
 ep-a-ra-
  []
 
 
-Underfull \hbox (badness 7667) in paragraph at lines 4954--4957
+Underfull \hbox (badness 7667) in paragraph at lines 4957--4960
 \T1/ppl/m/n/10.95 Read a datafile and re-turns the con-tent of se-lected column
 s be-gin-ning at
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 4996--4996
+Underfull \hbox (badness 10000) in paragraph at lines 4999--4999
 \T1/ppl/m/it/10.95 end_value=u'`\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 sep-a-ra
 -
  []
 
 [73]
-Underfull \hbox (badness 10000) in paragraph at lines 5072--5072
+Underfull \hbox (badness 10000) in paragraph at lines 5075--5075
 []\T1/ppl/m/it/10.95 class_name\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 url_name=
 None\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 views=set([u'edit'\T1/ppl/m/n/10.95 
 , \T1/ppl/m/it/10.95 u'add'\T1/ppl/m/n/10.95 ,
  []
 
 
-Underfull \hbox (badness 7595) in paragraph at lines 5080--5082
+Underfull \hbox (badness 7595) in paragraph at lines 5083--5085
 []\T1/ppl/b/n/10.95 class_name \T1/ppl/m/n/10.95 (\T1/ppl/m/it/10.95 uni-code\T
 1/ppl/m/n/10.95 ) -- Name of the de-po-si-tion class, e.g.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5102--5102
+Underfull \hbox (badness 10000) in paragraph at lines 5105--5105
 []\T1/ppl/m/it/10.95 class_name\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 iden-ti-f
 y-ing_field=None\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 url_name=None\T1/ppl/m/n
 /10.95 ,
@@ -1509,42 +1509,42 @@ y-ing_field=None\T1/ppl/m/n/10.95 , \T1/ppl/m/it/10.95 url_name=None\T1/ppl/m/n
 ]
 Chapter 12.
 
-Underfull \hbox (badness 5388) in paragraph at lines 5203--5206
+Underfull \hbox (badness 5388) in paragraph at lines 5206--5209
 []\T1/ppl/b/n/10.95 outest_tag \T1/ppl/m/n/10.95 (\T1/ppl/m/it/10.95 uni-code\T
 1/ppl/m/n/10.95 ) -- May be \T1/pcr/m/n/10.95 "<table>" \T1/ppl/m/n/10.95 or \T
 1/pcr/m/n/10.95 "<tr>"\T1/ppl/m/n/10.95 , with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5208--5211
+Underfull \hbox (badness 10000) in paragraph at lines 5211--5214
 []\T1/ppl/b/n/10.95 colspan \T1/ppl/m/n/10.95 (\T1/ppl/m/it/10.95 int\T1/ppl/m/
 n/10.95 ) -- the width of the ta-ble in the num-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5208--5211
+Underfull \hbox (badness 10000) in paragraph at lines 5211--5214
 \T1/ppl/m/n/10.95 ber of columns; nec-es-sary be-cause those &%$#
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5208--5211
+Underfull \hbox (badness 10000) in paragraph at lines 5211--5214
 \T1/ppl/m/n/10.95 guys of WHATWG have dropped colspan=''0''; see
  []
 
 
-Underfull \hbox (badness 6047) in paragraph at lines 5225--5229
+Underfull \hbox (badness 6047) in paragraph at lines 5228--5232
 \T1/ppl/m/n/10.95 if the user has no first and sur-name set. How-ever, it'd be 
 sen-si-ble to
  []
 
 [77] [78] [79]
-Underfull \hbox (badness 6047) in paragraph at lines 5431--5435
+Underfull \hbox (badness 6047) in paragraph at lines 5434--5438
 \T1/ppl/m/n/10.95 if the user has no first and sur-name set. How-ever, it'd be 
 sen-si-ble to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5457--5460
+Underfull \hbox (badness 10000) in paragraph at lines 5460--5463
 \T1/ppl/m/n/10.95 Return the name of the op-er-a-tor (with the markup gen-er-at
 ed by
  []
@@ -1566,20 +1566,20 @@ Overfull \hbox (14.25574pt too wide) in paragraph at lines 262--263
  []
 
 [92] [93])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5823.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5823.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5826.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5826.
  (./juliabase.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5823.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5823.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5826.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5826.
 
 Package rerunfilecheck Info: File `juliabase.out' has not changed.
 (rerunfilecheck)             Checksum: 25AEF4483871CD86F5A079BC755B98C4;4482.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5823.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5826.
  ) 
 Here is how much of TeX's memory you used:
  10296 strings out of 493304
  155599 string characters out of 6139870
- 247189 words of memory out of 5000000
+ 246189 words of memory out of 5000000
  12981 multiletter control sequences out of 15000+600000
  84918 words of font info for 112 fonts, out of 8000000 for 9000
  958 hyphenation exceptions out of 8191
@@ -1595,10 +1595,10 @@ sr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/palatino/uplri8a.pfb>
-Output written on juliabase.pdf (97 pages, 1230678 bytes).
+Output written on juliabase.pdf (97 pages, 1230750 bytes).
 PDF statistics:
- 1623 PDF objects out of 1728 (max. 8388607)
- 1450 compressed objects within 15 object streams
+ 1624 PDF objects out of 1728 (max. 8388607)
+ 1451 compressed objects within 15 object streams
  435 named destinations out of 1000 (max. 500000)
  702 words of extra memory for PDF output out of 10000 (max. 10000000)
 

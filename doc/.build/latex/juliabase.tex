@@ -20,7 +20,7 @@
 
 
 \title{JuliaBase}
-\date{February 20, 2015}
+\date{February 23, 2015}
 \release{1.0c}
 \author{Torsten Bronger}
 \newcommand{\sphinxlogo}{\includegraphics{juliabase_logo.pdf}\par}
@@ -1193,12 +1193,15 @@ should be added to your repository.
 
 \subsection{Creating the URLs}
 \label{programming/programming:creating-the-urls}\label{programming/programming:index-8}
-The following work is done in \code{institute/urls.py}.  This step is fairly
-simple.  For the thickness measurement, you add:
+This work is done in \code{institute/urls.py}, and it is fairly simple.  For
+the thickness measurement, you add:
 
 \begin{Verbatim}[commandchars=\\\{\},formatcom=\scriptsize]
 \PYG{n}{pattern\PYGZus{}generator}\PYG{o}{.}\PYG{n}{physical\PYGZus{}process}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{LayerThicknessMeasurement}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
 \end{Verbatim}
+
+See the methods of the class {\hyperref[programming/utilities:samples.utils.urls.PatternGenerator]{\code{PatternGenerator}}}
+for further details.
 
 \index{process!view}\index{view!process}
 
